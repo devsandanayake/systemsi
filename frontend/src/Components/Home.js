@@ -26,50 +26,53 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='flex justify-center items-center mt-5'>
-      <div
-        className=" bg-white p-2 rounded-lg shadow-md w-10/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 justify-center"
-        style={{
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)',
-        }}
-      >
-        <div className='text-lg'>
-        <span className=' font-semibold'>Select Package : </span>
+     <div className='flex justify-center items-center mt-5'>
+  <div
+    className="bg-white p-2 rounded-lg shadow-md w-6/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 justify-center"
+    style={{
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)',
+    }}
+  >
+    <form className='ml-32'>
+     <div className='grid grid-cols-2 gap-4 text-lg'>
+  <label className='font-semibold'>Select Package : </label>
+  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
+    <option value="">Select...</option>
+    <option>AISecureNet</option>
+    <option>NetGuard</option>
+    <option>AINetGuard</option>
+    <option>BIL</option>
+  </select>
+</div>
+
+      <div className='grid grid-cols-2 gap-4 text-lg mt-10'>
+        <label className='font-semibold'>Select Commitment period : </label>
         <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
-          <option>AISecureNet</option>
-          <option>NetGuard</option>
-          <option>AINetGuard</option>
-          <option>BIL</option>
+          <option>1 Year</option>
+          <option>2 Year</option>
+          <option>3 Year</option>
         </select>
       </div>
 
-      <div>
-        <div className='text-lg mt-2'>
-          <span className=' font-semibold'>Select Commitment period : </span>
-          <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
-            <option>1 Year</option>
-            <option>2 Year</option>
-            <option>3 Year</option>
-          </select>
-        </div>
+      <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+        <label className='font-semibold'>Select Bandwidth : </label>
+        <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
+          <option>UPI</option>
+          <option>Net Banking</option>
+          <option>Debit Card</option>
+          <option>Credit Card</option>
+        </select>
       </div>
 
-      <div>
-        <div className='text-lg mt-2'>
-          <span className=' font-semibold'>Select Bandwidth : </span>
-          <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
-            <option>UPI</option>
-            <option>Net Banking</option>
-            <option>Debit Card</option>
-            <option>Credit Card</option>
-          </select>
-        </div>
+      <div className='text-lg mt-2'>
+        <button type="submit" className='font-semibold bg-blue-500 w-32 ml-40 text-white p-2 rounded-md'>Submit</button>
       </div>
-      </div>
+    </form>
+  </div>
+</div>
       </div>
       
       
-      </div>
-    </>
+     </>
   )
 }
