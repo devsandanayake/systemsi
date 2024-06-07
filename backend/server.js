@@ -16,6 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
+const routeRoutes = require('./Routes/route');
+
+
+app.use('/route', routeRoutes);
+
+
+
  
 
 // Connect to MongoDB
@@ -33,5 +40,5 @@ mongoose.connect('mongodb+srv://dev:dev1234@mernapp.zwstxds.mongodb.net/systemsi
   
   // Start the server
   app.listen(port, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Server is running on port ${port} `);
   });
