@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const port = 3000;
+const port = 3001;
  
 
 // Middleware to parse JSON and URL-encoded form bodies

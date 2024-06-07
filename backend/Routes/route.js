@@ -3,25 +3,31 @@ const router = express.Router();
 const Route = require('../Models/route');
 
 
-router.post('/add', (req, res) => {
+router.post('/add', async (req, res) => {
+    console.log('Request Body:', req.body); // Log the request body
+
+    const { origin, initiation } = req.body;
+
     const route = new Route({
-        origin: req.body.origin,
-        initiation: req.body.initiation
+        origin,
+        initiation,
     });
-    route.save()
-        .then((result) => {
-            res.status(201).json({
-                message: "Route added successfully",
-                route: result
-            });
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({
-                error: err.message
-            });
+
+    try {
+        const result = await route.save();
+        console.log('Saved Route:', result); // Log the saved document
+        res.status(201).json({
+            message: "Route added successfully",
+            route: result,
         });
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({
+            error: err.message,
+        });
+    }
 });
+
 
 
 router.get('/all', (req, res) => {
