@@ -17,7 +17,7 @@ const DropdownForm = () => {
         // backgroundBlendMode: 'overlay', // Blend mode for the transparency effect
       }}
     >
-        <div><h1 className="text-4xl font-bold text-gray-800 text-center mb-6">Insert AISecureNet</h1></div>
+        <div><h1 className="text-4xl font-bold text-gray-800 text-center mb-6">Insert AINetGuard</h1></div>
         
         <div className='w-full'>
         <div className="flex justify-center">
