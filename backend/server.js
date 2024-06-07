@@ -17,9 +17,11 @@ app.use(cors());
 
 
 const routeRoutes = require('./Routes/route');
+const aisecurenetRoutes = require('./Routes/AISecurenet');
 
 
 app.use('/route', routeRoutes);
+app.use('/aisecurenet', aisecurenetRoutes);
 
 
 
