@@ -60,9 +60,9 @@ const RouteSchema = new mongoose.Schema({
                 FiberNonAvailability: {
                     distance: String,
                     Sprice: String,
-                    year1Commitment: String,
-                    year2Commitment: String,
-                    year3Commitment: String,
+                    year1Commitment: [String],
+                    year2Commitment: [String],
+                    year3Commitment: [String],
                 },
             },
         },
