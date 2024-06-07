@@ -67,37 +67,56 @@ const routeSchema = new mongoose.Schema({
             }
         },
         initiation: {
-            FiberAvailability: {
-                Sprice: {
-                    type: Number
+            base:{
+                directFiber:{
+                    FiberAvailability: {
+                        Sprice: {
+                            type: Number
+                        },
+                        year1Commitement: {
+                            type: String
+                        },
+                        year2Commitement: {
+                            type: String
+                        },
+                        year3Commitement: {
+                            type: String
+                        }
+                    },
+                    FiberNonAvailability: {
+                        distance: {
+                            type: String
+                        },
+                        Sprice: {
+                            type: Number
+                        },
+                        year1Commitement: {
+                            type: String
+                        },
+                        year2Commitement: {
+                            type: String
+                        },
+                        year3Commitement: {
+                            type: String
+                        }
+                    }
                 },
-                year1Commitement: {
-                    type: String
-                },
-                year2Commitement: {
-                    type: String
-                },
-                year3Commitement: {
-                    type: String
-                }
-            },
-            FiberNonAvailability: {
-                distance: {
-                    type: String
-                },
-                Sprice: {
-                    type: Number
-                },
-                year1Commitement: {
-                    type: String
-                },
-                year2Commitement: {
-                    type: String
-                },
-                year3Commitement: {
-                    type: String
+                GPONbase:{
+                        Sprice: {
+                            type: Number
+                        },
+                        year1Commitement: {
+                            type: String
+                        },
+                        year2Commitement: {
+                            type: String
+                        },
+                        year3Commitement: {
+                            type: String
+                        }
                 }
             }
+           
         }
     }
 });
