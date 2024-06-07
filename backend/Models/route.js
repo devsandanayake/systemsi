@@ -1,124 +1,72 @@
 const mongoose = require('mongoose');
 
-const routeSchema = new mongoose.Schema({
+const RouteSchema = new mongoose.Schema({
     origin: {
-        Month: {
-            base: {
-                directFiber: {
-                    primary: {
-                        Bandwith: {
-                            type: String
-                        },
-                        Sprice: {
-                            type: Number
-                        },
-                        year1CMR: {
-                            type: Number
-                        },
-                        year2CMR: {
-                            type: Number
-                        },
-                        year3CMR: {
-                            type: Number
-                        }
-                    },
-                    backup: {
-                        Bandwith: {
-                            type: String
-                        },
-                        Sprice: {
-                            type: Number
-                        },
-                        year1CMR: {
-                            type: Number
-                        }
-                    }
+        base: {
+            directFiber: {
+                primary: {
+                    Bandwidth: String,
+                    Sprice: String,
+                    year1CMR: String,
+                    year2CMR: String,
+                    year3CMR: String,
                 },
-                GPONbase: {
-                    primary: {
-                        Bandwith: {
-                            type: String
-                        },
-                        Sprice: {
-                            type: Number
-                        },
-                        year1CMR: {
-                            type: Number
-                        },
-                        year2CMR: {
-                            type: Number
-                        },
-                        year3CMR: {
-                            type: Number
-                        }
-                    },
-                    backup: {
-                        Bandwith: {
-                            type: String
-                        },
-                        Sprice: {
-                            type: Number
-                        },
-                        year1CMR: {
-                            type: Number
-                        }
-                    }
-                }
-            }
+                backup: {
+                    Bandwidth: String,
+                    Sprice: String,
+                    year1CMR: String,
+                },
+            },
+            GPONbase: {
+                primary: {
+                    Bandwidth: String,
+                    Sprice: String,
+                    year1CMR: String,
+                    year2CMR: String,
+                    year3CMR: String,
+                },
+                backup: {
+                    Bandwidth: String,
+                    Sprice: String,
+                    year1CMR: String,
+                },
+            },
         },
-        initiation: {
-            base:{
-                directFiber:{
-                    FiberAvailability: {
-                        Sprice: {
-                            type: Number
-                        },
-                        year1Commitement: {
-                            type: String
-                        },
-                        year2Commitement: {
-                            type: String
-                        },
-                        year3Commitement: {
-                            type: String
-                        }
-                    },
-                    FiberNonAvailability: {
-                        distance: {
-                            type: String
-                        },
-                        Sprice: {
-                            type: Number
-                        },
-                        year1Commitement: {
-                            type: String
-                        },
-                        year2Commitement: {
-                            type: String
-                        },
-                        year3Commitement: {
-                            type: String
-                        }
-                    }
+    },
+    initiation: {
+        base: {
+            directFiber: {
+                FiberAvailability: {
+                    Sprice: String,
+                    year1Commitment: String,
+                    year2Commitment: String,
+                    year3Commitment: String,
                 },
-                GPONbase:{
-                        Sprice: {
-                            type: Number
-                        },
-                        year1Commitement: {
-                            type: String
-                        },
-                        year2Commitement: {
-                            type: String
-                        },
-                        year3Commitement: {
-                            type: String
-                        }
-                }
-            }
-           
-        }
-    }
+                FiberNonAvailability: {
+                    distance: String,
+                    Sprice: String,
+                    year1Commitment: String,
+                    year2Commitment: String,
+                    year3Commitment: String,
+                },
+            },
+            GPONbase: {
+                FiberAvailability: {
+                    Sprice: String,
+                    year1Commitment: String,
+                    year2Commitment: String,
+                    year3Commitment: String,
+                },
+                FiberNonAvailability: {
+                    distance: String,
+                    Sprice: String,
+                    year1Commitment: String,
+                    year2Commitment: String,
+                    year3Commitment: String,
+                },
+            },
+        },
+    },
 });
 
-module.exports = mongoose.model('Route', routeSchema);
+module.exports = mongoose.model('Route', RouteSchema);
