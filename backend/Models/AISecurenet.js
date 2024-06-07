@@ -6,7 +6,7 @@ const AISecurenetSchema = new mongoose.Schema({
            Standard:String,
            Commitment:String
         },
-    Monthly:{
+    monthly:{
             Bandwith:String,
             MaxUsers:String,
             ConcurrentUsers:String,
