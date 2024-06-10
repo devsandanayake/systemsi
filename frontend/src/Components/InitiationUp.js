@@ -21,34 +21,39 @@ export default function InitiationUp() {
         Fi1000Year2CMR: '',
         Fi1000Year3CMR: '',
     });
-    const [itemId, setItemId] = useState(''); // Store the ID of the route
+    const [ItemId, setItemId] = useState(); // Store the ID of the route
 
     useEffect(() => {
         // Fetch all routes and set formData and itemId for the first route as an example
         axios.get('http://localhost:3001/route/all')
             .then(response => {
                 const routes = response.data.routes;
+                
                 if (routes.length > 0) {
-                    const firstRoute = routes[0];
+                    const firstRoute = routes;
+                    console.log('Routes:', firstRoute[0].initiation); // Debugging line
+                    console.log('Direct Fiber:', firstRoute[0]._id);
+                    setItemId(firstRoute[0]._id); // Debugging line
                     setFormData({
-                        FiAvSprice: firstRoute.initiation.base.directFiber.FiAvSprice || '',
-                        FiAvYear1CMR: firstRoute.initiation.base.directFiber.FiAvYear1CMR || '',
-                        FiAvYear2CMR: firstRoute.initiation.base.directFiber.FiAvYear2CMR || '',
-                        FiAvYear3CMR: firstRoute.initiation.base.directFiber.FiAvYear3CMR || '',
-                        FiNonAv: firstRoute.initiation.base.directFiber.FiNonAv || '',
-                        FiNonAvYear1CMR: firstRoute.initiation.base.directFiber.FiNonAvYear1CMR || '',
-                        FiNonAvYear2CMR: firstRoute.initiation.base.directFiber.FiNonAvYear2CMR || '',
-                        FiNonAvYear3CMR: firstRoute.initiation.base.directFiber.FiNonAvYear3CMR || '',
-                        Fi500Sprice: firstRoute.initiation.base.directFiber.Fi500Sprice || '',
-                        Fi500Year1CMR: firstRoute.initiation.base.directFiber.Fi500Year1CMR || '',
-                        Fi500Year2CMR: firstRoute.initiation.base.directFiber.Fi500Year2CMR || '',
-                        Fi500Year3CMR: firstRoute.initiation.base.directFiber.Fi500Year3CMR || '',
-                        Fi1000Sprice: firstRoute.initiation.base.directFiber.Fi1000Sprice || '',
-                        Fi1000Year1CMR: firstRoute.initiation.base.directFiber.Fi1000Year1CMR || '',
-                        Fi1000Year2CMR: firstRoute.initiation.base.directFiber.Fi1000Year2CMR || '',
-                        Fi1000Year3CMR: firstRoute.initiation.base.directFiber.Fi1000Year3CMR || '',
+                        FiAvSprice: firstRoute[0].initiation.base.directFiber.FiAvSprice || '',
+                        FiAvYear1CMR: firstRoute[0].initiation.base.directFiber.FiAvYear1CMR || '',
+                        FiAvYear2CMR: firstRoute[0].initiation.base.directFiber.FiAvYear2CMR || '',
+                        FiAvYear3CMR: firstRoute[0].initiation.base.directFiber.FiAvYear3CMR || '',
+                        FiNonAv: firstRoute[0].initiation.base.directFiber.FiNonAv || '',
+                        FiNonAvYear1CMR: firstRoute[0].initiation.base.directFiber.FiNonAvYear1CMR || '',
+                        FiNonAvYear2CMR: firstRoute[0].initiation.base.directFiber.FiNonAvYear2CMR || '',
+                        FiNonAvYear3CMR: firstRoute[0].initiation.base.directFiber.FiNonAvYear3CMR || '',
+                        Fi500Sprice: firstRoute[0].initiation.base.directFiber.Fi500Sprice || '',
+                        Fi500Year1CMR: firstRoute[0].initiation.base.directFiber.Fi500Year1CMR || '',
+                        Fi500Year2CMR: firstRoute[0].initiation.base.directFiber.Fi500Year2CMR || '',
+                        Fi500Year3CMR: firstRoute[0].initiation.base.directFiber.Fi500Year3CMR || '',
+                        Fi1000Sprice: firstRoute[0].initiation.base.directFiber.Fi1000Sprice || '',
+                        Fi1000Year1CMR: firstRoute[0].initiation.base.directFiber.Fi1000Year1CMR || '',
+                        Fi1000Year2CMR: firstRoute[0].initiation.base.directFiber.Fi1000Year2CMR || '',
+                        Fi1000Year3CMR: firstRoute[0].initiation.base.directFiber.Fi1000Year3CMR || '',
                     });
-                    setItemId(firstRoute._id); // Store the ID of the first route
+                     // Debugging line
+                   // Store the ID of the first route
                 }
             })
             .catch(error => console.error('Error fetching data:', error));
@@ -65,8 +70,8 @@ export default function InitiationUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Item ID:', itemId); // Debugging line
-        axios.patch(`http://localhost:3001/route/update/${itemId}`, {
+        console.log('Item ID:', ItemId); // Debugging line
+        axios.patch(`http://localhost:3001/route/route/update/${ItemId}`, {
             initiation: {
                 base: {
                     directFiber: { ...formData },
