@@ -12,7 +12,6 @@ const RouteSchema = new mongoose.Schema({
                     year3CMR: String,
                 },
                 backup: {
-                    Bandwidth: String,
                     Sprice: String,
                     year1CMR: String,
                 },
@@ -26,7 +25,6 @@ const RouteSchema = new mongoose.Schema({
                     year3CMR: String,
                 },
                 backup: {
-                    Bandwidth: String,
                     Sprice: String,
                     year1CMR: String,
                 },
@@ -36,20 +34,24 @@ const RouteSchema = new mongoose.Schema({
     initiation: {
         base: {
             directFiber: {
-                FiberAvailability: {
-                    Sprice: String,
-                    year1Commitment: String,
-                    year2Commitment: String,
-                    year3Commitment: String,
-                },
-                FiberNonAvailability: {
-                    distance: String,
-                    Sprice: String,
-                    year1Commitment: String,
-                    year2Commitment: String,
-                    year3Commitment: String,
-                },
+                FiAvSprice: String,
+                FiAvYear1CMR: String,
+                FiAvYear2CMR: String,
+                FiAvYear3CMR: String,
+                FiNonAv: String,
+                FiNonAvYear1CMR: String,
+                FiNonAvYear2CMR: String,
+                FiNonAvYear3CMR: String,
+                Fi500Sprice: String,
+                Fi500Year1CMR: String,
+                Fi500Year2CMR: String,
+                Fi500Year3CMR: String,
+                Fi1000Sprice: String,
+                Fi1000Year1CMR: String,
+                Fi1000Year2CMR: String,
+                Fi1000Year3CMR: String,
             },
+            
             GPONbase: {
                 FiberAvailability: {
                     Sprice: String,
@@ -60,9 +62,9 @@ const RouteSchema = new mongoose.Schema({
                 FiberNonAvailability: {
                     distance: String,
                     Sprice: String,
-                    year1Commitment: [String],
-                    year2Commitment: [String],
-                    year3Commitment: [String],
+                    year1Commitment: String,
+                    year2Commitment: String,
+                    year3Commitment: String,
                 },
             },
         },

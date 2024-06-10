@@ -26,6 +26,12 @@ export default function Home() {
         </div>
       </div>
 
+      <div className=' flex justify-end'>
+        < a href='/bil'>
+        <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>BIL</button>
+        </a>
+      </div>
+
      <div className='flex justify-center items-center mt-5'>
   <div
     className="bg-white p-2 rounded-lg shadow-md w-6/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 justify-center"

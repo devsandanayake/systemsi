@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Route = require('../Models/route');
 
-
 router.post('/add', async (req, res) => {
     console.log('Request Body:', req.body); // Log the request body
 
@@ -28,8 +27,6 @@ router.post('/add', async (req, res) => {
     }
 });
 
-
-
 router.get('/all', (req, res) => {
     Route.find()
         .then((routes) => {
@@ -42,10 +39,53 @@ router.get('/all', (req, res) => {
                 error: err
             });
         });
-}
+});
 
-);
+//get element by id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const route = await Route.findById(id);
+        if (!route) {
+            return res.status(404).json({
+                error: "Route not found"
+            });
+        }
+        res.status(200).json({
+            route: route
+        });
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({
+            error: err.message
+        });
+    }
+});
 
+router.patch('/route/update/:id', async (req, res) => {
+    const id = req.params.id;
+    const { origin, initiation } = req.body;
+    try {
+        const route = await Route.findById(id);
+        if (!route) {
+            return res.status(404).json({
+                error: "Route not found"
+            });
+        }
+        route.origin = origin;
+        route.initiation = initiation;
+        const result = await route.save();
+        res.status(200).json({
+            message: "Route updated successfully",
+            route: result
+        });
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({
+            error: err.message
+        });
+    }
+});
 
 
 
