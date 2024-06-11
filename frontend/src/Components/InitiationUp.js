@@ -197,7 +197,6 @@ export default function InitiationUp() {
                             </tr>
                             <tr className='border-b border-gray-300'>
                                 <td className='border border-gray-300 w-44 text-gray-300' rowSpan='2'>
-                                    Fiber available to the customer's end
                                 </td>
                                 <td className='border border-gray-300 text-gray-300'>
                                     500m - 1km
