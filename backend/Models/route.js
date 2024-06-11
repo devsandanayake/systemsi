@@ -51,23 +51,14 @@ const RouteSchema = new mongoose.Schema({
                 Fi1000Year2CMR: String,
                 Fi1000Year3CMR: String,
             },
-            
-            GPONbase: {
-                FiberAvailability: {
-                    Sprice: String,
-                    year1Commitment: String,
-                    year2Commitment: String,
-                    year3Commitment: String,
-                },
-                FiberNonAvailability: {
-                    distance: String,
-                    Sprice: String,
-                    year1Commitment: String,
-                    year2Commitment: String,
-                    year3Commitment: String,
-                },
-            },
         },
+    },
+
+    GPONbase: {
+            Sprice: String,
+            year1Commitment: String,
+            year2Commitment: String,
+            year3Commitment: String,
     },
 });
 

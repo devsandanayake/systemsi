@@ -5,11 +5,12 @@ const Route = require('../Models/route');
 router.post('/add', async (req, res) => {
     console.log('Request Body:', req.body); // Log the request body
 
-    const { origin, initiation } = req.body;
+    const { origin, initiation, GPONbase } = req.body;
 
     const route = new Route({
         origin,
         initiation,
+        GPONbase,
     });
 
     try {

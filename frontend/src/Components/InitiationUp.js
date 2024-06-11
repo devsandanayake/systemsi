@@ -104,7 +104,15 @@ export default function InitiationUp() {
 
             <div className='w-full'>
                 <div className='text-center text-white text-4xl'>
-                    Edit Initiation Charge
+                    Edit Initiation Charge (Direct Fiber Based)
+                </div>
+            </div>
+
+            <div className='flex justify-end'>
+                <div className='mr-5'>
+                    <button className='bg-blue-500 text-white p-2 rounded'>
+                        <a href='/initiationgpon' className='text-white'>GPON based Business</a>
+                    </button>
                 </div>
             </div>
 
