@@ -225,7 +225,10 @@ export default function Home() {
               {accessMedium === 'GPON' && (
                 <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                   <label className='font-semibold'>Commitment period : </label>
-                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'>
+                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                   value={commitmentPeriod}
+                   onChange={(e) => setCommitmentPeriod(e.target.value)}
+                  >
                     <option value="">Select...</option>
                     <option value="1 Year">1 Year</option>
                     <option value="2 Year">2 Year</option>
