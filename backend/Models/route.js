@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const RouteSchema = new mongoose.Schema({
     origin: {
-        base: {
             directFiber: {
                 primary: {
                     Bandwidth: String,
@@ -28,7 +27,7 @@ const RouteSchema = new mongoose.Schema({
                     Sprice: String,
                     year1CMR: String,
                 },
-            },
+        
         },
     },
     initiation: {

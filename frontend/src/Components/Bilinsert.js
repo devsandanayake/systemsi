@@ -24,7 +24,7 @@ export default function Bilinsert() {
         try {
             const response = await axios.post('http://localhost:3001/route/add', {
                 origin: {
-                    base: {
+                
                         [formData.type]: {
                             primary: {
                                 Bandwidth: formData.bandwidth,
@@ -38,7 +38,7 @@ export default function Bilinsert() {
                                 year1CMR: formData.backupYear1CMR,
                             },
                         },
-                    },
+                
                 },
                 initiation: {}, // Add any initiation data here if necessary
             });

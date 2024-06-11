@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import background from '../Images/bg1.jpg';
+import { Tabs } from 'antd';
+import './Bill.css';
+
+const { TabPane } = Tabs;
 
 export default function InitiationUp() {
+    const [activeTabKey, setActiveTabKey] = useState("1");
+
     const [formData, setFormData] = useState({
         FiAvSprice: '',
         FiAvYear1CMR: '',
@@ -22,6 +28,8 @@ export default function InitiationUp() {
         Fi1000Year3CMR: '',
     });
     const [ItemId, setItemId] = useState(); // Store the ID of the route
+
+    const [GponDetails, setGponDetails] = useState([]);
 
     useEffect(() => {
         // Fetch all routes and set formData and itemId for the first route as an example
@@ -58,6 +66,20 @@ export default function InitiationUp() {
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/route/all')
+        .then((response) => {
+            const data = response.data;
+            // Assuming data.routes is an array and we're looking for a GPONbase property within each route
+            const gponDetails = data.routes.map(route => route.GPONbase).filter(gponBase => gponBase !== undefined);
+            setGponDetails(gponDetails);
+            console.log(gponDetails);
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error);
+        });
+}, []);
     
 
     const handleChange = (e) => {
@@ -84,6 +106,10 @@ export default function InitiationUp() {
         .catch(error => {
             console.error('Error updating route:', error);
         });
+    };
+
+    const handleTabChange = (key) => {
+        setActiveTabKey(key);
     };
     
     
@@ -116,9 +142,12 @@ export default function InitiationUp() {
                 </div>
             </div>
 
-            <div className='flex justify-center items-center mt-5'>
+            <Tabs defaultActiveKey="1" onChange={handleTabChange} className="custom-tabs" style={{ marginLeft: "10px" }}>
+                    <TabPane tab="Direct Fiber Based" key="1">
+
+                    <div className='flex justify-center items-center mt-5'>
                 <form onSubmit={handleSubmit}>
-                    <table className='mt-4 bg-white p-2 rounded-lg shadow-md w-11/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                    <table className=' bg-white p-2 rounded-lg shadow-md w-11/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
                         <thead>
                             <tr className='border-b border-gray-300'>
                                 <th className='border border-gray-300'>Fiber Availability</th>
@@ -210,6 +239,45 @@ export default function InitiationUp() {
                     </div>
                 </form>
             </div>
+                        
+                    </TabPane>
+                    <TabPane tab="GPON Based" key="2">
+
+                    <table className='mt-4 bg-white text-black border border-gray-300 text-md w-11/12'>
+                                <thead>
+                                    <tr className='border-b border-gray-300'>
+                                        <th className='border border-gray-300'>Standard Price</th>
+                                        <th className='border border-gray-300'>With 1 Year Commitment</th>
+                                        <th className='border border-gray-300'>With 2 Year Commitment</th>
+                                        <th className='border border-gray-300'>With 3 Year Commitment</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {GponDetails.map((gponDetail, index) => (
+                                        <tr key={index} className='border-b border-gray-300'>
+                                            <td className='border border-gray-300'>
+                                                {gponDetail.Sprice}
+                                            </td>
+                                            <td className='border border-gray-300'>
+                                                {gponDetail.year1Commitment}
+                                            </td>
+                                            <td className='border border-gray-300'>
+                                                {gponDetail.year2Commitment}
+                                            </td>
+                                            <td className='border border-gray-300'>
+                                                {gponDetail.year3Commitment}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
+
+                        </TabPane>
+                </Tabs>
+
+            
         </div>
     );
 }
