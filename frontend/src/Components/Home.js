@@ -215,6 +215,10 @@ export default function Home() {
           <a href='/bil'>
             <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>BIL</button>
           </a>
+
+          <a href='/aisecurenet'>
+            <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>AISecureNet</button>
+          </a>
         </div>
 
         <div className='flex justify-center items-center mt-5'>

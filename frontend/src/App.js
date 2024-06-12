@@ -5,7 +5,9 @@ import Bilinsert from './Components/Bilinsert'
 import Bil from './Components/Bil'
 import InitiationUp from './Components/InitiationUp'
 import InitiationGPON from './Components/InitiationGPON'
-import AISecurenet from './Components/AISecure/AINetGuard'
+import AISecureNet from './Components/AISecureNet/AISecureNet'
+import AINetGuard from './Components/AINetGuard/AINetGuard'
+import NetGuard from './Components/NetGuard/NetGuard'
 
 export default class App extends Component {
   render() {
@@ -17,7 +19,9 @@ export default class App extends Component {
           <Route path="/bil" element={<Bil />} />
           <Route path="/initiationup" element={<InitiationUp />} />
           <Route path="/initiationgpon" element={<InitiationGPON />} />
-          <Route path="/aisecurenet" element={<AISecurenet />} />
+          <Route path="/aisecurenet" element={<AISecureNet />} />
+          <Route path="/ainetguard" element={<AINetGuard />} />
+          <Route path="/netguard" element={<NetGuard />} />
         </Routes>
       </BrowserRouter>
     )

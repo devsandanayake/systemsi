@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
 
 const DropdownForm = () => {
   const [selectedOption, setSelectedOption] = useState('');
