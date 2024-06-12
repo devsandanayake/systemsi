@@ -83,26 +83,30 @@ export default function Bilinsert() {
 
                             
                             <table className='mt-4 bg-white text-black border border-gray-300 text-sm'>
-                                <thead>
-                                    <tr className='border-b border-gray-300'>
-                                        <th className='border border-gray-300'>Bandwidth</th>
-                                        <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                        <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                                        <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                                        <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
-                                        <th className='border border-gray-300'>Backup Standard Price - Rs.</th>
-                                        <th className='border border-gray-300'>Backup Minimum 1 Year Commitment Monthly Rental Rs.</th>
-                                    </tr>
-                                </thead>
+                            <thead>
+                                <tr>
+                                    <th colSpan="5" className="px-6 py-3 text-xs font-medium text-gray-700 uppercase tracking-wider text-center border border-gray-700">Primary</th>
+                                    <th colSpan="2" className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider border border-gray-700">Backup</th>
+                                </tr>
+                                <tr className="bg-gray-50">
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Bandwidth (Mbps)</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Standard Price - Rs.</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">1 Year Commitment Monthly Rental Rs.</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">2 Year Commitment Monthly Rental Rs.</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">3 Year Commitment Monthly Rental Rs.</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Standard Price - Rs.</th>
+                                    <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Minimum 1 Year Commitment Monthly Rental Rs.</th>
+                                </tr>
+                            </thead>
                                 <tbody>
-                                    <tr className='border-b border-gray-300'>
-                                        <td className='border border-gray-300'><input type='text' name="bandwidth" value={formData.bandwidth} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="sprice" value={formData.sprice} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="year1CMR" value={formData.year1CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="year2CMR" value={formData.year2CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="year3CMR" value={formData.year3CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="backupSprice" value={formData.backupSprice} onChange={handleChange} /></td>
-                                        <td className='border border-gray-300'><input type='text' name="backupYear1CMR" value={formData.backupYear1CMR} onChange={handleChange} /></td>
+                                    <tr className='border-b border-gray-700'>
+                                        <td className='border border-gray-700'><input type='text' name="bandwidth" value={formData.bandwidth} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="sprice" value={formData.sprice} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="year1CMR" value={formData.year1CMR} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="year2CMR" value={formData.year2CMR} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="year3CMR" value={formData.year3CMR} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="backupSprice" value={formData.backupSprice} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700'><input type='text' name="backupYear1CMR" value={formData.backupYear1CMR} onChange={handleChange} /></td>
                                     </tr>
                                 </tbody>
                             </table>

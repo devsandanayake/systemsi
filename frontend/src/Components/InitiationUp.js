@@ -130,7 +130,7 @@ export default function InitiationUp() {
 
             <div className='w-full'>
                 <div className='text-center text-white text-4xl'>
-                    Edit Initiation Charge (Direct Fiber Based)
+                    Initiation Charge
                 </div>
             </div>
 
