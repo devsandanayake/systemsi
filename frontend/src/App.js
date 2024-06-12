@@ -8,6 +8,8 @@ import InitiationGPON from './Components/InitiationGPON'
 import AISecureNet from './Components/AISecureNet/AISecureNet'
 import AINetGuard from './Components/AINetGuard/AINetGuard'
 import NetGuard from './Components/NetGuard/NetGuard'
+import Register from './Components/UserModule/Register'
+import Login from './Components/UserModule/Loging'
 
 export default class App extends Component {
   render() {
@@ -22,6 +24,8 @@ export default class App extends Component {
           <Route path="/aisecurenet" element={<AISecureNet />} />
           <Route path="/ainetguard" element={<AINetGuard />} />
           <Route path="/netguard" element={<NetGuard />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     )
