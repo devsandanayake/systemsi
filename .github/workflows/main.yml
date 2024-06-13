@@ -1,0 +1,78 @@
+
+name: Deploy APP
+
+on:
+  push:
+    branches:
+      - min
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          
+      - name: Install Dependencies
+        run: npm install --force  
+        working-directory: frontend    
+
+      - name: Build
+        run: npm run build
+        working-directory: frontend
+                         
+      - name: Set Build Path
+        run: echo "BUILD_PATH=frontend/build" >> $GITHUB_ENV
+    
+      - name: Deploy using SCP
+        uses: appleboy/scp-action@master
+        with:
+         host: 124.43.179.18
+         username:  ${{secrets.SSH_USERNAME}}
+         password:  ${{secrets.SSH_PASSWORD}}
+         port:  22
+         source: ${{ env.BUILD_PATH }}
+         target: /var/www/smartdoor
+
+        
+    
+      - name: Set Backend Path
+        run: echo "BACKEND_PATH=backend" >> $GITHUB_ENV
+    
+      - name: Deploy backend folder using SCP
+        uses: appleboy/scp-action@master
+        with:
+         host: 124.43.179.18
+         username:  ${{secrets.SSH_USERNAME}}
+         password:  ${{secrets.SSH_PASSWORD}}
+         port: 22
+         source: ${{ env.BACKEND_PATH }}
+         target: /var/www/smartdoor
+
+
+      # - name: Copy .env file
+      #   env:
+      #        SSH_USERNAME: ${{secrets.SSH_USERNAME}}
+      #        SSH_PASSWORD: ${{secrets.SSH_PASSWORD}}
+      #   run: |
+      #       echo "${{secrets.ENV_FILE}}" > .env
+      #       sshpass -p "${SSH_PASSWORD}" scp -o StrictHostKeyChecking=no -o ConnectTimeout=30 .env ${SSH_USERNAME}@124.43.179.18:/var/www/dtproject/backend   
+
+
+      - name: Install dependencies and start the server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 124.43.179.18
+          username:  ${{secrets.SSH_USERNAME}}
+          password:  ${{secrets.SSH_PASSWORD}}
+          port: 22
+          script: |
+            cd /var/www/smartdoor/backend
+            npm install
+            pm2 restart server.js
