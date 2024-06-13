@@ -23,7 +23,7 @@ export default function Bil() {
             // Filter and map the routes as intended
             setRoutes(data.routes.filter(route => route.origin?.directFiber).map(route => route.origin.directFiber));
             // Use the state variable correctly (case-sensitive)
-            console.log(Routes);
+            console.log();
         })
         .catch((error) => {
             console.error('Error fetching data:', error);
@@ -84,6 +84,7 @@ export default function Bil() {
                                 <tr>
                                     <th colSpan="5" className="px-6 py-3 text-xs font-medium text-gray-700 uppercase tracking-wider text-center border border-gray-700">Primary</th>
                                     <th colSpan="2" className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider border border-gray-700">Backup</th>
+                                    <th rowSpan = "2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Action</th>
                                 </tr>
                                 <tr className="bg-gray-50">
                                     <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-700  tracking-wider border border-gray-700">Bandwidth (Mbps)</th>
@@ -119,6 +120,9 @@ export default function Bil() {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {route.backup?.year1CMR || 'N/A'}
                                         </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <a href={`/route/update/${route._id}`}>Update</a>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -142,32 +146,32 @@ export default function Bil() {
                                 </tr>
                             </thead>
                             <tbody>
-    {GponRoutes.map((route, index) => (
-        <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {route.primary?.Bandwidth || ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.primary?.Sprice !== 'N/A' ? route.primary?.Sprice : ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.primary?.year1CMR !== 'N/A' ? route.primary?.year1CMR : ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.primary?.year2CMR !== 'N/A' ? route.primary?.year2CMR : ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.primary?.year3CMR !== 'N/A' ? route.primary?.year3CMR : ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.backup?.Sprice !== 'N/A' ? route.backup?.Sprice : ''}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {route.backup?.year1CMR !== 'N/A' ? route.backup?.year1CMR : ''}
-            </td>
-        </tr>
-    ))}
-</tbody>
+                                {GponRoutes.map((route, index) => (
+                                    <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {route.primary?.Bandwidth || ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.primary?.Sprice !== 'N/A' ? route.primary?.Sprice : ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.primary?.year1CMR !== 'N/A' ? route.primary?.year1CMR : ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.primary?.year2CMR !== 'N/A' ? route.primary?.year2CMR : ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.primary?.year3CMR !== 'N/A' ? route.primary?.year3CMR : ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.backup?.Sprice !== 'N/A' ? route.backup?.Sprice : ''}
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {route.backup?.year1CMR !== 'N/A' ? route.backup?.year1CMR : ''}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
                         </table>
                     </TabPane>
                 </Tabs>

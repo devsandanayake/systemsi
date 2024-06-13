@@ -10,6 +10,7 @@ import AINetGuard from './Components/AINetGuard/AINetGuard'
 import NetGuard from './Components/NetGuard/NetGuard'
 import Register from './Components/UserModule/Register'
 import Login from './Components/UserModule/Loging'
+import BillUpdateDF from './Components/BillUpdateDF'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/netguard" element={<NetGuard />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/route/update/:id" element={<BillUpdateDF />} />
       </Routes>
     </BrowserRouter>
   )
