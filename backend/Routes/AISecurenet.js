@@ -6,9 +6,9 @@ const AISecurenetMonth = require('../Models/AISmon');
 //Ai initialisation inertion
 router.post('/add/init', async (req, res) => {
     try {
-        const { Bandwith, Standard, Commitment } = req.body; // Destructuring the request body 
-        const newAISecurenet = new AISecurenet({ Bandwith, Standard, Commitment }); // Creating a new document in AISecurenet collection
-        const savedAISecurenet = await newAISecurenet.save(); // Saving the new document to the database
+        const { Bandwith, Standard, Commitment } = req.body;
+        const newAISecurenet = new AISecurenet({ Bandwith, Standard, Commitment });
+        const savedAISecurenet = await newAISecurenet.save();
         res.status(201).json({ message: "AISecurenet document added successfully", data: savedAISecurenet });
     } catch (error) {
         console.error("Error adding AISecurenet document:", error);
