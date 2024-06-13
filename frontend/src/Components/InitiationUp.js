@@ -33,7 +33,7 @@ export default function InitiationUp() {
 
     useEffect(() => {
         // Fetch all routes and set formData and itemId for the first route as an example
-        axios.get('http://localhost:3001/route/all')
+        axios.get('/route/all')
             .then(response => {
                 const routes = response.data.routes;
                 
@@ -68,7 +68,7 @@ export default function InitiationUp() {
     }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/route/all')
+    axios.get('/route/all')
         .then((response) => {
             const data = response.data;
             // Assuming data.routes is an array and we're looking for a GPONbase property within each route
@@ -93,7 +93,7 @@ export default function InitiationUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Item ID:', ItemId); // Debugging line
-        axios.patch(`http://localhost:3001/route/route/update/${ItemId}`, {
+        axios.patch(`/route/route/update/${ItemId}`, {
             initiation: {
                 base: {
                     directFiber: { ...formData },

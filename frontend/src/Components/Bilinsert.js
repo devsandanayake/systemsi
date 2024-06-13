@@ -22,7 +22,7 @@ export default function Bilinsert() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/route/add', {
+            const response = await axios.post('/route/add', {
                 origin: {
                 
                         [formData.type]: {

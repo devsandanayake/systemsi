@@ -16,7 +16,7 @@ export default function Bil() {
     };
 
  useEffect(() => {
-    axios.get('http://localhost:3001/route/all')
+    axios.get('/route/all')
         .then((response) => {
             // Correctly access the data from axios response
             const data = response.data;
@@ -31,7 +31,7 @@ export default function Bil() {
 }, []);
 
     useEffect(() => {
-      axios.get('http://localhost:3001/route/all')
+      axios.get('/route/all')
           .then((response) => {
               const data = response.data;
               const filteredGponRoutes = data.routes.filter(route => route.origin?.GPONbase).map(route => route.origin.GPONbase);

@@ -19,7 +19,7 @@ export default function Home() {
     e.preventDefault();
     setShowData1(false); // Hide data1 before fetching new data
 
-    axios.get('http://localhost:3001/route/all')
+    axios.get('/route/all')
       .then((response) => {
         const routes = response.data.routes;
 

@@ -19,7 +19,7 @@ export default function InitiationGPON() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3001/route/add', {
+            const response = await fetch('/route/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
