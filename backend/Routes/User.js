@@ -5,11 +5,12 @@ const router = express.Router();
 router.post('/add', async (req, res) => {
     console.log('Request Body:', req.body); // Log the request body
 
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
 
     const user = new User({
         username,
         password,
+        role
     });
 
     try {
@@ -55,7 +56,7 @@ router.post('/login', async (req, res) => {
         }
 
         res.status(200).json({
-            user: user,
+            user: user.role,
             status: 'LoginIN'
         });
     } catch (err) {

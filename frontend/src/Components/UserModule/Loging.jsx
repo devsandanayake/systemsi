@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';  
+import axiosInstance from '../../axiosConfig';
 
 export default function Login() {
     const [user, setUser] = useState({
@@ -17,12 +18,13 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/user/login', {
+        axiosInstance.post('/user/login', {
             username: user.username,
             password: user.password,
         }).then((response) => {
             console.log(response.data);
             localStorage.setItem('token', response.data.status);
+            localStorage.setItem('role', response.data.user);
             window.location = '/';
         }).catch((error) => {
             console.error('Error:', error);

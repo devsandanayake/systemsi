@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axiosConfig';
 
 export default function Register() {
     const [user, setUser] = useState({});
 
     const handleChange = () => {
-        axios.post('http://localhost:3001/user/add', {
+        axiosInstance.post('/user/add', {
             username: user.username,
             password: user.password,
+            role: user.role
         }).then((response) => {
             console.log(response.data);
         }).catch((error) => {
@@ -32,6 +33,15 @@ export default function Register() {
                         type="password"
                         placeholder="Password"
                         onChange={(e) => setUser({ ...user, password: e.target.value })}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <input
+                        type='role'
+                        placeholder="Role"
+                        onChange={(e) => setUser({ ...user, role: e.target.value })}
                         className="w-full p-2 border border-gray-300 rounded mt-1"
                     />
                 </div>

@@ -211,7 +211,20 @@ export default function Home() {
             Secure Internet
           </div>
         </div>
-
+         
+        <div>
+          <button
+            className='bg-red-500 text-white p-2 rounded-md'
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('role');
+              window.location = '/login';
+            }
+            }
+           >
+            Logout
+          </button>
+        </div>
         <div className='flex justify-end'>
           <a href='/bil'>
             <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>BIL</button>
