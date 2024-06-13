@@ -75,4 +75,4 @@ jobs:
           script: |
             cd /var/www/systemsi/backend
             npm install
-            pm2 start server.js
+            pm2 restart server.js
