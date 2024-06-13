@@ -3,6 +3,7 @@ import axios from 'axios';
 import background from '../Images/bg1.jpg';
 import { Tabs } from 'antd';
 import './Bill.css';
+import axiosInstance from '../axiosConfig';
 
 const { TabPane } = Tabs;
 
@@ -33,7 +34,7 @@ export default function InitiationUp() {
 
     useEffect(() => {
         // Fetch all routes and set formData and itemId for the first route as an example
-        axios.get('/route/all')
+        axiosInstance.get('/route/all')
             .then(response => {
                 const routes = response.data.routes;
                 
@@ -68,7 +69,7 @@ export default function InitiationUp() {
     }, []);
 
   useEffect(() => {
-    axios.get('/route/all')
+    axiosInstance.get('/route/all')
         .then((response) => {
             const data = response.data;
             // Assuming data.routes is an array and we're looking for a GPONbase property within each route
@@ -93,7 +94,7 @@ export default function InitiationUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Item ID:', ItemId); // Debugging line
-        axios.patch(`/route/route/update/${ItemId}`, {
+        axiosInstance.patch(`/route/route/update/${ItemId}`, {
             initiation: {
                 base: {
                     directFiber: { ...formData },

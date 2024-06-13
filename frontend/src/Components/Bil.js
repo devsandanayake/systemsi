@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Tabs } from 'antd';
 import background from '../Images/bg1.jpg';
 import './Bill.css';
+import axiosInstance from '../axiosConfig';
 
 const { TabPane } = Tabs;
 
@@ -16,7 +17,7 @@ export default function Bil() {
     };
 
  useEffect(() => {
-    axios.get('/route/all')
+    axiosInstance.get('/route/all')
         .then((response) => {
             // Correctly access the data from axios response
             const data = response.data;
@@ -31,7 +32,7 @@ export default function Bil() {
 }, []);
 
     useEffect(() => {
-      axios.get('/route/all')
+        axiosInstance.get('/route/all')
           .then((response) => {
               const data = response.data;
               const filteredGponRoutes = data.routes.filter(route => route.origin?.GPONbase).map(route => route.origin.GPONbase);

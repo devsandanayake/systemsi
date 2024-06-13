@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import background from '../Images/bg1.jpg';
 import axios from 'axios';
+import axiosInstance from '../axiosConfig';
 
 export default function Home() {
   const [packageType, setPackageType] = useState('');
@@ -19,7 +20,7 @@ export default function Home() {
     e.preventDefault();
     setShowData1(false); // Hide data1 before fetching new data
 
-    axios.get('/route/all')
+    axiosInstance.get('/route/all')
       .then((response) => {
         const routes = response.data.routes;
 

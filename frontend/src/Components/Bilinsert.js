@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import background from '../Images/bg1.jpg';
 import axios from 'axios';
+import axiosInstance from '../axiosConfig';
 
 export default function Bilinsert() {
     const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ export default function Bilinsert() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/route/add', {
+            const response = await  axiosInstance.post('/route/add', {
                 origin: {
                 
                         [formData.type]: {

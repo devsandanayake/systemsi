@@ -29,14 +29,14 @@ const DropdownForm = () => {
     event.preventDefault();
     try {
       if (selectedOption === 'initiation') {
-        const response = await axios.post('http://localhost:3001/aisecurenet/add/init', {
+        const response = await axios.post('/aisecurenet/add/init', {
           Bandwith: formData.Bandwith,
           Standard: formData.Standard,
           Commitment: formData.Commitment
         });
         console.log(response.data);
       } else if (selectedOption === 'monthlyRent') {
-        const response = await axios.post('http://localhost:3001/aisecurenet/add/month', {
+        const response = await axios.post('/aisecurenet/add/month', {
           Bandwith: formData.Bandwith,
           MaxUsers: formData.MaxUsers,
           ConcurrentUsers: formData.ConcurrentUsers,
