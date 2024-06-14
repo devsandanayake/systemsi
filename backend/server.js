@@ -19,11 +19,13 @@ app.use(cors());
 const routeRoutes = require('./Routes/route');
 const aisecurenetRoutes = require('./Routes/AISecurenet');
 const userRoutes = require('./Routes/User');
+const AINetGMonRoutes = require('./Routes/AINetG');
 
 
 app.use('/route', routeRoutes);
 app.use('/aisecurenet', aisecurenetRoutes);
 app.use('/user', userRoutes);
+app.use('/AINetG', AINetGMonRoutes);
 
 
  
