@@ -14,18 +14,25 @@ export default function Home() {
   const [service, setService] = useState('');
 
   const [data1, setData1] = useState([]);
-  const [showData1, setShowData1] = useState(false); // State to control the display of data1
+  const [showData1, setShowData1] = useState(false);
+  const [data2, setData2] = useState([]);
+  const [showData2, setShowData2] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowData1(false); // Hide data1 before fetching new data
+    setShowData1(false);
+    setShowData2(false);
+    data1.length = 0;
+    data2.length = 0;
 
 
     let url;
     if (packageType === 'BIL') {
       url = '/route/all';
-    } else if (packageType === 'AISecureNet') {
+    } else if (packageType === 'AISecureNet' && chargeType === 'Initiation Charge') {
       url = '/aisecurenet/get/init';
+    } else if (packageType === 'AISecureNet' && chargeType === 'Monthly Rental') {
+      url = '/aisecurenet/get/month';
     }
 
     axiosInstance.get(url)
@@ -190,20 +197,65 @@ export default function Home() {
           }
         }
       if (packageType === 'AISecureNet') {
-  // Assuming response.data.AISecurenet is an array of objects
-  const filteredData = response.data.AISecurenet.filter(item => 
+  if (chargeType === 'Initiation Charge') {
+
+        const filteredData = response.data.AISecurenet.filter(item => 
     item.Bandwith === bandwidth
   );
 
    setData1(filteredData.map(item => item.Standard));
-}
 
-        setShowData1(true); // Show data1 after fetching
-      })
+    }
+
+    if (chargeType === 'Monthly Rental') {
+      const filteredData = response.data.AISecurenetMonth.filter(item => item.Bandwith === bandwidth);
+    
+      setData2(filteredData.map(item => {
+        if (commitmentPeriod === '1 Year') {
+          return {
+            MaxUsers: item.MaxUsers,
+            ConcurrentUsers: item.ConcurrentUsers,
+            ConcurrentSessions: item.ConcurrentSessions,
+            Sprice: item.Sprice,
+            year1CMR: item.year1CMR,
+            commitmentPeriod: '1 Year'
+          };
+        }
+        if (commitmentPeriod === '2 Year') {
+          return {
+            MaxUsers: item.MaxUsers,
+            ConcurrentUsers: item.ConcurrentUsers,
+            ConcurrentSessions: item.ConcurrentSessions,
+            Sprice: item.Sprice,
+            year2CMR: item.year2CMR,
+            commitmentPeriod: '2 Year'
+          };
+        }
+        if (commitmentPeriod === '3 Year') {
+          return {
+            MaxUsers: item.MaxUsers,
+            ConcurrentUsers: item.ConcurrentUsers,
+            ConcurrentSessions: item.ConcurrentSessions,
+            Sprice: item.Sprice,
+            year3CMR: item.year3CMR,
+            commitmentPeriod: '3 Year'
+          };
+        }
+      }));
+    
+      setShowData2(true);
+    }
+    
+    
+  }
+    
+    setShowData1(true); // Show data1 after fetching
+    
+      
+    })
       .catch((error) => {
         console.log(error);
       });
-
 
   }
 
@@ -285,7 +337,7 @@ export default function Home() {
                 </div>
               )}
 
-              {chargeType === 'Initiation Charge' && (
+              {packageType === 'BIL' && chargeType === 'Initiation Charge' && (
                 <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                   <label className='font-semibold'>Access Medium : </label>
                   <select
@@ -421,6 +473,20 @@ export default function Home() {
 
               {packageType === 'AISecureNet' && (
                 <>
+
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Initiation Charge / Monthly Rental : </label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={chargeType}
+                    onChange={(e) => setChargeType(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Initiation Charge">Initiation Charge</option>
+                    <option value="Monthly Rental">Monthly Rental</option>
+                  </select>
+                </div>
+
                 <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                     <label className='font-semibold'>Bandwidth (Mbps) :</label>
                     <input
@@ -431,12 +497,15 @@ export default function Home() {
                       placeholder="Enter bandwidth"
                     />
                   </div>
+                </>
+                )}
 
+                {packageType === 'AISecureNet' && chargeType === 'Monthly Rental' && (
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                   <label className='font-semibold'>Commitment period : </label>
                   <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                   value={commitmentPeriod}
-                   onChange={(e) => setCommitmentPeriod(e.target.value)}
+                    value={commitmentPeriod}
+                    onChange={(e) => setCommitmentPeriod(e.target.value)}
                   >
                     <option value="">Select...</option>
                     <option value="1 Year">1 Year</option>
@@ -444,19 +513,36 @@ export default function Home() {
                     <option value="3 Year">3 Year</option>
                   </select>
                 </div>
-                </>
                 )}
+
+
+
+
 
               <div className='text-lg mt-2'>
                 <button type="submit" className='font-semibold bg-blue-500 w-32 ml-40 text-white p-2 rounded-md'>Submit</button>
               </div>
             </form>
 
-            {showData1 && (
-              <div className='flex items-center justify-center text-xl text-white mt-6'>
-                Initial Charge Is: {data1}
-              </div>
-            )}
+            {data1.length > 0 && (
+  <div className='flex items-center justify-center text-xl text-white mt-6'>
+    Initial Charge Is: {data1}
+  </div>
+)}
+
+{data1.length === 0 && data2.length > 0 && (
+  <ul className='text-xl text-white mt-6'>
+    {data2.map((item, index) => (
+      <li key={index}>
+        Max Users: {item.MaxUsers}, Concurrent Users: {item.ConcurrentUsers}, Concurrent Sessions: {item.ConcurrentSessions}, Standard Price: {item.Sprice}
+        {item.commitmentPeriod === '1 Year' && `, Year 1 CMR: ${item.year1CMR}`}
+        {item.commitmentPeriod === '2 Year' && `, Year 2 CMR: ${item.year2CMR}`}
+        {item.commitmentPeriod === '3 Year' && `, Year 3 CMR: ${item.year3CMR}`}
+      </li>
+    ))}
+  </ul>
+)}
+
 
           </div>
         </div>

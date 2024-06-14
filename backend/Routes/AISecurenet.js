@@ -47,7 +47,8 @@ router.get('/get/init', async (req, res) => {
 router.get('/get/month', async (req, res) => {
     try {
         const AISecurenetMonthData = await AISecurenetMonth.find(); // Fetching all documents from AISecurenet collection
-        res.status(200).json({ data: AISecurenetMonthData });
+        res.status(200).json({ 
+            AISecurenetMonth: AISecurenetMonthData });
     } catch (error) {
         console.error("Error fetching AISecurenet documents:", error);
         res.status(500).json({ error: "Failed to fetch AISecurenet documents" });
