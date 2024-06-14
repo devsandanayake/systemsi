@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import background from '../Images/bg1.jpg';
 import axios from 'axios';
 import axiosInstance from '../axiosConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Bilinsert() {
     const [formData, setFormData] = useState({
@@ -21,36 +24,49 @@ export default function Bilinsert() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await  axiosInstance.post('/route/add', {
-                origin: {
-                
-                        [formData.type]: {
-                            primary: {
-                                Bandwidth: formData.bandwidth,
-                                Sprice: formData.sprice,
-                                year1CMR: formData.year1CMR,
-                                year2CMR: formData.year2CMR,
-                                year3CMR: formData.year3CMR,
-                            },
-                            backup: {
-                                Sprice: formData.backupSprice,
-                                year1CMR: formData.backupYear1CMR,
-                            },
-                        },
-                
+    e.preventDefault();
+    try {
+        const response = await axiosInstance.post('/route/add', {
+            origin: {
+                [formData.type]: {
+                    primary: {
+                        Bandwidth: formData.bandwidth,
+                        Sprice: formData.sprice,
+                        year1CMR: formData.year1CMR,
+                        year2CMR: formData.year2CMR,
+                        year3CMR: formData.year3CMR,
+                    },
+                    backup: {
+                        Sprice: formData.backupSprice,
+                        year1CMR: formData.backupYear1CMR,
+                    },
                 },
-                initiation: {}, // Add any initiation data here if necessary
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error submitting form:', error);
-        }
-    };
+            },
+            initiation: {}, // Add any initiation data here if necessary
+        });
+        console.log(response.data);
+        // Reset form data to initial state after successful submission
+        setFormData({
+            type: '',
+            bandwidth: '',
+            sprice: '',
+            year1CMR: '',
+            year2CMR: '',
+            year3CMR: '',
+            backupSprice: '',
+            backupYear1CMR: '',
+        });
+        toast.success('Form submitted successfully!');
+        
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        toast.error('Error submitting form!');
+    }
+};
 
     return (
         <>
+            <ToastContainer />
             <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
                 <div style={{
                     position: 'fixed',
@@ -101,13 +117,13 @@ export default function Bilinsert() {
                             </thead>
                                 <tbody>
                                     <tr className='border-b border-gray-700'>
-                                        <td className='border border-gray-700'><input type='text' name="bandwidth" value={formData.bandwidth} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="sprice" value={formData.sprice} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="year1CMR" value={formData.year1CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="year2CMR" value={formData.year2CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="year3CMR" value={formData.year3CMR} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="backupSprice" value={formData.backupSprice} onChange={handleChange} /></td>
-                                        <td className='border border-gray-700'><input type='text' name="backupYear1CMR" value={formData.backupYear1CMR} onChange={handleChange} /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="bandwidth" value={formData.bandwidth} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="sprice" value={formData.sprice} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="year1CMR" value={formData.year1CMR} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="year2CMR" value={formData.year2CMR} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="year3CMR" value={formData.year3CMR} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="backupSprice" value={formData.backupSprice} onChange={handleChange} className='h-full' /></td>
+                                        <td className='border border-gray-700  h-20'><input type='text' name="backupYear1CMR" value={formData.backupYear1CMR} onChange={handleChange} className='h-full' /></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import background from '../Images/bg1.jpg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function InitiationGPON() {
     const [formData, setFormData] = useState({
@@ -28,15 +30,25 @@ export default function InitiationGPON() {
             });
             const result = await response.json();
             console.log('Result:', result);
-            // Handle the response as needed
+            
+            setFormData({
+                Sprice: '',
+                year1Commitment: '',
+                year2Commitment: '',
+                year3Commitment: '',
+            });
+
+            toast.success('Data submitted successfully!');
+
+
         } catch (error) {
             console.error('Error:', error);
-            // Handle error as needed
-        }
+            toast.error('Error submitting data!');}
     };
 
     return (
         <>
+            <ToastContainer />
             <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
                 <div style={{
                     position: 'fixed',

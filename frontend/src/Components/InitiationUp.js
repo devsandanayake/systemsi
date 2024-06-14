@@ -4,6 +4,8 @@ import background from '../Images/bg1.jpg';
 import { Tabs } from 'antd';
 import './Bill.css';
 import axiosInstance from '../axiosConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { TabPane } = Tabs;
 
@@ -103,9 +105,11 @@ export default function InitiationUp() {
         })
         .then(response => {
             console.log('Update successful:', response.data);
+            toast.success('Form Updated successfully!');
         })
         .catch(error => {
             console.error('Error updating route:', error);
+            toast.error('Error submitting form!');
         });
     };
 
@@ -116,6 +120,10 @@ export default function InitiationUp() {
     
 
     return (
+        <>
+
+                <ToastContainer />
+
         <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
             <div style={{
                 position: 'fixed',
@@ -279,5 +287,6 @@ export default function InitiationUp() {
 
             
         </div>
+        </>
     );
 }

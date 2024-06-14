@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const DropdownForm = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -24,10 +27,10 @@ const DropdownForm = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleSubmit = async (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      let resetData;
       if (selectedOption === 'initiation') {
         const response = await axiosInstance.post('/aisecurenet/add/init', {
           Bandwith: formData.Bandwith,
@@ -35,6 +38,14 @@ const DropdownForm = () => {
           Commitment: formData.Commitment
         });
         console.log(response.data);
+        // Define resetData for initiation
+        resetData = {
+          Bandwith: '',
+          Standard: '',
+          Commitment: '',
+          // Ensure all fields are reset to their initial state
+        };
+        toast.success('Initiation data added successfully!');
       } else if (selectedOption === 'monthlyRent') {
         const response = await axiosInstance.post('/aisecurenet/add/month', {
           Bandwith: formData.Bandwith,
@@ -47,13 +58,31 @@ const DropdownForm = () => {
           year3CMR: formData.year3CMR
         });
         console.log(response.data);
+        // Define resetData for monthlyRent
+        resetData = {
+          Bandwith: '',
+          MaxUsers: '',
+          ConcurrentUsers: '',
+          ConcurrentSessions: '',
+          Sprice: '',
+          year1CMR: '',
+          year2CMR: '',
+          year3CMR: '',
+          // Ensure all fields are reset to their initial state
+        };
+        toast.success('Monthly rent data added successfully!');
       }
+      // Reset formData to initial state after successful submission
+      setFormData(resetData);
     } catch (error) {
       console.error("Error adding AISecurenet document:", error);
+      toast.error('Error adding AISecurenet document. Please try again.');
     }
-  };
+};
 
   return (
+    <>
+    <ToastContainer />
     <div
       className="min-h-screen items-center justify-center bg-cover bg-center"
       style={{
@@ -228,6 +257,7 @@ const DropdownForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
