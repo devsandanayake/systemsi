@@ -32,8 +32,10 @@ router.post('/add/month', async (req, res) => {
 //Ai initialisation retrieval
 router.get('/get/init', async (req, res) => {
     try {
-        const AISecurenetData = await AISecurenet.find(); // Fetching all documents from AISecurenet collection
-        res.status(200).json({ data: AISecurenetData });
+        const AISecurenetData = await AISecurenet.find();
+        res.status(200).json({ 
+            AISecurenet: AISecurenetData
+        });
     } catch (error) {
         console.error("Error fetching AISecurenet documents:", error);
         res.status(500).json({ error: "Failed to fetch AISecurenet documents" });

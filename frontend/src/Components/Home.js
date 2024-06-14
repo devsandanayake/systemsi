@@ -20,7 +20,15 @@ export default function Home() {
     e.preventDefault();
     setShowData1(false); // Hide data1 before fetching new data
 
-    axiosInstance.get('/route/all')
+
+    let url;
+    if (packageType === 'BIL') {
+      url = '/route/all';
+    } else if (packageType === 'AISecureNet') {
+      url = '/aisecurenet/get/init';
+    }
+
+    axiosInstance.get(url)
       .then((response) => {
         const routes = response.data.routes;
 
@@ -181,6 +189,15 @@ export default function Home() {
             }
           }
         }
+      if (packageType === 'AISecureNet') {
+  // Assuming response.data.AISecurenet is an array of objects
+  const filteredData = response.data.AISecurenet.filter(item => 
+    item.Bandwith === bandwidth
+  );
+
+   setData1(filteredData.map(item => item.Standard));
+}
+
         setShowData1(true); // Show data1 after fetching
       })
       .catch((error) => {
@@ -283,7 +300,7 @@ export default function Home() {
                 </div>
               )}
 
-              {chargeType === 'Monthly Rental' && (
+              {packageType === 'BIL' && chargeType === 'Monthly Rental' && (
                 <>
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                     <label className='font-semibold'>Access Medium : </label>
@@ -401,6 +418,34 @@ export default function Home() {
                   </select>
                 </div>
               )}
+
+              {packageType === 'AISecureNet' && (
+                <>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                    <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                    <input
+                      type="text"
+                      className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                      value={bandwidth}
+                      onChange={(e) => setBandwidth(e.target.value)}
+                      placeholder="Enter bandwidth"
+                    />
+                  </div>
+
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Commitment period : </label>
+                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                   value={commitmentPeriod}
+                   onChange={(e) => setCommitmentPeriod(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Year">2 Year</option>
+                    <option value="3 Year">3 Year</option>
+                  </select>
+                </div>
+                </>
+                )}
 
               <div className='text-lg mt-2'>
                 <button type="submit" className='font-semibold bg-blue-500 w-32 ml-40 text-white p-2 rounded-md'>Submit</button>

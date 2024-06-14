@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../axiosConfig';
 
 const DropdownForm = () => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -29,14 +29,14 @@ const DropdownForm = () => {
     event.preventDefault();
     try {
       if (selectedOption === 'initiation') {
-        const response = await axios.post('/aisecurenet/add/init', {
+        const response = await axiosInstance.post('/aisecurenet/add/init', {
           Bandwith: formData.Bandwith,
           Standard: formData.Standard,
           Commitment: formData.Commitment
         });
         console.log(response.data);
       } else if (selectedOption === 'monthlyRent') {
-        const response = await axios.post('/aisecurenet/add/month', {
+        const response = await axiosInstance.post('/aisecurenet/add/month', {
           Bandwith: formData.Bandwith,
           MaxUsers: formData.MaxUsers,
           ConcurrentUsers: formData.ConcurrentUsers,
