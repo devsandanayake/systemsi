@@ -11,6 +11,7 @@ import NetGuard from './Components/NetGuard/NetGuard';
 import Register from './Components/UserModule/Register';
 import Login from './Components/UserModule/Loging';
 import BillUpdateDF from './Components/BillUpdateDF';
+import NetGuardAll from './Components/NetGuard/NetGuardAll';
 
 const App = () => {
   const token = localStorage.getItem('token');
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/netguard" element={<NetGuard />} />
             <Route path="/register" element={<Register />} />
             <Route path="/route/update/:id" element={<BillUpdateDF />} />
+            <Route path="/netguardall" element={<NetGuardAll />} />
             <Route path="*" element={<Navigate to="/" />} />
           </>
         ) : (

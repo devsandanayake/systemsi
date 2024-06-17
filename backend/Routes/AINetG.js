@@ -3,6 +3,7 @@ const AINetGI = require('../Models/AINetGI');
 const express = require('express');
 const router = express.Router();
 
+
 // @route POST api/AINetGMon
 router.post('/AINetGMon', async (req, res) => {
     try {
@@ -24,7 +25,27 @@ router.post('/AINetGMon', async (req, res) => {
 );
 
 // @route Patch api/AINetGI
-router.patch('/AINetGI', async (req, res) => {
+router.patch('/AINetGI/:id', async (req, res) => {
+    const { Const } = req.body;
+    const { id } = req.params;
+
+    try {
+        const updatedAINetGI = await AINetGI.findByIdAndUpdate(id, { Const }, { new: true });
+
+        if (!updatedAINetGI) {
+            return res.status(404).json({ message: 'AINetGI not found' });
+        }
+
+        res.json(updatedAINetGI);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
+
+
+router.post('/AINetGI', async (req, res) => {
     try {
         const { Const } = req.body;
         const newAINetGI = new AINetGI({
@@ -36,33 +57,28 @@ router.patch('/AINetGI', async (req, res) => {
         console.error(error);
         res.status(500).send('Server error');
     }
-}
-);
+});
 
 
 router.get('/AINetGMon', async (req, res) => {
     try {
-        const AINetGMon = await AINetGMon.find();
-        res.json(AINetGMon);
+        const AINetGMonData = await AINetGMon.find();
+        res.json(AINetGMonData);
     } catch (error) {
-        console.error(error);
+        console.error('Error fetching AINetGMon data:', error.message);
         res.status(500).send('Server error');
     }
-}
-
-);
+});
 
 router.get('/AINetGI', async (req, res) => {
     try {
-        const AINetGI = await AINetGI.find();
-        res.json(AINetGI);
+        const ainetgiData = await AINetGI.find();
+        res.json(ainetgiData);
     } catch (error) {
         console.error(error);
         res.status(500).send('Server error');
     }
-}
-
-);
+});
 
 
 module.exports = router;

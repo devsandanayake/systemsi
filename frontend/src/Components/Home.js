@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import background from '../Images/bg1.jpg';
 import axios from 'axios';
 import axiosInstance from '../axiosConfig';
@@ -13,10 +13,26 @@ export default function Home() {
   const [bandwidth, setBandwidth] = useState('');
   const [service, setService] = useState('');
 
+  const [netguardmbps, setNetguardmbps] = useState('');
+
   const [data1, setData1] = useState([]);
   const [showData1, setShowData1] = useState(false);
   const [data2, setData2] = useState([]);
   const [showData2, setShowData2] = useState(false);
+
+
+  useEffect(() => {
+    axiosInstance.get('/AINetG/AINetGMon')
+      .then((res) => {
+        console.log('aefa',res.data);
+        setNetguardmbps(res.data);
+      })
+      .catch((err) => {
+        console.log('Error fetching data:', err.message);
+      });
+  }, []);
+  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,11 +49,14 @@ export default function Home() {
       url = '/aisecurenet/get/init';
     } else if (packageType === 'AISecureNet' && chargeType === 'Monthly Rental') {
       url = '/aisecurenet/get/month';
+    } else if (packageType === 'NetGuard') {
+      url = '/AINetG/AINetGMon';
     }
 
     axiosInstance.get(url)
       .then((response) => {
         const routes = response.data.routes;
+      
 
         if (packageType === 'BIL') {
           if (chargeType === 'Initiation Charge') {
@@ -197,57 +216,74 @@ export default function Home() {
           }
         }
       if (packageType === 'AISecureNet') {
-  if (chargeType === 'Initiation Charge') {
+          if (chargeType === 'Initiation Charge') {
 
-        const filteredData = response.data.AISecurenet.filter(item => 
-    item.Bandwith === bandwidth
-  );
+           const filteredData = response.data.AISecurenet.filter(item => 
+              item.Bandwith === bandwidth
+              );
+               setData1(filteredData.map(item => item.Standard));
+             }
 
-   setData1(filteredData.map(item => item.Standard));
-
-    }
-
-    if (chargeType === 'Monthly Rental') {
-      const filteredData = response.data.AISecurenetMonth.filter(item => item.Bandwith === bandwidth);
-    
-      setData2(filteredData.map(item => {
-        if (commitmentPeriod === '1 Year') {
-          return {
-            MaxUsers: item.MaxUsers,
-            ConcurrentUsers: item.ConcurrentUsers,
-            ConcurrentSessions: item.ConcurrentSessions,
-            Sprice: item.Sprice,
-            year1CMR: item.year1CMR,
-            commitmentPeriod: '1 Year'
-          };
-        }
-        if (commitmentPeriod === '2 Year') {
-          return {
-            MaxUsers: item.MaxUsers,
-            ConcurrentUsers: item.ConcurrentUsers,
-            ConcurrentSessions: item.ConcurrentSessions,
-            Sprice: item.Sprice,
-            year2CMR: item.year2CMR,
-            commitmentPeriod: '2 Year'
-          };
-        }
-        if (commitmentPeriod === '3 Year') {
-          return {
-            MaxUsers: item.MaxUsers,
-            ConcurrentUsers: item.ConcurrentUsers,
-            ConcurrentSessions: item.ConcurrentSessions,
-            Sprice: item.Sprice,
-            year3CMR: item.year3CMR,
-            commitmentPeriod: '3 Year'
-          };
-        }
-      }));
-    
-      setShowData2(true);
-    }
+           if (chargeType === 'Monthly Rental') {
+            const filteredData = response.data.AISecurenetMonth.filter(item => item.Bandwith === bandwidth);
+          
+            setData2(filteredData.map(item => {
+              if (commitmentPeriod === '1 Year') {
+                return {
+                  MaxUsers: item.MaxUsers,
+                  ConcurrentUsers: item.ConcurrentUsers,
+                  ConcurrentSessions: item.ConcurrentSessions,
+                  Sprice: item.Sprice,
+                  year1CMR: item.year1CMR,
+                  commitmentPeriod: '1 Year'
+                };
+              }
+              if (commitmentPeriod === '2 Year') {
+                return {
+                  MaxUsers: item.MaxUsers,
+                  ConcurrentUsers: item.ConcurrentUsers,
+                  ConcurrentSessions: item.ConcurrentSessions,
+                  Sprice: item.Sprice,
+                  year2CMR: item.year2CMR,
+                  commitmentPeriod: '2 Year'
+                };
+              }
+              if (commitmentPeriod === '3 Year') {
+                return {
+                  MaxUsers: item.MaxUsers,
+                  ConcurrentUsers: item.ConcurrentUsers,
+                  ConcurrentSessions: item.ConcurrentSessions,
+                  Sprice: item.Sprice,
+                  year3CMR: item.year3CMR,
+                  commitmentPeriod: '3 Year'
+                };
+              }
+            }));    
+            setShowData2(true);
+          }
     
     
   }
+  
+  if (packageType === 'NetGuard') {
+    // Check if AINetGMonData exists and is not undefined
+    if (response.data && response.data.length > 0) {
+      const filteredData = response.data.filter(item => item.Bandwith === bandwidth); // Corrected property name
+
+      // Update data1 based on commitmentPeriod
+      if (commitmentPeriod === '1 Year') {
+        setData1(filteredData.map(item => item.Commitment1Year));
+      } else if (commitmentPeriod === '2 Year') {
+        setData1(filteredData.map(item => item.Commitment2Year));
+      } else if (commitmentPeriod === '3 Year') {
+        setData1(filteredData.map(item => item.Commitment3Year));
+      }
+    } else {
+      console.error('AINetGMonData is undefined');
+      // Handle the case where AINetGMonData is undefined
+    }
+  }
+
     
     setShowData1(true); // Show data1 after fetching
     
@@ -295,6 +331,9 @@ export default function Home() {
           </button>
         </div>
         <div className='flex justify-end'>
+          <a href='/netguardall'>
+            <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>NetGuard</button>
+          </a>
           <a href='/bil'>
             <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>BIL</button>
           </a>
@@ -516,9 +555,38 @@ export default function Home() {
                 )}
 
 
+                {packageType === 'NetGuard' && (
+                  <>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={bandwidth}
+                    onChange={(e) => setBandwidth(e.target.value)}
+                  >
+                    <option value="" disabled>Select bandwidth</option>
+                    {netguardmbps.map((option, index) => (
+                      <option key={option._id} value={option.Bandwith}>{option.Bandwith}</option>
+                    ))}
+                  </select>
+                </div>
 
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Commitment period : </label>
+                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={commitmentPeriod}
+                    onChange={(e) => setCommitmentPeriod(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Year">2 Year</option>
+                    <option value="3 Year">3 Year</option>
+                  </select>
+                </div>
+                  </>
+                )}
 
-
+              
               <div className='text-lg mt-2'>
                 <button type="submit" className='font-semibold bg-blue-500 w-32 ml-40 text-white p-2 rounded-md'>Submit</button>
               </div>
@@ -526,7 +594,8 @@ export default function Home() {
 
             {data1.length > 0 && (
   <div className='flex items-center justify-center text-xl text-white mt-6'>
-    Initial Charge Is: {data1}
+    {(chargeType === 'Initiation Charge' || !chargeType) && `Initial Charge Is: ${data1}`}
+    {chargeType === 'Monthly Rental' && `Monthly Rental Is: ${data1}`}
   </div>
 )}
 
