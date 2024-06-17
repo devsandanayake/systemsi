@@ -20,12 +20,14 @@ const routeRoutes = require('./Routes/route');
 const aisecurenetRoutes = require('./Routes/AISecurenet');
 const userRoutes = require('./Routes/User');
 const AINetGMonRoutes = require('./Routes/AINetG');
+const TrAINetGMonRoutes = require('./Routes/TrAINetG');
 
 
 app.use('/route', routeRoutes);
 app.use('/aisecurenet', aisecurenetRoutes);
 app.use('/user', userRoutes);
 app.use('/AINetG', AINetGMonRoutes);
+app.use('/TrAINetG', TrAINetGMonRoutes);
 
 
  
