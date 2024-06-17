@@ -11,9 +11,11 @@ export default function Home() {
   const [commitmentPeriod, setCommitmentPeriod] = useState('');
   const [distance, setDistance] = useState('');
   const [bandwidth, setBandwidth] = useState('');
+  const [bandwidthRange, setBandwidthRange] = useState('');
   const [service, setService] = useState('');
 
   const [netguardmbps, setNetguardmbps] = useState('');
+  const [AINetgmbps, setAINetgmbps] = useState('');
 
   const [data1, setData1] = useState([]);
   const [showData1, setShowData1] = useState(false);
@@ -31,6 +33,17 @@ export default function Home() {
         console.log('Error fetching data:', err.message);
       });
   }, []);
+
+  useEffect(() => {
+    axiosInstance.get('/TrAINetG/TrAINetGMon')
+      .then((res) => {
+        console.log('aefa',res.data);
+        setAINetgmbps(res.data);
+      })
+      .catch((err) => {
+        console.log('Error fetching data:', err.message);
+      });
+  }, []);
   
 
 
@@ -43,6 +56,7 @@ export default function Home() {
 
 
     let url;
+    let url2;
     if (packageType === 'BIL') {
       url = '/route/all';
     } else if (packageType === 'AISecureNet' && chargeType === 'Initiation Charge') {
@@ -51,7 +65,66 @@ export default function Home() {
       url = '/aisecurenet/get/month';
     } else if (packageType === 'NetGuard') {
       url = '/AINetG/AINetGMon';
+    } else if (packageType === 'AINetGuard') {
+      url = '/TrAINetG/TrAINetGMon';
+      url2 ='/TrAINetG/TrAINetGI';
     }
+
+    if (packageType === 'AINetGuard' && url2) {
+      axios.all([
+          axiosInstance.get(url),
+          axiosInstance.get(url2)
+      ])
+      .then(axios.spread((response1, response2) => {
+          const data1Response = response1.data;
+          const data2Response = response2.data;
+          console.log(data1Response);
+          console.log(data2Response);
+
+          // Process the data from the first response
+          if (data1Response && data1Response.length > 0) {
+              const filteredData1 = data1Response.filter(item => item.Bandwith === bandwidth);
+              if (commitmentPeriod === '1 Year') {
+                  setData1(filteredData1.map(item => item.year1CMR));
+              } else if (commitmentPeriod === '2 Year') {
+                  setData1(filteredData1.map(item => item.year2CMR));
+              } else if (commitmentPeriod === '3 Year') {
+                  setData1(filteredData1.map(item => item.year3CMR));
+              }
+          } else {
+              console.error('AINetGMonData is undefined or empty');
+          }
+
+          // Process the data from the second response
+          if (data2Response && data2Response.length > 0) {
+              if (bandwidthRange === '15') {
+                  setData2(data2Response.map(item => item.data.a1s));
+              } else if (bandwidthRange === '175') {
+                  setData2(data2Response.map(item => item.data.a2s));
+              } else if (bandwidthRange === '450') {
+                  setData2(data2Response.map(item => item.data.a3s));
+              } else if (bandwidthRange === '900') {
+                  setData2(data2Response.map(item => item.data.a4s));
+              }
+              else if (bandwidthRange === '1900') {
+                setData2(data2Response.map(item => item.data.a5s));
+              }
+              else if (bandwidthRange === '4000') {
+                setData2(data2Response.map(item => item.data.a6s));
+              }
+              
+          } else {
+              console.error('TrAINetGI data is undefined or empty');
+          }
+
+          setShowData1(true); // Show data1 after fetching
+          setShowData2(true); // Show data2 after fetching
+
+      }))
+      .catch((error) => {
+          console.log(error);
+      });
+  } else {
 
     axiosInstance.get(url)
       .then((response) => {
@@ -284,7 +357,10 @@ export default function Home() {
     }
   }
 
-    
+
+
+  
+
     setShowData1(true); // Show data1 after fetching
     
       
@@ -293,6 +369,7 @@ export default function Home() {
         console.log(error);
       });
 
+  }
   }
 
 
@@ -331,15 +408,18 @@ export default function Home() {
           </button>
         </div>
         <div className='flex justify-end'>
+          <a href='/ainetguardall'>
+            <button className='bg-blue-500 text-white w-32 p-2 rounded-md mt-5 mr-3'>AINetGuard</button>
+          </a>
           <a href='/netguardall'>
-            <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>NetGuard</button>
+            <button className='bg-blue-500 text-white w-32 p-2 rounded-md mt-5 mr-3'>NetGuard</button>
           </a>
           <a href='/bil'>
-            <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>BIL</button>
+            <button className='bg-blue-500 text-white w-32 p-2 rounded-md mt-5 mr-3'>BIL</button>
           </a>
 
           <a href='/aisecurenet'>
-            <button className='bg-blue-500 text-white p-2 rounded-md mt-5 mr-3'>AISecureNet</button>
+            <button className='bg-blue-500 text-white w-32 p-2 rounded-md mt-5 mr-3'>AISecureNet</button>
           </a>
         </div>
 
@@ -585,6 +665,57 @@ export default function Home() {
                 </div>
                   </>
                 )}
+
+                {packageType === 'AINetGuard' && (
+                  <>
+                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={bandwidth}
+                    onChange={(e) => setBandwidth(e.target.value)}
+                  >
+                    <option value="" disabled>Select bandwidth</option>
+                    {AINetgmbps.map((option, index) => (
+                      <option key={option._id} value={option.Bandwith}>{option.Bandwith}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Commitment period : </label>
+                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={commitmentPeriod}
+                    onChange={(e) => setCommitmentPeriod(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Year">2 Year</option>
+                    <option value="3 Year">3 Year</option>
+                  </select>
+                </div>
+
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Bandwidth Range (Mbps) :</label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={bandwidthRange}
+                    onChange={(e) => setBandwidthRange(e.target.value)}
+                  >
+                    <option value="" disabled>Select bandwidth range</option>
+                    <option value="15">Upto 15 </option>
+                    <option value="175">Upto 175</option>
+                    <option value="450">Upto 450</option>
+                    <option value="900">Upto 900</option>
+                    <option value="1900">Upto 1900</option>
+                    <option value="4000">Upto 4000</option>
+                  </select>
+                </div>
+
+
+                  </>
+                )}
+
 
               
               <div className='text-lg mt-2'>

@@ -12,6 +12,8 @@ import Register from './Components/UserModule/Register';
 import Login from './Components/UserModule/Loging';
 import BillUpdateDF from './Components/BillUpdateDF';
 import NetGuardAll from './Components/NetGuard/NetGuardAll';
+import AINetGuardAll from './Components/AINetGuard/AINetGuardAll';
+import AINetGuardInit from './Components/AINetGuard/AINetGuardInit';
 
 const App = () => {
   const token = localStorage.getItem('token');
@@ -40,7 +42,10 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/route/update/:id" element={<BillUpdateDF />} />
             <Route path="/netguardall" element={<NetGuardAll />} />
+            <Route path="/ainetguardall" element={<AINetGuardAll />} />
+            <Route path="/ainetguardinit" element={<AINetGuardInit />} />
             <Route path="*" element={<Navigate to="/" />} />
+
           </>
         ) : (
           // If user is guest, only show home page
