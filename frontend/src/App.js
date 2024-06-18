@@ -15,6 +15,7 @@ import NetGuardAll from './Components/NetGuard/NetGuardAll';
 import AINetGuardAll from './Components/AINetGuard/AINetGuardAll';
 import AINetGuardInit from './Components/AINetGuard/AINetGuardInit';
 import AISecureNetAll from './Components/AISecureNet/AISecureNetAll';
+import {NavBar } from './Components/NavBar/NavBar';
 
 const App = () => {
   const token = localStorage.getItem('token');
@@ -22,6 +23,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
         {!token ? (
           // If no token, redirect to login
@@ -32,6 +34,7 @@ const App = () => {
         ) : role === 'admin' ? (
           // If user is admin, load all routes
           <>
+            
             <Route path="/" element={<Home />} />
             <Route path="/bilinsert" element={<Bilinsert />} />
             <Route path="/bil" element={<Bil />} />
