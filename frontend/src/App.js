@@ -14,6 +14,7 @@ import BillUpdateDF from './Components/BillUpdateDF';
 import NetGuardAll from './Components/NetGuard/NetGuardAll';
 import AINetGuardAll from './Components/AINetGuard/AINetGuardAll';
 import AINetGuardInit from './Components/AINetGuard/AINetGuardInit';
+import AISecureNetAll from './Components/AISecureNet/AISecureNetAll';
 
 const App = () => {
   const token = localStorage.getItem('token');
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/netguardall" element={<NetGuardAll />} />
             <Route path="/ainetguardall" element={<AINetGuardAll />} />
             <Route path="/ainetguardinit" element={<AINetGuardInit />} />
+            <Route path="/aisecurenetall" element={<AISecureNetAll />} />
             <Route path="*" element={<Navigate to="/" />} />
 
           </>

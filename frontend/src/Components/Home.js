@@ -21,6 +21,10 @@ export default function Home() {
   const [showData1, setShowData1] = useState(false);
   const [data2, setData2] = useState([]);
   const [showData2, setShowData2] = useState(false);
+  const [data3, setData3] = useState([]);
+  const [showData3, setShowData3] = useState(false);
+  const [data4, setData4] = useState([]);
+  const [showData4, setShowData4] = useState(false);
 
 
   useEffect(() => {
@@ -53,6 +57,8 @@ export default function Home() {
     setShowData2(false);
     data1.length = 0;
     data2.length = 0;
+    data3.length = 0;
+    data4.length = 0;
 
 
     let url;
@@ -84,41 +90,76 @@ export default function Home() {
           // Process the data from the first response
           if (data1Response && data1Response.length > 0) {
               const filteredData1 = data1Response.filter(item => item.Bandwith === bandwidth);
-              if (commitmentPeriod === '1 Year') {
-                  setData1(filteredData1.map(item => item.year1CMR));
-              } else if (commitmentPeriod === '2 Year') {
-                  setData1(filteredData1.map(item => item.year2CMR));
-              } else if (commitmentPeriod === '3 Year') {
-                  setData1(filteredData1.map(item => item.year3CMR));
-              }
-          } else {
-              console.error('AINetGMonData is undefined or empty');
+              
+              setData2(filteredData1.map(item => {
+                  if (commitmentPeriod === '1 Year') {
+                      return {
+                          MaxUsers: item.MaxUsers,
+                          ConcurrentUsers: item.ConcurrentUsers,
+                          ConcurrentSessions: item.ConcurrentSessions,
+                          Sprice: item.Sprice,
+                          year1CMR: item.year1CMR,
+                          commitmentPeriod: '1 Year'
+                      };
+                  }
+                  if (commitmentPeriod === '2 Year') {
+                      return {
+                          MaxUsers: item.MaxUsers,
+                          ConcurrentUsers: item.ConcurrentUsers,
+                          ConcurrentSessions: item.ConcurrentSessions,
+                          Sprice: item.Sprice,
+                          year2CMR: item.year2CMR,
+                          commitmentPeriod: '2 Year'
+                      };
+                  }
+                  if (commitmentPeriod === '3 Year') {
+                      return {
+                          MaxUsers: item.MaxUsers,
+                          ConcurrentUsers: item.ConcurrentUsers,
+                          ConcurrentSessions: item.ConcurrentSessions,
+                          Sprice: item.Sprice,
+                          year3CMR: item.year3CMR,
+                          commitmentPeriod: '3 Year'
+                      };
+                  }
+              }));
+          } 
+          else {
+              console.error('TrAINetGMon data is undefined or empty');
+          
           }
 
           // Process the data from the second response
           if (data2Response && data2Response.length > 0) {
               if (bandwidthRange === '15') {
-                  setData2(data2Response.map(item => item.data.a1s));
+                  setData3(data2Response.map(item => item.data.a1s));
+                  setData4(data2Response.map(item => item.data.a1Sc));
               } else if (bandwidthRange === '175') {
-                  setData2(data2Response.map(item => item.data.a2s));
+                  setData3(data2Response.map(item => item.data.a2s));
+                  setData4(data2Response.map(item => item.data.a2Sc));
               } else if (bandwidthRange === '450') {
-                  setData2(data2Response.map(item => item.data.a3s));
+                  setData3(data2Response.map(item => item.data.a3s));
+                  setData4(data2Response.map(item => item.data.a3Sc));
               } else if (bandwidthRange === '900') {
-                  setData2(data2Response.map(item => item.data.a4s));
+                  setData3(data2Response.map(item => item.data.a4s));
+                  setData4(data2Response.map(item => item.data.a4Sc));
               }
               else if (bandwidthRange === '1900') {
-                setData2(data2Response.map(item => item.data.a5s));
+                setData3(data2Response.map(item => item.data.a5s));
+                setData4(data2Response.map(item => item.data.a5Sc));
               }
               else if (bandwidthRange === '4000') {
-                setData2(data2Response.map(item => item.data.a6s));
+                setData3(data2Response.map(item => item.data.a6s));
+                setData4(data2Response.map(item => item.data.a6Sc));
               }
               
           } else {
               console.error('TrAINetGI data is undefined or empty');
           }
 
-          setShowData1(true); // Show data1 after fetching
-          setShowData2(true); // Show data2 after fetching
+          setShowData3(true); // Show data1 after fetching
+          setShowData4(true); // Show data2 after fetching
+          console.log(data3);
 
       }))
       .catch((error) => {
@@ -358,9 +399,6 @@ export default function Home() {
   }
 
 
-
-  
-
     setShowData1(true); // Show data1 after fetching
     
       
@@ -424,7 +462,7 @@ export default function Home() {
         </div>
 
         <div className='flex justify-center items-center mt-5'>
-          <div className="bg-white p-2 rounded-lg shadow-md w-6/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 justify-center" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)' }}>
+          <div className="bg-white p-2 rounded-lg shadow-md w-6/12 h-fit backdrop-blur-md backdrop-filter bg-opacity-20 justify-center" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)' }}>
             <form onSubmit={handleSubmit} className='ml-32'>
               <div className='grid grid-cols-2 gap-4 text-lg'>
                 <label className='font-semibold'>Select Package : </label>
@@ -731,17 +769,64 @@ export default function Home() {
 )}
 
 {data1.length === 0 && data2.length > 0 && (
-  <ul className='text-xl text-white mt-6'>
+  <div className='text-white'>
+    Monthly Rental
+  <div className='flex justify-center'>
+    <table className='text-white mt-1 border-collapse border border-black'>
+  <thead>
+    <tr>
+      <th className='border border-black'>Max Users</th>
+      <th className='border border-black'>Concurrent Users</th>
+      <th className='border border-black'>Concurrent Sessions</th>
+      <th className='border border-black'>Standard Price</th>
+      <th className='border border-black'>Year CMR</th>
+    </tr>
+  </thead>
+  <tbody>
     {data2.map((item, index) => (
-      <li key={index}>
-        Max Users: {item.MaxUsers}, Concurrent Users: {item.ConcurrentUsers}, Concurrent Sessions: {item.ConcurrentSessions}, Standard Price: {item.Sprice}
-        {item.commitmentPeriod === '1 Year' && `, Year 1 CMR: ${item.year1CMR}`}
-        {item.commitmentPeriod === '2 Year' && `, Year 2 CMR: ${item.year2CMR}`}
-        {item.commitmentPeriod === '3 Year' && `, Year 3 CMR: ${item.year3CMR}`}
-      </li>
+      <tr key={index}>
+        <td className='border border-black'>{item.MaxUsers}</td>
+        <td className='border border-black'>{item.ConcurrentUsers}</td>
+        <td className='border border-black'>{item.ConcurrentSessions}</td>
+        <td className='border border-black'>{item.Sprice}</td>
+        <td className='border border-black'>
+  {item.commitmentPeriod === '1 Year' ? item.year1CMR :
+   item.commitmentPeriod === '2 Year' ? item.year2CMR :
+   item.commitmentPeriod === '3 Year' ? item.year3CMR : ''}
+</td>
+      </tr>
     ))}
-  </ul>
+  </tbody>
+</table>
+  </div>
+</div>
 )}
+
+{data3.length > 0 && (
+  <div className='text-white'>
+    Initiation Charge
+  <div className='w-full flex justify-center'>
+    <div>
+      <table className='text-white mt-2 border-collapse border border-gray-800'>
+        <thead>
+          <tr>
+            <th className='border border-black w-64'>Standard Price</th>
+            <th className='border border-black w-64'>Commitment Upto 3 years</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className='border border-black text-center'>{data3}</td>
+            <td className='border border-black text-center'>{data4}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+)}
+
+
 
 
           </div>
