@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';  
 import axiosInstance from '../../axiosConfig';
+import './Login.css'; // Ensure you import your CSS file
 
 export default function Login() {
     const [user, setUser] = useState({
@@ -32,36 +32,31 @@ export default function Login() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <form onSubmit={handleSubmit} className="w-full max-w-md bg-white p-8 rounded shadow-md">
-                <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Username:</label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        value={user.username} 
-                        onChange={handleChange} 
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Password:</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={user.password} 
-                        onChange={handleChange} 
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                    />
-                </div>
-                <button 
+        <div className='container'>
+        <div className="login wrap">
+            <div className="h1">Login</div>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    name="username" 
+                    placeholder="user name"
+                    value={user.username} 
+                    onChange={handleChange} 
+                />
+                <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Password"
+                    value={user.password} 
+                    onChange={handleChange} 
+                />
+                <input 
                     type="submit" 
-                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
-                >
-                    Login
-                </button>
+                    value="Login"
+                    className="btn"
+                />
             </form>
+        </div>
         </div>
     );
 }
