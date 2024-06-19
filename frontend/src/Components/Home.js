@@ -625,7 +625,7 @@ useEffect(() => {
 
         <div className='w-full'>
           <div className='text-center text-white text-4xl'>
-            Secure Internet
+            Enterprise Tariff
           </div>
         </div>
          

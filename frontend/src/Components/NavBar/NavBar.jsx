@@ -17,6 +17,7 @@ export const NavBar = () => {
       setLoading(false);
       console.log('User logged out');
       navigate('/login');
+      window.location.reload();
     }, 1000);
   };
 
