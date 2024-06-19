@@ -50,6 +50,10 @@ export default function AISecureNetAll() {
                     <a href='/aisecurenet'>
                         <button className='text-white bg-blue-500 p-2 rounded-md shadow-md mr-3'>Insert</button>
                     </a>
+
+                    <a href='/aisecurenetinit'>
+                        <button className='text-white bg-blue-500 p-2 rounded-md shadow-md mr-2'>Initiation </button>
+                    </a>
                 </div>
 
                 <div className='w-full mt-3'>

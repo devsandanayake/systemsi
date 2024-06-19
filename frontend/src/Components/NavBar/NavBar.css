@@ -28,7 +28,24 @@
   z-index: 1000;
   
 }
+.menu-item {
+  color: white; /* Set text color to white */
+  /* Add any other styling here */
+}
 
 .menu-item:hover {
-  color: rgb(0, 0, 0) !important;
+  color: rgb(253, 253, 253) !important;
+}
+
+.navbar-dark {
+  background-color: #00061b; /* Dark color */
+}
+
+/* Increased specificity example */
+.ant-menu .ant-menu-item.menu-item {
+  color: white !important; /* Use !important sparingly */
+}
+
+.ant-menu .ant-menu-item.menu-item:hover {
+  color: rgb(253, 253, 253) !important;
 }

@@ -6,8 +6,8 @@ const AISecurenetMonth = require('../Models/AISmon');
 //Ai initialisation inertion
 router.post('/add/init', async (req, res) => {
     try {
-        const { Bandwith, Standard, Commitment } = req.body;
-        const newAISecurenet = new AISecurenet({ Bandwith, Standard, Commitment });
+        const { data } = req.body;
+        const newAISecurenet = new AISecurenet({ data });
         const savedAISecurenet = await newAISecurenet.save();
         res.status(201).json({ message: "AISecurenet document added successfully", data: savedAISecurenet });
     } catch (error) {
@@ -15,6 +15,25 @@ router.post('/add/init', async (req, res) => {
         res.status(500).json({ error: "Failed to add AISecurenet document" });
     }
 });
+
+// Backend Route (Express)
+router.patch('/update/init/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const updatedAISecurenet = await AISecurenet.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedAISecurenet) {
+            return res.status(404).json({ message: 'AISecurenet not found' });
+        }
+
+        res.json({ message: 'AISecurenet updated successfully', data: updatedAISecurenet });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
 
 //Ai monthly inertion
 router.post('/add/month', async (req, res) => {

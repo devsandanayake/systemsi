@@ -29,25 +29,42 @@ export const NavBar = () => {
       )}
 
       <div>
-        <Menu mode="horizontal" className="bg-gray-800 text-white navbar-small">
-          <Menu.Item key="home" icon={<HomeOutlined />} className="menu-item hover:bg-gray-700">
-            <Link to={"/"}>Main</Link>
-          </Menu.Item>
+        <Menu mode="horizontal" className="navbar-dark text-white navbar-small">
+  <Menu.Item key="home" icon={<HomeOutlined />} className="menu-item hover:bg-gray-700">
+    <Link to={"/"}>Home</Link>
+  </Menu.Item>
 
-          <Menu.Item key="admin" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
-            <Link to={"/admin/adminpage"}>Admin Page</Link>
-          </Menu.Item>
+  <Menu.Item key="AISecureNet" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
+    <Link to={"/aisecurenetall"}>AISecureNet</Link>
+  </Menu.Item>
 
-          <Menu.Item
-            key="logout"
-            icon={<LogoutOutlined />}
-            className="menu-item hover:bg-gray-700"
-            style={{ marginLeft: 'auto' }}
-            onClick={logout}
-          >
-            Logout
-          </Menu.Item>
-        </Menu>
+  <Menu.Item key="NetGuard" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
+    <Link to={"/netguardall"}>NetGuard</Link>
+  </Menu.Item>
+
+  <Menu.Item key="AINetGuard" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
+    <Link to={"/ainetguardall"}>AINetGuard</Link>
+  </Menu.Item>
+
+  <Menu.Item key="BIL" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
+    <Link to={"/bil"}>BIL</Link>
+  </Menu.Item>
+
+  <Menu.Item
+    key="logout"
+    icon={<LogoutOutlined />}
+    className="menu-item hover:bg-gray-700"
+    style={{ marginLeft: 'auto' }}
+    onClick={() => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location = '/login';
+    }
+    }
+  >
+    Logout
+  </Menu.Item>
+</Menu>
       </div>
     </div>
   );
