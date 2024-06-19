@@ -912,39 +912,7 @@ const formatNumber = (value) => {
   </div>
 )}
 
-{data1.length === 0 && data2.length > 0 && (
-  <div className='text-white'>
-    Monthly Rental
-  <div className='flex justify-center'>
-    <table className='text-white mt-1 border-collapse border border-black'>
-  <thead>
-    <tr>
-      <th className='border border-black p-1'>Max Users</th>
-      <th className='border border-black p-1'>Concurrent Users</th>
-      <th className='border border-black p-1'>Concurrent Sessions</th>
-      <th className='border border-black p-1'>Standard Price</th>
-      <th className='border border-black p-1'>Year Commitment Monthly Rental</th>
-    </tr>
-  </thead>
-  <tbody>
-    {data2.map((item, index) => (
-      <tr key={index}>
-        <td className='border border-black p-1'>{item.MaxUsers}</td>
-        <td className='border border-black p-1'>{item.ConcurrentUsers}</td>
-        <td className='border border-black p-1'>{item.ConcurrentSessions}</td>
-        <td className='border border-black p-1'>{formatNumber(item.Sprice)}</td>
-        <td className='border border-black p-1'>
-  {item.commitmentPeriod === '1 Year' ? formatNumber(item.year1CMR) :
-   item.commitmentPeriod === '2 Year' ? formatNumber(item.year2CMR) :
-   item.commitmentPeriod === '3 Year' ? formatNumber(item.year3CMR) : ''}
-</td>
-      </tr>
-    ))}
-  </tbody>
-</table>
-  </div>
-</div>
-)}
+
 
 {data3.length > 0 && (
   <div className='text-white mt-2'>
@@ -1000,6 +968,40 @@ const formatNumber = (value) => {
   </div>
 )}
 
+{data1.length === 0 && data2.length > 0 && (
+  <div className='text-white'>
+    Monthly Rental
+  <div className='flex justify-center'>
+    <table className='text-white mt-1 border-collapse border border-black'>
+  <thead>
+    <tr>
+      <th className='border border-black p-1'>Max Users</th>
+      <th className='border border-black p-1'>Concurrent Users</th>
+      <th className='border border-black p-1'>Concurrent Sessions</th>
+      <th className='border border-black p-1'>Standard Price</th>
+      <th className='border border-black p-1'>Year Commitment Monthly Rental</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data2.map((item, index) => (
+      <tr key={index}>
+        <td className='border border-black p-1'>{item.MaxUsers}</td>
+        <td className='border border-black p-1'>{item.ConcurrentUsers}</td>
+        <td className='border border-black p-1'>{item.ConcurrentSessions}</td>
+        <td className='border border-black p-1'>{formatNumber(item.Sprice)}</td>
+        <td className='border border-black p-1'>
+  {item.commitmentPeriod === '1 Year' ? formatNumber(item.year1CMR) :
+   item.commitmentPeriod === '2 Year' ? formatNumber(item.year2CMR) :
+   item.commitmentPeriod === '3 Year' ? formatNumber(item.year3CMR) : ''}
+</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+  </div>
+</div>
+)}
+
 {(data8.length > 0 || data9.length > 0 || data10.length > 0 || data11.length > 0 || data12.length > 0 || data13.length > 0 || data14.length > 0 || data15.length > 0 || data16.length > 0 || data17.length > 0 || data18.length > 0 || data19.length > 0 || data20.length > 0) && (
   <div className='text-white mt-2'>
   Initiation Charge
@@ -1008,24 +1010,29 @@ const formatNumber = (value) => {
       <table className='text-white mt-2 border-collapse border border-gray-800'>
         <thead>
           <tr>
+            <th className='border border-black w-64'></th>
             <th className='border border-black w-64'>Standard Price</th>
             <th className='border border-black w-64'>Year Commitment Monthly Rental</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td className='border border-black text-center'>Fiber Available to the customer's end</td>
             <td className='border border-black text-center'>{formatNumber(data8)}</td>
             <td className='border border-black text-center'>{formatNumber(data9)}</td>
           </tr>
           <tr>
+            <td className='border border-black text-center'>Fiber Not available to the Customer's end</td>
             <td className='border border-black text-center'>{formatNumber(data10)}</td>
             <td className='border border-black text-center'>{formatNumber(data11)}</td>
           </tr>
           <tr>
+            <td className='border border-black text-center'>500m-750m segment & 750m-1,000m segment</td>
             <td className='border border-black text-center'>{formatNumber(data12)}</td>
             <td className='border border-black text-center'>{formatNumber(data13)}</td>
           </tr>
           <tr>
+            <td className='border border-black text-center'>1,000m and above segment</td>
             <td className='border border-black text-center'>{formatNumber(data14)}</td>
             <td className='border border-black text-center'>{formatNumber(data15)}</td>
           </tr>
