@@ -144,9 +144,9 @@
     left: -10px; /* Extend outside the container */
     right: -10px; /* Extend outside the container */
     bottom: -10px; /* Extend outside the container */
-    background-image: url('https://img.freepik.com/free-photo/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-bus_1258-176870.jpg?t=st=1718776690~exp=1718780290~hmac=bc4a186bda65b2ac732cabca6c68012016c135e26faf549ce3a702cb4e1362a0&w=996');
+    background-image: url('https://theplannersvn.com/wp-content/uploads/2022/08/Ho_Chi_Minh_City_Skyline_night-1536x844.jpeg');
     background-size: cover;
     background-position: center;
-    filter: blur(0.1px); /* Adjust the blur level as needed */
+    filter: blur(5px); /* Adjust the blur level as needed */
     z-index: -1;
 }
