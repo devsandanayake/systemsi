@@ -139,20 +139,7 @@ useEffect(() => {
     data5.length = 0;
     data6.length = 0;
     data7.length = 0;
-    data8.length = 0;
-    data9.length = 0;
-    data10.length = 0;
-    data11.length = 0;
-    data12.length = 0;
-    data13.length = 0;
-    data14.length = 0;
-    data15.length = 0;
-    data16.length = 0;
-    data17.length = 0;
-    data18.length = 0;
-    data19.length = 0;
-    data20.length = 0;
-
+    
 
     let url;
     let url2;
@@ -393,237 +380,220 @@ useEffect(() => {
   else {
 
     axiosInstance.get(url)
-      .then((response) => {
-        const routes = response.data.routes;
-      
+  .then((response) => {
+    const routes = response.data.routes;
 
-        if (packageType === 'BIL') {
-          if( accessMedium === 'FIBER') {
-            if ( fiberAvailable === 'Yes') {
-              if (commitmentPeriod === '1 Year') {
-                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
-                setData9(routes[0].initiation.base.directFiber.FiAvYear1CMR);
-              }
-              if (commitmentPeriod === '2 Year') {
-                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
-                setData9(routes[0].initiation.base.directFiber.FiAvYear2CMR);
-              }
-              if (commitmentPeriod === '3 Year') {
-                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
-                setData9(routes[0].initiation.base.directFiber.FiAvYear3CMR);
-              }
-            }
-
-            if ( fiberAvailable === 'No'){
-              if ( distance === '0 m - 500 m') {
-                if (commitmentPeriod === '1 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
-                }
-                if (commitmentPeriod === '2 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
-                }
-                if (commitmentPeriod === '3 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
-                }
-              }
-              if ( distance === '500 m - 1000 m') {
-                if (commitmentPeriod === '1 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
-                }
-                if (commitmentPeriod === '2 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
-                }
-                if (commitmentPeriod === '3 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
-                }
-                
-              }
-              if ( distance === '1000 m +') {
-                if (commitmentPeriod === '1 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
-                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
-                  setData15(routes[0].initiation.base.directFiber.Fi1000Year1CMR);
-                }
-                if (commitmentPeriod === '2 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
-                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
-                  setData15(routes[0].initiation.base.directFiber.Fi1000Year2CMR);
-                }
-                if (commitmentPeriod === '3 Year') {
-                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
-                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
-                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
-                  setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
-                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
-                  setData15(routes[0].initiation.base.directFiber.Fi1000Year3CMR);
-                }
-              }
-
-            }
-
-
-
-
-            if (service === 'Primary') {
-              const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-                const filteredRoutes = routes
-                  .filter(route => 
-                    route.origin && 
-                    route.origin.directFiber && 
-                    route.origin.directFiber.primary.Bandwidth === bandwidthTarget
-                  );
-                console.log(filteredRoutes);    
-
-                // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                const bandwidthValues = filteredRoutes
-                  .map(route => route.origin.directFiber.primary.Bandwidth);
-                console.log(bandwidthValues);
-
-            if (commitmentPeriod === '1 Year') {
-                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
-                setData19(filteredRoutes.map(route => route.origin.directFiber.primary.year1CMR));
-              } else if (commitmentPeriod === '2 Year') {
-                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
-                setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year2CMR));
-              } else if (commitmentPeriod === '3 Year') {
-                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
-                setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year3CMR));
-              }
-            } else if (service === 'Backup') {
-
-              const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-                const filteredRoutes = routes
-                  .filter(route => 
-                    route.origin && 
-                    route.origin.directFiber && 
-                    route.origin.directFiber.primary.Bandwidth === bandwidthTarget
-                  );
-                console.log(filteredRoutes);    
-
-                // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                const bandwidthValues = filteredRoutes
-                  .map(route => route.origin.directFiber.backup.Bandwidth);
-                console.log(bandwidthValues);
-
-                setData18(filteredRoutes.map(route => route.origin.directFiber.backup.Sprice));
-                setData20(filteredRoutes.map(route => route.origin.directFiber.backup.year1CMR));
-              
-            }
-
-
-
-
-
+    if (packageType === 'BIL') {
+      if (accessMedium === 'FIBER') {
+        if (fiberAvailable === 'Yes') {
+          if (commitmentPeriod === '1 Year') {
+            setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+            setData9(routes[0].initiation.base.directFiber.FiAvYear1CMR);
           }
-          if (accessMedium === 'GPON') {
-            
-            if (service === 'Primary') {
-
-              const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-                const filteredRoutes = routes
-                  .filter(route => 
-                    route.origin && 
-                    route.origin.GPONbase && 
-                    route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
-                  );
-                console.log(filteredRoutes);    
-
-                // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                const bandwidthValues = filteredRoutes
-                  .map(route => route.origin.GPONbase.primary.Bandwidth);
-                console.log(bandwidthValues);
-                
-              if (commitmentPeriod === '1 Year') {
-                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
-                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year1CMR));
-              } else if (commitmentPeriod === '2 Year') {
-                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
-                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year2CMR));
-              } else if (commitmentPeriod === '3 Year') {
-                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
-                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year3CMR));
-              }
-            }
-
-            else if (service === 'Backup') {               
-              const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-              const filteredRoutes = routes
-                .filter(route => 
-                  route.origin && 
-                  route.origin.GPONbase && 
-                  route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
-                );
-              console.log(filteredRoutes);    
-
-              // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-              const bandwidthValues = filteredRoutes
-                .map(route => route.origin.GPONbase.backup.Bandwidth);
-              console.log(bandwidthValues);
-                setData18(filteredRoutes.map(route => route.origin.GPONbase.backup.Sprice));
-                setData20(filteredRoutes.map(route => route.origin.GPONbase.backup.year1CMR));              
-            }
-            
-            else {
-              let filteredRoutes;
-            if (commitmentPeriod === '1 Year') {
-              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year1Commitment);
-              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
-              setData19(filteredRoutes.map(route => route.GPONbase.year1Commitment));
-            } else if (commitmentPeriod === '2 Year') {
-              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year2Commitment);
-              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
-              setData19(filteredRoutes.map(route => route.GPONbase.year2Commitment));
-            } else if (commitmentPeriod === '3 Year') {
-              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year3Commitment);
-              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
-              setData19(filteredRoutes.map(route => route.GPONbase.year3Commitment));
-            }
-            // Ensure filteredRoutes is defined and not empty before logging
-            if (filteredRoutes && filteredRoutes.length > 0) {
-              console.log(filteredRoutes.map(route => route.GPONbase.year1Commitment || route.GPONbase.year2Commitment || route.GPONbase.year3Commitment));
-            } else {
-              console.log("No routes found for the selected GPON and commitment period.");
-            }
-            }
-
+          if (commitmentPeriod === '2 Year') {
+            setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+            setData9(routes[0].initiation.base.directFiber.FiAvYear2CMR);
           }
-          setShowData8(true); 
-          setShowData9(true); 
-          setShowData10(true); 
-          setShowData11(true); 
-          setShowData12(true); 
-          setShowData13(true); 
-          setShowData14(true); 
-          setShowData15(true); 
-          setShowData16(true); 
-          setShowData17(true); 
-          setShowData18(true); 
-          setShowData19(true); 
-          setShowData20(true); 
-            
+          if (commitmentPeriod === '3 Year') {
+            setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+            setData9(routes[0].initiation.base.directFiber.FiAvYear3CMR);
+          }
         }
+
+        if (fiberAvailable === 'No') {
+          if (distance === '0 m - 500 m') {
+            if (commitmentPeriod === '1 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+            }
+            if (commitmentPeriod === '2 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+            }
+            if (commitmentPeriod === '3 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+            }
+          }
+          if (distance === '500 m - 1000 m') {
+            if (commitmentPeriod === '1 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
+            }
+            if (commitmentPeriod === '2 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
+            }
+            if (commitmentPeriod === '3 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
+            }
+          }
+          if (distance === '1000 m +') {
+            if (commitmentPeriod === '1 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
+              setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+              setData15(routes[0].initiation.base.directFiber.Fi1000Year1CMR);
+            }
+            if (commitmentPeriod === '2 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
+              setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+              setData15(routes[0].initiation.base.directFiber.Fi1000Year2CMR);
+            }
+            if (commitmentPeriod === '3 Year') {
+              setData10(routes[0].initiation.base.directFiber.FiNonAv);
+              setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+              setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+              setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
+              setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+              setData15(routes[0].initiation.base.directFiber.Fi1000Year3CMR);
+            }
+          }
+        }
+
+        if (service === 'Primary') {
+          const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+          const filteredRoutes = routes
+            .filter(route =>
+              route.origin &&
+              route.origin.directFiber &&
+              route.origin.directFiber.primary.Bandwidth === bandwidthTarget
+            );
+          console.log(filteredRoutes);
+
+          // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+          const bandwidthValues = filteredRoutes
+            .map(route => route.origin.directFiber.primary.Bandwidth);
+          console.log(bandwidthValues);
+
+          if (commitmentPeriod === '1 Year') {
+            setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+            setData19(filteredRoutes.map(route => route.origin.directFiber.primary.year1CMR));
+          } else if (commitmentPeriod === '2 Year') {
+            setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+            setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year2CMR));
+          } else if (commitmentPeriod === '3 Year') {
+            setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+            setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year3CMR));
+          }
+        } else if (service === 'Backup') {
+
+          const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+          const filteredRoutes = routes
+            .filter(route =>
+              route.origin &&
+              route.origin.directFiber &&
+              route.origin.directFiber.primary.Bandwidth === bandwidthTarget
+            );
+          console.log(filteredRoutes);
+
+          // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+          const bandwidthValues = filteredRoutes
+            .map(route => route.origin.directFiber.backup.Bandwidth);
+          console.log(bandwidthValues);
+
+          setData18(filteredRoutes.map(route => route.origin.directFiber.backup.Sprice));
+          setData20(filteredRoutes.map(route => route.origin.directFiber.backup.year1CMR));
+
+        }
+      }
+      if (accessMedium === 'GPON') {
+
+        if (service === 'Primary') {
+
+          const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+          const filteredRoutes = routes
+            .filter(route =>
+              route.origin &&
+              route.origin.GPONbase &&
+              route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
+            );
+          console.log(filteredRoutes);
+
+          // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+          const bandwidthValues = filteredRoutes
+            .map(route => route.origin.GPONbase.primary.Bandwidth);
+          console.log(bandwidthValues);
+
+          if (commitmentPeriod === '1 Year') {
+            setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+            setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year1CMR));
+          } else if (commitmentPeriod === '2 Year') {
+            setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+            setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year2CMR));
+          } else if (commitmentPeriod === '3 Year') {
+            setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+            setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year3CMR));
+          }
+        } else if (service === 'Backup') {
+          const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+          const filteredRoutes = routes
+            .filter(route =>
+              route.origin &&
+              route.origin.GPONbase &&
+              route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
+            );
+          console.log(filteredRoutes);
+
+          // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+          const bandwidthValues = filteredRoutes
+            .map(route => route.origin.GPONbase.backup.Bandwidth);
+          console.log(bandwidthValues);
+          setData18(filteredRoutes.map(route => route.origin.GPONbase.backup.Sprice));
+          setData20(filteredRoutes.map(route => route.origin.GPONbase.backup.year1CMR));
+        } else {
+          let filteredRoutes;
+          if (commitmentPeriod === '1 Year') {
+            filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year1Commitment);
+            setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+            setData19(filteredRoutes.map(route => route.GPONbase.year1Commitment));
+          } else if (commitmentPeriod === '2 Year') {
+            filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year2Commitment);
+            setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+            setData19(filteredRoutes.map(route => route.GPONbase.year2Commitment));
+          } else if (commitmentPeriod === '3 Year') {
+            filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year3Commitment);
+            setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+            setData19(filteredRoutes.map(route => route.GPONbase.year3Commitment));
+          }
+          // Ensure filteredRoutes is defined and not empty before logging
+          if (filteredRoutes && filteredRoutes.length > 0) {
+            console.log(filteredRoutes.map(route => route.GPONbase.year1Commitment || route.GPONbase.year2Commitment || route.GPONbase.year3Commitment));
+          } else {
+            console.log("No routes found for the selected GPON and commitment period.");
+          }
+        }
+      }
+      setShowData8(true);
+      setShowData9(true);
+      setShowData10(true);
+      setShowData11(true);
+      setShowData12(true);
+      setShowData13(true);
+      setShowData14(true);
+      setShowData15(true);
+      setShowData16(true);
+      setShowData17(true);
+      setShowData18(true);
+      setShowData19(true);
+      setShowData20(true);
+    }
 
 
     setShowData1(true); // Show data1 after fetching
