@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import './Login.css'; // Ensure you import your CSS file
+import Footer from './footer';
+import logo from './slt-logo.svg';
 
 export default function Login() {
     const [user, setUser] = useState({
@@ -32,9 +34,12 @@ export default function Login() {
     }
 
     return (
+        <>
         <div className='container'>
         <div className="login wrap">
-            <div className="h1">Login</div>
+            <div className="items-center justify-center flex">
+                <img src={logo} alt="logo" className='mb-5' />
+            </div>
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text" 
@@ -58,5 +63,7 @@ export default function Login() {
             </form>
         </div>
         </div>
+        <Footer />
+        </>
     );
 }

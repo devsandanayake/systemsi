@@ -17,8 +17,7 @@ import AINetGuardInit from './Components/AINetGuard/AINetGuardInit';
 import AISecureNetAll from './Components/AISecureNet/AISecureNetAll';
 import AISecureNetInit from './Components/AISecureNet/AISecureNetInit';
 import {NavBar } from './Components/NavBar/NavBar';
-import Footer from './Components/UserModule/footer';
-
+ 
 const App = () => {
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role'); // Assuming 'role' is stored in localStorage
@@ -64,7 +63,6 @@ const App = () => {
         )}
        
       </Routes>
-      <Footer/>
     </BrowserRouter>
   );
 }

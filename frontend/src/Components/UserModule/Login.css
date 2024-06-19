@@ -1,14 +1,13 @@
 .login {
-    margin-left: 300px;
-    width: 340px;
-    height: 400px;
+    width: 440px;
+    height: 500px;
    /* From https://css.glass */
-    background: rgba(40, 65, 200, 0.33);
+    background: rgba(38, 51, 128, 0.33);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.9px);
     -webkit-backdrop-filter: blur(5.9px);
-    border: 1px solid rgba(40, 65, 200, 0.69);
+    border: 1px solid rgba(15, 36, 156, 0.69);
     padding: 47px;
     padding-bottom: 57px;
     color: #fff;
@@ -130,15 +129,24 @@
     }
   }
 
-  .container {
+.container {
     display: flex;
-    min-height: 93.5vh;
-    background-image: url('https://blog.apnic.net/wp-content/uploads/2022/06/SLTMobitel_banner.png?v=d53b691a1b18a521d3622af79ceddd19'); /* Adjust as needed */
-    background-size: cover;
     align-items: center;
-    
-    
-    
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
 }
-
-  
+.container::before {
+    content: "";
+    position: absolute;
+    top: -10px; /* Extend outside the container */
+    left: -10px; /* Extend outside the container */
+    right: -10px; /* Extend outside the container */
+    bottom: -10px; /* Extend outside the container */
+    background-image: url('https://theplannersvn.com/wp-content/uploads/2022/08/Ho_Chi_Minh_City_Skyline_night-1536x844.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px); /* Adjust the blur level as needed */
+    z-index: -1;
+}
