@@ -32,6 +32,32 @@ export default function Home() {
   const [showData6, setShowData6] = useState(false);
   const [data7, setData7] = useState([]);
   const [showData7, setShowData7] = useState(false);
+  const [data8, setData8] = useState([]);
+  const [showData8, setShowData8] = useState(false);
+  const [data9, setData9] = useState([]);
+  const [showData9, setShowData9] = useState(false);
+  const [data10, setData10] = useState([]);
+  const [showData10, setShowData10] = useState(false);
+  const [data11, setData11] = useState([]);
+  const [showData11, setShowData11] = useState(false);
+  const [data12, setData12] = useState([]);
+  const [showData12, setShowData12] = useState(false);
+  const [data13, setData13] = useState([]);
+  const [showData13, setShowData13] = useState(false);
+  const [data14, setData14] = useState([]);
+  const [showData14, setShowData14] = useState(false);
+  const [data15, setData15] = useState([]);
+  const [showData15, setShowData15] = useState(false);
+  const [data16, setData16] = useState([]);
+  const [showData16, setShowData16] = useState(false);
+  const [data17, setData17] = useState([]);
+  const [showData17, setShowData17] = useState(false);
+  const [data18, setData18] = useState([]);
+  const [showData18, setShowData18] = useState(false);
+  const [data19, setData19] = useState([]);
+  const [showData19, setShowData19] = useState(false);
+  const [data20, setData20] = useState([]);
+  const [showData20, setShowData20] = useState(false);
 
 
   useEffect(() => {
@@ -83,6 +109,19 @@ export default function Home() {
     data5.length = 0;
     data6.length = 0;
     data7.length = 0;
+    data8.length = 0;
+    data9.length = 0;
+    data10.length = 0;
+    data11.length = 0;
+    data12.length = 0;
+    data13.length = 0;
+    data14.length = 0;
+    data15.length = 0;
+    data16.length = 0;
+    data17.length = 0;
+    data18.length = 0;
+    data19.length = 0;
+    data20.length = 0;
 
 
     let url;
@@ -329,142 +368,148 @@ export default function Home() {
       
 
         if (packageType === 'BIL') {
-          if (chargeType === 'Initiation Charge') {
-            if (accessMedium === 'FIBER') {
-              if (fiberAvailable === 'Yes') {
-                if (commitmentPeriod === '1 Year') {
-                  setData1(routes[0].initiation.base.directFiber.FiAvYear1CMR);
-                } else if (commitmentPeriod === '2 Year') {
-                  setData1(routes[0].initiation.base.directFiber.FiAvYear2CMR);
-                } else if (commitmentPeriod === '3 Year') {
-                  setData1(routes[0].initiation.base.directFiber.FiAvYear3CMR);
-                }
-              }
-              if (fiberAvailable === 'No') {
-                if (distance === '0 m - 500 m') {
-                  if (commitmentPeriod === '1 Year') {
-                    setData1(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
-                  } else if (commitmentPeriod === '2 Year') {
-                    setData1(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
-                  } else if (commitmentPeriod === '3 Year') {
-                    setData1(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
-                  }
-                }
-                if (distance === '500 m - 1000 m') {
-                  if (commitmentPeriod === '1 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi500Year1CMR);
-                  } else if (commitmentPeriod === '2 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi500Year2CMR);
-                  } else if (commitmentPeriod === '3 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi500Year3CMR);
-                  }
-                }
-                if (distance === '1000 m +') {
-                  if (commitmentPeriod === '1 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi1000Year1CMR);
-                  } else if (commitmentPeriod === '2 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi1000Year2CMR);
-                  } else if (commitmentPeriod === '3 Year') {
-                    setData1(routes[0].initiation.base.directFiber.Fi1000Year3CMR);
-                  }
-                }
-              }
-            }
-            else if (accessMedium === 'GPON') {
-              let filteredRoutes;
+          if( accessMedium === 'FIBER') {
+            if ( fiberAvailable === 'Yes') {
               if (commitmentPeriod === '1 Year') {
-                filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year1Commitment);
-                setData1(filteredRoutes.map(route => route.GPONbase.year1Commitment));
-              } else if (commitmentPeriod === '2 Year') {
-                filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year2Commitment);
-                setData1(filteredRoutes.map(route => route.GPONbase.year2Commitment));
-              } else if (commitmentPeriod === '3 Year') {
-                filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year3Commitment);
-                setData1(filteredRoutes.map(route => route.GPONbase.year3Commitment));
+                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+                setData9(routes[0].initiation.base.directFiber.FiAvYear1CMR);
               }
-              // Ensure filteredRoutes is defined and not empty before logging
-              if (filteredRoutes && filteredRoutes.length > 0) {
-                console.log(filteredRoutes.map(route => route.GPONbase.year1Commitment || route.GPONbase.year2Commitment || route.GPONbase.year3Commitment));
-              } else {
-                console.log("No routes found for the selected GPON and commitment period.");
+              if (commitmentPeriod === '2 Year') {
+                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+                setData9(routes[0].initiation.base.directFiber.FiAvYear2CMR);
+              }
+              if (commitmentPeriod === '3 Year') {
+                setData8(routes[0].initiation.base.directFiber.FiAvSprice);
+                setData9(routes[0].initiation.base.directFiber.FiAvYear3CMR);
               }
             }
+
+            if ( fiberAvailable === 'No'){
+              if ( distance === '0 m - 500 m') {
+                if (commitmentPeriod === '1 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+                }
+                if (commitmentPeriod === '2 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+                }
+                if (commitmentPeriod === '3 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+                }
+              }
+              if ( distance === '500 m - 1000 m') {
+                if (commitmentPeriod === '1 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
+                }
+                if (commitmentPeriod === '2 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
+                }
+                if (commitmentPeriod === '3 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
+                }
+                
+              }
+              if ( distance === '1000 m +') {
+                if (commitmentPeriod === '1 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear1CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year1CMR);
+                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+                  setData15(routes[0].initiation.base.directFiber.Fi1000Year1CMR);
+                }
+                if (commitmentPeriod === '2 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear2CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year2CMR);
+                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+                  setData15(routes[0].initiation.base.directFiber.Fi1000Year2CMR);
+                }
+                if (commitmentPeriod === '3 Year') {
+                  setData10(routes[0].initiation.base.directFiber.FiNonAv);
+                  setData11(routes[0].initiation.base.directFiber.FiNonAvYear3CMR);
+                  setData12(routes[0].initiation.base.directFiber.Fi500Sprice);
+                  setData13(routes[0].initiation.base.directFiber.Fi500Year3CMR);
+                  setData14(routes[0].initiation.base.directFiber.Fi1000Sprice);
+                  setData15(routes[0].initiation.base.directFiber.Fi1000Year3CMR);
+                }
+              }
+
+            }
+
+
+
+
+            if (service === 'Primary') {
+              const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+                const filteredRoutes = routes
+                  .filter(route => 
+                    route.origin && 
+                    route.origin.directFiber && 
+                    route.origin.directFiber.primary.Bandwidth === bandwidthTarget
+                  );
+                console.log(filteredRoutes);    
+
+                // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+                const bandwidthValues = filteredRoutes
+                  .map(route => route.origin.directFiber.primary.Bandwidth);
+                console.log(bandwidthValues);
+
+            if (commitmentPeriod === '1 Year') {
+                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+                setData19(filteredRoutes.map(route => route.origin.directFiber.primary.year1CMR));
+              } else if (commitmentPeriod === '2 Year') {
+                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+                setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year2CMR));
+              } else if (commitmentPeriod === '3 Year') {
+                setData18(filteredRoutes.map(route => route.origin.directFiber.primary.Sprice));
+                setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year3CMR));
+              }
+            } else if (service === 'Backup') {
+
+              const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+                const filteredRoutes = routes
+                  .filter(route => 
+                    route.origin && 
+                    route.origin.directFiber && 
+                    route.origin.directFiber.primary.Bandwidth === bandwidthTarget
+                  );
+                console.log(filteredRoutes);    
+
+                // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+                const bandwidthValues = filteredRoutes
+                  .map(route => route.origin.directFiber.backup.Bandwidth);
+                console.log(bandwidthValues);
+
+                setData18(filteredRoutes.map(route => route.origin.directFiber.backup.Sprice));
+                setData20(filteredRoutes.map(route => route.origin.directFiber.backup.year1CMR));
+              
+            }
+
+
+
+
 
           }
-          else if (chargeType === 'Monthly Rental') {
-            if (accessMedium === 'FIBER') {
-              if (service === 'Primary') {
-                const bandwidthTarget = bandwidth; // Define the target bandwidth value
+          if (accessMedium === 'GPON') {
+            
+            if (service === 'Primary') {
 
-                  const filteredRoutes = routes
-                    .filter(route => 
-                      route.origin && 
-                      route.origin.directFiber && 
-                      route.origin.directFiber.primary.Bandwidth === bandwidthTarget
-                    );
-                  console.log(filteredRoutes);    
-
-                  // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                  const bandwidthValues = filteredRoutes
-                    .map(route => route.origin.directFiber.primary.Bandwidth);
-                  console.log(bandwidthValues);
-
-              if (commitmentPeriod === '1 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year1CMR));
-                } else if (commitmentPeriod === '2 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year2CMR));
-                } else if (commitmentPeriod === '3 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.directFiber.primary.year3CMR));
-                }
-              } else if (service === 'Backup') {
-
-                const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-                  const filteredRoutes = routes
-                    .filter(route => 
-                      route.origin && 
-                      route.origin.directFiber && 
-                      route.origin.directFiber.primary.Bandwidth === bandwidthTarget
-                    );
-                  console.log(filteredRoutes);    
-
-                  // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                  const bandwidthValues = filteredRoutes
-                    .map(route => route.origin.directFiber.backup.Bandwidth);
-                  console.log(bandwidthValues);
-
-                
-                  setData1(filteredRoutes.map(route => route.origin.directFiber.backup.year1CMR));
-                
-              }
-            } else if (accessMedium === 'GPON') {
-              if (service === 'Primary') {
-
-                const bandwidthTarget = bandwidth; // Define the target bandwidth value
-
-                  const filteredRoutes = routes
-                    .filter(route => 
-                      route.origin && 
-                      route.origin.GPONbase && 
-                      route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
-                    );
-                  console.log(filteredRoutes);    
-
-                  // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
-                  const bandwidthValues = filteredRoutes
-                    .map(route => route.origin.GPONbase.primary.Bandwidth);
-                  console.log(bandwidthValues);
-                  
-                if (commitmentPeriod === '1 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.GPONbase.primary.year1CMR));
-                } else if (commitmentPeriod === '2 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.GPONbase.primary.year2CMR));
-                } else if (commitmentPeriod === '3 Year') {
-                  setData1(filteredRoutes.map(route => route.origin.GPONbase.primary.year3CMR));
-                }
-              } else if (service === 'Backup') {
-                
-                const bandwidthTarget = bandwidth; // Define the target bandwidth value
+              const bandwidthTarget = bandwidth; // Define the target bandwidth value
 
                 const filteredRoutes = routes
                   .filter(route => 
@@ -476,14 +521,78 @@ export default function Home() {
 
                 // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
                 const bandwidthValues = filteredRoutes
-                  .map(route => route.origin.GPONbase.backup.Bandwidth);
+                  .map(route => route.origin.GPONbase.primary.Bandwidth);
                 console.log(bandwidthValues);
-
-                  setData1(filteredRoutes.map(route => route.origin.GPONbase.backup.year1CMR));
                 
+              if (commitmentPeriod === '1 Year') {
+                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year1CMR));
+              } else if (commitmentPeriod === '2 Year') {
+                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year2CMR));
+              } else if (commitmentPeriod === '3 Year') {
+                setData18(filteredRoutes.map(route => route.origin.GPONbase.primary.Sprice));
+                setData19(filteredRoutes.map(route => route.origin.GPONbase.primary.year3CMR));
               }
             }
+
+            else if (service === 'Backup') {               
+              const bandwidthTarget = bandwidth; // Define the target bandwidth value
+
+              const filteredRoutes = routes
+                .filter(route => 
+                  route.origin && 
+                  route.origin.GPONbase && 
+                  route.origin.GPONbase.primary.Bandwidth === bandwidthTarget
+                );
+              console.log(filteredRoutes);    
+
+              // If you still want to extract and log the Bandwidth values (which will all be 5 in this case)
+              const bandwidthValues = filteredRoutes
+                .map(route => route.origin.GPONbase.backup.Bandwidth);
+              console.log(bandwidthValues);
+                setData18(filteredRoutes.map(route => route.origin.GPONbase.backup.Sprice));
+                setData20(filteredRoutes.map(route => route.origin.GPONbase.backup.year1CMR));              
+            }
+            
+            else {
+              let filteredRoutes;
+            if (commitmentPeriod === '1 Year') {
+              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year1Commitment);
+              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+              setData19(filteredRoutes.map(route => route.GPONbase.year1Commitment));
+            } else if (commitmentPeriod === '2 Year') {
+              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year2Commitment);
+              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+              setData19(filteredRoutes.map(route => route.GPONbase.year2Commitment));
+            } else if (commitmentPeriod === '3 Year') {
+              filteredRoutes = routes.filter(route => route.GPONbase && route.GPONbase.year3Commitment);
+              setData18(filteredRoutes.map(route => route.GPONbase.Sprice));
+              setData19(filteredRoutes.map(route => route.GPONbase.year3Commitment));
+            }
+            // Ensure filteredRoutes is defined and not empty before logging
+            if (filteredRoutes && filteredRoutes.length > 0) {
+              console.log(filteredRoutes.map(route => route.GPONbase.year1Commitment || route.GPONbase.year2Commitment || route.GPONbase.year3Commitment));
+            } else {
+              console.log("No routes found for the selected GPON and commitment period.");
+            }
+            }
+
           }
+          setShowData8(true); 
+          setShowData9(true); 
+          setShowData10(true); 
+          setShowData11(true); 
+          setShowData12(true); 
+          setShowData13(true); 
+          setShowData14(true); 
+          setShowData15(true); 
+          setShowData16(true); 
+          setShowData17(true); 
+          setShowData18(true); 
+          setShowData19(true); 
+          setShowData20(true); 
+            
         }
 
 
@@ -501,7 +610,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='justify-center items-center h-full' style={{ position: 'relative' }}>
+      <div className='justify-center items-center h-screen' style={{  }}>
         <div style={{
           position: 'fixed',
           top: 0,
@@ -541,49 +650,34 @@ export default function Home() {
               </div>
 
               {packageType === 'BIL' && (
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Initiation Charge / Monthly Rental : </label>
-                  <select
-                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                    value={chargeType}
-                    onChange={(e) => setChargeType(e.target.value)}
-                  >
-                    <option value="">Select...</option>
-                    <option value="Initiation Charge">Initiation Charge</option>
-                    <option value="Monthly Rental">Monthly Rental</option>
-                  </select>
-                </div>
-              )}
-
-              {packageType === 'BIL' && chargeType === 'Initiation Charge' && (
+                <>
+              
                 <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                   <label className='font-semibold'>Access Medium : </label>
-                  <select
+                  <select 
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={accessMedium}
                     onChange={(e) => setAccessMedium(e.target.value)}
                   >
                     <option value="">Select...</option>
-                    <option value="GPON">GPON</option>
                     <option value="FIBER">FIBER</option>
+                    <option value="GPON">GPON</option>
                   </select>
                 </div>
-              )}
 
-              {packageType === 'BIL' && chargeType === 'Monthly Rental' && (
-                <>
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Access Medium : </label>
-                    <select
-                      className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                      value={accessMedium}
-                      onChange={(e) => setAccessMedium(e.target.value)}
-                    >
-                      <option value="">Select...</option>
-                      <option value="GPON">GPON</option>
-                      <option value="FIBER">FIBER</option>
-                    </select>
-                  </div>
+
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                  <label className='font-semibold'>Commitment period : </label>
+                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                   value={commitmentPeriod}
+                   onChange={(e) => setCommitmentPeriod(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="1 Year">1 Year</option>
+                    <option value="2 Year">2 Year</option>
+                    <option value="3 Year">3 Year</option>
+                  </select>
+                </div>
 
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                     <label className='font-semibold'>Bandwidth (Mbps) :</label>
@@ -609,42 +703,8 @@ export default function Home() {
                     </select>
                   </div>
 
-                  {service === 'Primary' && (
-                    <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                      <label className='font-semibold'>Commitment period : </label>
-                      <select 
-                          className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                          value={commitmentPeriod}
-                          onChange={(e) => setCommitmentPeriod(e.target.value)}
-                          >
-                        <option value="">Select...</option>
-                        <option value="1 Year">1 Year</option>
-                        <option value="2 Year">2 Year</option>
-                        <option value="3 Year">3 Year</option>
-                      </select>
-                    </div>
-                  )}
-                </>
-              )}
-
-              {accessMedium === 'FIBER' && chargeType === 'Initiation Charge' && (
-                <>
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Commitment period : </label>
-                    <select 
-                        className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                        value={commitmentPeriod}
-                        onChange={(e) => setCommitmentPeriod(e.target.value)}
-                        >
-                      <option value="">Select...</option>
-                      <option value="1 Year">1 Year</option>
-                      <option value="2 Year">2 Year</option>
-                      <option value="3 Year">3 Year</option>
-                    </select>
-                  </div>
-
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Fiber Available / No : </label>
+                    <label className='font-semibold'>Fiber Available / Not : </label>
                     <select
                       className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                       value={fiberAvailable}
@@ -671,22 +731,8 @@ export default function Home() {
                       </select>
                     </div>
                   )}
-                </>
-              )}
 
-              {accessMedium === 'GPON' && chargeType === 'Initiation Charge' && (
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Commitment period : </label>
-                  <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                   value={commitmentPeriod}
-                   onChange={(e) => setCommitmentPeriod(e.target.value)}
-                  >
-                    <option value="">Select...</option>
-                    <option value="1 Year">1 Year</option>
-                    <option value="2 Year">2 Year</option>
-                    <option value="3 Year">3 Year</option>
-                  </select>
-                </div>
+                </>
               )}
 
               {packageType === 'AISecureNet' && (
@@ -923,10 +969,66 @@ export default function Home() {
   </div>
 )}
 
+{(data8.length > 0 || data9.length > 0 || data10.length > 0 || data11.length > 0 || data12.length > 0 || data13.length > 0 || data14.length > 0 || data15.length > 0 || data16.length > 0 || data17.length > 0 || data18.length > 0 || data19.length > 0 || data20.length > 0) && (
+  <div className='text-white mt-2'>
+  Initiation Charge
+  <div className='w-full flex justify-center'>
+    <div>
+      <table className='text-white mt-2 border-collapse border border-gray-800'>
+        <thead>
+          <tr>
+            <th className='border border-black w-64'>Standard Price</th>
+            <th className='border border-black w-64'>Year Commitment Monthly Rental</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className='border border-black text-center'>{data8}</td>
+            <td className='border border-black text-center'>{data9}</td>
+          </tr>
+          <tr>
+            <td className='border border-black text-center'>{data10}</td>
+            <td className='border border-black text-center'>{data11}</td>
+          </tr>
+          <tr>
+            <td className='border border-black text-center'>{data12}</td>
+            <td className='border border-black text-center'>{data13}</td>
+          </tr>
+          <tr>
+            <td className='border border-black text-center'>{data14}</td>
+            <td className='border border-black text-center'>{data15}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
+  <div className='mt-2'>
+    Monthly Rental
+    <div className='w-full flex justify-center'>
+    <div>
+      <table className='text-white mt-2 border-collapse border border-gray-800'>
+        <thead>
+          <tr>
+            <th className='border border-black w-64'>Standard Price</th>
+            <th className='border border-black w-64'>
+  {data19 > 0 ? 'Year Commitment Monthly Rental' : data20 > 0 ? 'Minimum 1 Year Commitment Monthly Rental Rs.' : ''}
+</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className='border border-black text-center'>{data18}</td>
+<td className='border border-black text-center'>{data19 || data20}</td>          
+</tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-
-
+    </div>
+</div>
+  )}
 
           </div>
         </div>
