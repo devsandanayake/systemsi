@@ -17,6 +17,8 @@ export default function Home() {
   const [netguardmbps, setNetguardmbps] = useState('');
   const [AINetgmbps, setAINetgmbps] = useState('');
   const [AISecureNetMbps, setAISecureNetMbps] = useState('');
+  const [BILFiberMbps, setBILFiberMbps] = useState('');
+  const [BILGPONMbps, setBILGPONMbps] = useState('');
 
   const [data1, setData1] = useState([]);
   const [showData1, setShowData1] = useState(false);
@@ -92,6 +94,34 @@ export default function Home() {
         })
         .catch((error) => {
             console.error(error);
+        });
+}, []);
+
+useEffect(() => {
+  axiosInstance.get('/route/all')
+      .then((response) => {
+          // Correctly access the data from axios response
+          const data = response.data;
+          // Filter and map the routes as intended
+          setBILFiberMbps(data.routes.filter(route => route.origin?.directFiber?.primary).map(route => route.origin.directFiber.primary));
+          // Use the state variable correctly (case-sensitive)
+          console.log('wrgwrg', BILFiberMbps);
+      })
+      .catch((error) => {
+          console.error('Error fetching data:', error);
+      });
+}, []);
+
+  useEffect(() => {
+      axiosInstance.get('/route/all')
+        .then((response) => {
+            const data = response.data;
+            const filteredGponRoutes = data.routes.filter(route => route.origin?.GPONbase?.primary).map(route => route.origin.GPONbase.primary);
+            setBILGPONMbps(filteredGponRoutes);
+            console.log(filteredGponRoutes);
+        })
+        .catch((error) => {
+            console.error('Error fetching data:', error);
         });
 }, []);
 
@@ -679,16 +709,37 @@ export default function Home() {
                   </select>
                 </div>
 
+                {accessMedium === 'FIBER' && (
+                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
+                   <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                   <select
+                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                     value={bandwidth}
+                     onChange={(e) => setBandwidth(e.target.value)}
+                   >
+                     <option value="" disabled>Select bandwidth</option>
+                     {BILFiberMbps.map((option, index) => (
+                       <option key={option._id} value={option.Bandwidth}>{option.Bandwidth}</option>
+                     ))}
+                   </select>
+                 </div>
+                )}
+
+                {accessMedium === 'GPON' && (
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Bandwidth (Mbps) :</label>
-                    <input
-                      type="text"
-                      className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                      value={bandwidth}
-                      onChange={(e) => setBandwidth(e.target.value)}
-                      placeholder="Enter bandwidth"
-                    />
-                  </div>
+                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={bandwidth}
+                    onChange={(e) => setBandwidth(e.target.value)}
+                  >
+                    <option value="" disabled>Select bandwidth</option>
+                    {BILGPONMbps.map((option, index) => (
+                      <option key={option._id} value={option.Bandwidth}>{option.Bandwidth}</option>
+                    ))}
+                  </select>
+                </div>
+                )}
 
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                     <label className='font-semibold'>Primary / Backup : </label>
