@@ -125,6 +125,16 @@ useEffect(() => {
         });
 }, []);
 
+const formatNumber = (value) => {
+    if (!value) return value;
+
+    // Ensure the value is a string and remove existing commas
+    value = value.toString().replace(/,/g, '');
+
+    // Use a regular expression to format the number with commas
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
   
 
 
@@ -922,11 +932,11 @@ useEffect(() => {
         <td className='border border-black p-1'>{item.MaxUsers}</td>
         <td className='border border-black p-1'>{item.ConcurrentUsers}</td>
         <td className='border border-black p-1'>{item.ConcurrentSessions}</td>
-        <td className='border border-black p-1'>{item.Sprice}</td>
+        <td className='border border-black p-1'>{formatNumber(item.Sprice)}</td>
         <td className='border border-black p-1'>
-  {item.commitmentPeriod === '1 Year' ? item.year1CMR :
-   item.commitmentPeriod === '2 Year' ? item.year2CMR :
-   item.commitmentPeriod === '3 Year' ? item.year3CMR : ''}
+  {item.commitmentPeriod === '1 Year' ? formatNumber(item.year1CMR) :
+   item.commitmentPeriod === '2 Year' ? formatNumber(item.year2CMR) :
+   item.commitmentPeriod === '3 Year' ? formatNumber(item.year3CMR) : ''}
 </td>
       </tr>
     ))}
@@ -950,8 +960,8 @@ useEffect(() => {
         </thead>
         <tbody>
           <tr>
-            <td className='border border-black text-center'>{data3}</td>
-            <td className='border border-black text-center'>{data4}</td>
+            <td className='border border-black text-center'>{formatNumber(data3)}</td>
+            <td className='border border-black text-center'>{formatNumber(data4)}</td>
           </tr>
         </tbody>
       </table>
@@ -962,7 +972,7 @@ useEffect(() => {
 
 {data7.length > 0 && (
   <div className='text-white mt-2'>
-    Initiation Charge is : {data7}
+    Initiation Charge is : {formatNumber(data7)}
     </div>
 )}
 
@@ -980,8 +990,8 @@ useEffect(() => {
           </thead>
           <tbody>
             <tr>
-              <td className='border border-black text-center'>{data6}</td>
-              <td className='border border-black text-center'>{data5}</td>
+              <td className='border border-black text-center'>{formatNumber(data6)}</td>
+              <td className='border border-black text-center'>{formatNumber(data5)}</td>
             </tr>
           </tbody>
         </table>
@@ -1004,20 +1014,20 @@ useEffect(() => {
         </thead>
         <tbody>
           <tr>
-            <td className='border border-black text-center'>{data8}</td>
-            <td className='border border-black text-center'>{data9}</td>
+            <td className='border border-black text-center'>{formatNumber(data8)}</td>
+            <td className='border border-black text-center'>{formatNumber(data9)}</td>
           </tr>
           <tr>
-            <td className='border border-black text-center'>{data10}</td>
-            <td className='border border-black text-center'>{data11}</td>
+            <td className='border border-black text-center'>{formatNumber(data10)}</td>
+            <td className='border border-black text-center'>{formatNumber(data11)}</td>
           </tr>
           <tr>
-            <td className='border border-black text-center'>{data12}</td>
-            <td className='border border-black text-center'>{data13}</td>
+            <td className='border border-black text-center'>{formatNumber(data12)}</td>
+            <td className='border border-black text-center'>{formatNumber(data13)}</td>
           </tr>
           <tr>
-            <td className='border border-black text-center'>{data14}</td>
-            <td className='border border-black text-center'>{data15}</td>
+            <td className='border border-black text-center'>{formatNumber(data14)}</td>
+            <td className='border border-black text-center'>{formatNumber(data15)}</td>
           </tr>
         </tbody>
       </table>
@@ -1039,8 +1049,10 @@ useEffect(() => {
         </thead>
         <tbody>
           <tr>
-            <td className='border border-black text-center'>{data18}</td>
-<td className='border border-black text-center'>{data19 || data20}</td>          
+    <td className='border border-black text-center'>{formatNumber(data18)}</td>
+
+<td className='border border-black text-center'>{formatNumber(data19) || formatNumber(data20)}</td>  
+
 </tr>
         </tbody>
       </table>

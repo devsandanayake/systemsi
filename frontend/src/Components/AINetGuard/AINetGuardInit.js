@@ -25,22 +25,51 @@ export default function AINetGuardInit() {
         axiosInstance.get('/TrAINetG/TrAINetGI')
             .then((res) => {
                 const data = res.data[0]; // Assuming the first (and only) document
-                setAINetData(data.data);
+                setAINetData(formatData(data.data));
                 setDocumentId(data._id); // Store the document ID
             })
             .catch((err) => {
                 console.log('Error fetching data:', err.message);
             });
     }, []);
+    
+
+    const formatNumber = (value) => {
+    if (!value) return value;
+
+    // Ensure the value is a string and remove existing commas
+    value = value.toString().replace(/,/g, '');
+
+    // Use a regular expression to format the number with commas
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+    
+
+    const formatData = (data) => {
+        const formattedData = {};
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                formattedData[key] = formatNumber(data[key]);
+            }
+        }
+        return formattedData;
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setAINetData({ ...ainetdata, [name]: value });
+        setAINetData({ ...ainetdata, [name]: formatNumber(value) });
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosInstance.patch(`/TrAINetG/TrAINetGI/${documentId}`, { data: ainetdata })
+        // Remove commas before sending data to the server
+        const formattedData = {};
+        for (const key in ainetdata) {
+            if (ainetdata.hasOwnProperty(key)) {
+                formattedData[key] = ainetdata[key].replace(/,/g, '');
+            }
+        }
+        axiosInstance.patch(`/TrAINetG/TrAINetGI/${documentId}`, { data: formattedData })
             .then((res) => {
                 toast.success('Data updated successfully');
             })
