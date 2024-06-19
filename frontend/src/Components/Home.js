@@ -16,6 +16,7 @@ export default function Home() {
 
   const [netguardmbps, setNetguardmbps] = useState('');
   const [AINetgmbps, setAINetgmbps] = useState('');
+  const [AISecureNetMbps, setAISecureNetMbps] = useState('');
 
   const [data1, setData1] = useState([]);
   const [showData1, setShowData1] = useState(false);
@@ -25,6 +26,12 @@ export default function Home() {
   const [showData3, setShowData3] = useState(false);
   const [data4, setData4] = useState([]);
   const [showData4, setShowData4] = useState(false);
+  const [data5, setData5] = useState([]);
+  const [showData5, setShowData5] = useState(false);
+  const [data6, setData6] = useState([]);
+  const [showData6, setShowData6] = useState(false);
+  const [data7, setData7] = useState([]);
+  const [showData7, setShowData7] = useState(false);
 
 
   useEffect(() => {
@@ -46,6 +53,22 @@ export default function Home() {
         console.log('Error fetching data:', err.message);
       });
   }, []);
+
+  useEffect(() => {
+    axiosInstance.get('/aisecurenet/get/month')
+        .then((res) => {
+            const dataArray = res.data.AISecurenetMonth; // Access the array from the response
+            if (Array.isArray(dataArray)) {
+              setAISecureNetMbps(dataArray);
+            } else {
+                console.error('Response data is not an array:', res.data);
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}, []);
+
   
 
 
@@ -57,6 +80,9 @@ export default function Home() {
     data2.length = 0;
     data3.length = 0;
     data4.length = 0;
+    data5.length = 0;
+    data6.length = 0;
+    data7.length = 0;
 
 
     let url;
@@ -68,6 +94,7 @@ export default function Home() {
       url2 = '/aisecurenet/get/month';
     } else if (packageType === 'NetGuard') {
       url = '/AINetG/AINetGMon';
+      url2 = '/AINetG/AINetGI';
     } else if (packageType === 'AINetGuard') {
       url = '/TrAINetG/TrAINetGMon';
       url2 ='/TrAINetG/TrAINetGI';
@@ -246,10 +273,55 @@ export default function Home() {
         console.error("Error fetching data: ", error);
       });
     
+  } 
+  
+  else if (packageType === 'NetGuard' && url2) {
+    axios.all([
+        axiosInstance.get(url),
+        axiosInstance.get(url2)
+    ])
+    .then(axios.spread((response1, response2) => {
+      const data1Response = response1.data;
+      const data2Response = response2.data;
+      console.log('xxy', data1Response);
+      console.log('xxz', data2Response);
+
+      if (data1Response && data1Response.length > 0) {
+        const filteredData1 = data1Response.filter(item => item.Bandwith === bandwidth);
+        
+          if (commitmentPeriod === '1 Year') {
+            setData5(filteredData1.map(item => item.Commitment1Year));
+            setData6(filteredData1.map(item => item.Standard));
+          } else if (commitmentPeriod === '2 Year') {
+            setData5(filteredData1.map(item => item.Commitment2Year));
+            setData6(filteredData1.map(item => item.Standard));
+          }
+          else if (commitmentPeriod === '3 Year') {
+            setData5(filteredData1.map(item => item.Commitment3Year));
+            setData6(filteredData1.map(item => item.Standard));
+          }
+      }
+      else {
+        console.error('AINetGMonData is undefined');
+      }
+
+      setShowData5(true); 
+      setShowData6(true);
+
+      if (data2Response && data2Response.length > 0) {
+        setData7(data2Response.map(item => item.Const));
+      } else {
+        console.error('AINetGMonData is undefined');
+      }
+            
 
 
-
-  } else {
+    }))
+  
+  
+  }
+  
+  else {
 
     axiosInstance.get(url)
       .then((response) => {
@@ -413,26 +485,6 @@ export default function Home() {
             }
           }
         }
-      
-  
-  if (packageType === 'NetGuard') {
-    // Check if AINetGMonData exists and is not undefined
-    if (response.data && response.data.length > 0) {
-      const filteredData = response.data.filter(item => item.Bandwith === bandwidth); // Corrected property name
-
-      // Update data1 based on commitmentPeriod
-      if (commitmentPeriod === '1 Year') {
-        setData1(filteredData.map(item => item.Commitment1Year));
-      } else if (commitmentPeriod === '2 Year') {
-        setData1(filteredData.map(item => item.Commitment2Year));
-      } else if (commitmentPeriod === '3 Year') {
-        setData1(filteredData.map(item => item.Commitment3Year));
-      }
-    } else {
-      console.error('AINetGMonData is undefined');
-      // Handle the case where AINetGMonData is undefined
-    }
-  }
 
 
     setShowData1(true); // Show data1 after fetching
@@ -640,17 +692,19 @@ export default function Home() {
               {packageType === 'AISecureNet' && (
                 <>
                 <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Bandwidth (Mbps) :</label>
-                    <input
-                      type="text"
-                      className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
-                      value={bandwidth}
-                      onChange={(e) => setBandwidth(e.target.value)}
-                      placeholder="Enter bandwidth"
-                    />
-                  </div>
-                
-                
+                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <select
+                    className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
+                    value={bandwidth}
+                    onChange={(e) => setBandwidth(e.target.value)}
+                  >
+                    <option value="" disabled>Select bandwidth</option>
+                    {AISecureNetMbps.map((option, index) => (
+                      <option key={option._id} value={option.Bandwith}>{option.Bandwith}</option>
+                    ))}
+                  </select>
+                </div>
+                          
                
                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
                   <label className='font-semibold'>Commitment period : </label>
@@ -838,6 +892,42 @@ export default function Home() {
   </div>
 </div>
 )}
+
+{data7.length > 0 && (
+  <div className='text-white mt-2'>
+    Initiation Charge is : {data7}
+    </div>
+)}
+
+{(data5.length > 0 || data6.length > 0) && (
+  <div className='text-white mt-2'>
+    Monthly Rental
+    <div className='w-full flex justify-center'>
+      <div>
+        <table className='text-white mt-2 border-collapse border border-gray-800'>
+          <thead>
+            <tr>
+              <th className='border border-black w-64'>Standard Price</th>
+              <th className='border border-black w-64'>Year Commitment Monthly Rental</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className='border border-black text-center'>{data6}</td>
+              <td className='border border-black text-center'>{data5}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+
+
           </div>
         </div>
       </div>
