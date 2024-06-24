@@ -75,57 +75,66 @@ export default function NetGuardAll() {
                     Initiation Charge
                 </div>
                 <div className='w-full mt-1'>
-                    <div className='ml-5 text-gray-300 text-xl'>
-                        Initiation Charge is:
-                        <input 
-                            type="text" 
-                            value={netIndata} 
-                            onChange={handleInputChange} 
-                            className='ml-2 p-1 border border-gray-400 rounded bg-slate-600'
-                        />
-                    </div>
-                    <button 
-                        className='bg-blue-500 hover:bg-blue-700 text-white font-bold p-1 rounded mt-2'
-                        onClick={handleUpdate}
-                    >
-                        Update
-                    </button>
+  <div className='flex justify-between items-center'>
+    <div className='justify-center flex-grow'>
+      <div className='text-gray-300 text-xl flex justify-center'>
+        Initiation Charge is:
+        <input 
+          type="text" 
+          value={netIndata} 
+          onChange={handleInputChange} 
+          className='ml-2 p-1 border border-gray-400 rounded bg-slate-600 w-96'
+        />
+      </div>
+    </div>
+    <div className='justify-end flex-end mr-2'>
+      <button  className =  'updatebtn'
+      onClick={handleUpdate}
+      >
+      <span class="button_top"> Update
+      </span>
+      </button>
+    </div>
+  </div>
+</div>
+                <div className='w-full mt-3 mb-2'>
+                    <hr className='border border-gray-400' />
                 </div>
-                <div className='w-full'>
-                    <hr className='border border-black' />
-                </div>
+                <div className='flex'>
                 <div className='w-full text-2xl text-gray-300'>
                     Monthly Rentals
                 </div>
                 <div className='w-full'>
-                    <div className='flex justify-end mr-5'>
+                    <div className='flex justify-end mr-2 mt-3'>
                         <a href='/netguard'>
-                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                                Insert
+                            <button className='insertbtn'>
+                                <span class="inbutton_top"> Insert
+                                </span>
                             </button>
                         </a>
+                    </div>
                     </div>
                 </div>
                 <div className='w-full flex justify-center items-center'>
                     <div>
-                        <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                        <table className='mx-auto bg-white p-2 mt-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
                             <thead>
                                 <tr className='border-b border-gray-300'>
-                                    <th className='border border-gray-300'>Bandwidth</th>
-                                    <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                    <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                                    <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                                    <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
+                                    <th className='border border-gray-300 text-gray-300 p-1'>Bandwidth (Mbps)</th>
+                                    <th className='border border-gray-300 text-gray-300 p-1'>Standard Price (LKR)</th>
+                                    <th className='border border-gray-300 text-gray-300 p-1'>1 Year Commitment Monthly Rental (LKR)</th>
+                                    <th className='border border-gray-300 text-gray-300 p-1'>2 Year Commitment Monthly Rental (LKR)</th>
+                                    <th className='border border-gray-300 text-gray-300 p-1'>3 Year Commitment Monthly Rental (LKR)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {netdata.map((item, index) => (
                                     <tr key={index} className='border-b border-gray-300 h-16'>
-                                        <td className='border border-gray-300'>{item.Bandwith}</td>
-                                        <td className='border border-gray-300'>{item.Standard}</td>
-                                        <td className='border border-gray-300'>{item.Commitment1Year}</td>
-                                        <td className='border border-gray-300'>{item.Commitment2Year}</td>
-                                        <td className='border border-gray-300'>{item.Commitment3Year}</td>
+                                        <td className='border border-gray-300 text-white text-center'>{item.Bandwith}</td>
+                                        <td className='border border-gray-300 text-white text-center'>{item.Standard}</td>
+                                        <td className='border border-gray-300 text-white text-center'>{item.Commitment1Year}</td>
+                                        <td className='border border-gray-300 text-white text-center'>{item.Commitment2Year}</td>
+                                        <td className='border border-gray-300 text-white text-center'>{item.Commitment3Year}</td>
                                     </tr>
                                 ))}
                             </tbody>

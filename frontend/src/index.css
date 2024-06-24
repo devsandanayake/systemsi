@@ -15,3 +15,260 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.updatebtn {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #838383;
+  --button_outline_color: #ffffff;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  width: 100px;
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.4em 1em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+  z-index: 10; /* Increased z-index */
+}
+
+.updatebtn:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.updatebtn:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+
+.insertbtn {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #000000;
+  --button_outline_color: #ffffff;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  width: 100px;
+}
+
+.inbutton_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.4em 1em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+  z-index: 10; /* Increased z-index */
+}
+
+.insertbtn:hover .inbutton_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.insertbtn:active .inbutton_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+
+.nbtn {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #ffffff;
+  --button_outline_color: #6e6e6e;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+  width: 100px;
+}
+
+.nbutton_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.4em 1em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+  z-index: 10; /* Increased z-index */
+}
+
+.nbtn:hover .nbutton_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.nbtn:active .nbutton_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+
+
+.beautiful-button {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(to bottom, #1b1c3f, #4a4e91);
+ /* Gradient background */
+  color: white;
+ /* White text color */
+  font-family: "Segoe UI", sans-serif;
+ /* Stylish and legible font */
+  font-weight: bold;
+  font-size: 18px;
+ /* Large font size */
+  border: none;
+ /* No border */
+  border-radius: 30px;
+ /* Rounded corners */
+  padding: 14px 28px;
+ /* Large padding */
+  cursor: pointer;
+ /* Cursor on hover */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ /* Subtle shadow */
+  animation: button-shimmer 2s infinite;
+  transition: all 0.3s ease-in-out;
+ /* Smooth transition */
+}
+
+/* Hover animation */
+.beautiful-button:hover {
+  background: linear-gradient(to bottom, #2c2f63, #5b67b7);
+  animation: button-particles 1s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
+/* Click animation */
+.beautiful-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Shimmer animation */
+@keyframes button-shimmer {
+  0% {
+    background-position: left top;
+  }
+
+  100% {
+    background-position: right bottom;
+  }
+}
+
+/* Particle animation */
+@keyframes button-particles {
+  0% {
+    background-position: left top;
+  }
+
+  100% {
+    background-position: right bottom;
+  }
+}
+
+
+.styled-button {
+  position: relative;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #171717, #242424);
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1), 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bbbbbb;
+  width: 400px;
+  height: 100px;
+}
+
+.styled-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  background: linear-gradient(to bottom, #292929, #000000);
+  z-index: -1;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.styled-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.styled-button .inner-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #171717, #242424);
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+  border: 1px solid #252525;
+  transition: all 0.2s ease;
+}
+
+.styled-button .inner-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  background: linear-gradient(to bottom, #292929, #000000);
+  z-index: -1;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  opacity: 1;
+}
+
+.styled-button .inner-button .icon {
+  filter: drop-shadow(0 10px 20px rgba(26, 25, 25, 0.9)) drop-shadow(0 0 4px rgba(0, 0, 0, 1));
+  transition: all 0.4s ease-in-out;
+}
+
+.styled-button .inner-button .icon:hover {
+  filter: drop-shadow(0 10px 20px rgba(50, 50, 50, 1)) drop-shadow(0 0 20px rgba(2, 2, 2, 1));
+  transform: rotate(-35deg);
+}
+
+
+
+
+
+

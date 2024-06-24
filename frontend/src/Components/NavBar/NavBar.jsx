@@ -52,7 +52,7 @@ export const NavBar = () => {
               </Menu.Item>
 
               <Menu.Item key="BIL" icon={<UserOutlined />} className="menu-item hover:bg-gray-700">
-                <Link to="/bil">BIL</Link>
+                <Link to="/bilmain">BIL</Link>
               </Menu.Item>
             </>
           )}

@@ -91,8 +91,8 @@ export default function AISecureNetInit() {
                             <thead className="bg-gray-500 text-white">
                                 <tr>
                                     <th className="border border-gray-900 p-2">Bandwidth</th>
-                                    <th className="border border-gray-900 p-2">Standard (LKR)</th>
-                                    <th className="border border-gray-900 p-2">Commitment (Upto 3Years) (LKR)</th>
+                                    <th className="border border-gray-900 p-2 w-72">Standard (LKR)</th>
+                                    <th className="border border-gray-900 p-2 w-72">Commitment (Upto 3Years) (LKR)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -129,7 +129,7 @@ export default function AISecureNetInit() {
                             </tbody>
                         </table>
                         <div className='flex justify-center'>
-                            <button type="submit" className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                            <button type="submit" className="beautiful-button mt-2">Update</button>
                         </div>
                     </form>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import background from '../../Images/bg1.jpg';
 
 const InsertNetGuard = () => {
   const [formData, setFormData] = useState({
@@ -44,14 +45,20 @@ const InsertNetGuard = () => {
   return (
     <>
       <ToastContainer />
-      <div
-        className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: 'url(https://media.istockphoto.com/id/1501103626/photo/defocused-background-image-of-a-spacious-hallway-in-a-modern-office.jpg?b=1&s=612x612&w=0&k=20&c=aB8ktdkwuAhIXrPeZoNFh8KlLOor5GNImsP9qMqA0cU=)',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        }}
-      >
-        <div><h1 className="text-4xl font-bold text-gray-800 text-center mb-6">Insert NetGuard</h1></div>
+      <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: -1,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${background})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}></div>
+
+        <div><h1 className="text-4xl font-bold text-gray-300 text-center mb-6">Insert NetGuard</h1></div>
         <div className='w-full flex justify-center items-center'>
           <form className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50 items-center justify-center" onSubmit={handleSubmit}>
             <div>
@@ -59,10 +66,10 @@ const InsertNetGuard = () => {
                 <thead>
                   <tr className='border-b border-gray-300'>
                     <th className='border border-gray-300'>Bandwidth</th>
-                    <th className='border border-gray-300'>Standard Price - Rs.</th>
-                    <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                    <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                    <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
+                    <th className='border border-gray-300'>Standard Price LKR</th>
+                    <th className='border border-gray-300'>1 Year Commitment Monthly Rental LKR</th>
+                    <th className='border border-gray-300'>2 Year Commitment Monthly Rental LKR</th>
+                    <th className='border border-gray-300'>3 Year Commitment Monthly Rental LKR</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,7 +94,7 @@ const InsertNetGuard = () => {
               </table>
             </div>
             <div className="flex justify-center w-full">
-              <button type="submit" className="mt-4 w-64 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <button type="submit" className="beautiful-button">
                 Submit
               </button>
             </div>

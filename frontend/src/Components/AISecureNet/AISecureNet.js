@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
+import background from '../../Images/bg1.jpg';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -65,18 +66,22 @@ const handleSubmit = async (event) => {
   return (
     <>
     <ToastContainer />
-    <div
-      className="min-h-screen items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: 'url(https://media.istockphoto.com/id/1501103626/photo/defocused-background-image-of-a-spacious-hallway-in-a-modern-office.jpg?b=1&s=612x612&w=0&k=20&c=aB8ktdkwuAhIXrPeZoNFh8KlLOor5GNImsP9qMqA0cU=)',
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      }}
-    >
-      <div><h1 className="text-4xl font-bold text-gray-800 text-center mb-6">Insert AISecureNet</h1></div>
+    <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: -1,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${background})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}></div>
+      <div><h1 className="text-4xl font-bold text-gray-300 mt-2 text-center mb-6">Insert AISecureNet</h1></div>
 
       <div className='w-full'>
         <div className="flex justify-center">
-          <div className="bg-white bg-opacity-50 p-6 rounded-md shadow-md">
             
 
               
@@ -88,10 +93,10 @@ const handleSubmit = async (event) => {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Max Users</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Concurrent Users</th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Concurrent Sessions</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Standard Price - Rs.</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">1 Year Commitment Monthly Rental Rs.</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">2 Year Commitment Monthly Rental Rs.</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">3 Year Commitment Monthly Rental Rs.</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Standard Price LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">1 Year Commitment Monthly Rental LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">2 Year Commitment Monthly Rental LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">3 Year Commitment Monthly Rental LKR</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -171,14 +176,16 @@ const handleSubmit = async (event) => {
                     </tr>
                   </tbody>
                 </table>
-                <button type="submit" className="mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <div className='w-full flex justify-center'>
+                <button type="submit" className="beautiful-button">
                   Submit
                 </button>
+                </div>
               </form>
             
           </div>
         </div>
-      </div>
+      
     </div>
     </>
   );

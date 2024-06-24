@@ -53,39 +53,45 @@ export default function AISecureNetAll() {
 
                 <div className='w-full mt-3 flex justify-end'>
                     <a href='/aisecurenet'>
-                        <button className='text-white bg-blue-500 p-2 rounded-md shadow-md mr-3'>Insert</button>
+                        <button className='insertbtn mr-2'>
+                                <span class="inbutton_top"> Insert
+                                </span>
+                        </button>
                     </a>
 
                     <a href='/aisecurenetinit'>
-                        <button className='text-white bg-blue-500 p-2 rounded-md shadow-md mr-2'>Initiation </button>
+                    <button className='nbtn mr-2'>
+                                <span class="nbutton_top"> Initiation
+                                </span>
+                        </button>
                     </a>
                 </div>
 
-                <div className='w-full mt-3'>
-                    <table className='mx-auto bg-white text-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20  border border-gray-300'>
+                <div className='w-full mt-4'>
+                    <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20  border border-gray-300'>
                         <thead>
                             <tr className='border-b border-gray-300'>
-                                <th className='border border-gray-300'>Bandwidth</th>
-                                <th className='border border-gray-300'>Max Users</th>
-                                <th className='border border-gray-300'>Concurrent Users</th>
-                                <th className='border border-gray-300'>Concurrent Sessions</th>
-                                <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                                <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                                <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
+                                <th className='border border-gray-300 text-gray-300'>Bandwidth</th>
+                                <th className='border border-gray-300 text-gray-300'>Max Users</th>
+                                <th className='border border-gray-300 text-gray-300'>Concurrent Users</th>
+                                <th className='border border-gray-300 text-gray-300'>Concurrent Sessions</th>
+                                <th className='border border-gray-300 text-gray-300'>Standard Price (LKR)</th>
+                                <th className='border border-gray-300 text-gray-300'>1 Year Commitment Monthly Rental (LKR)</th>
+                                <th className='border border-gray-300 text-gray-300'>2 Year Commitment Monthly Rental (LKR)</th>
+                                <th className='border border-gray-300 text-gray-300'>3 Year Commitment Monthly Rental (LKR)</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.map((item) => (
                                 <tr key={item._id} className='border-b border-gray-300'>
-                                    <td className='border border-gray-300'>{item.Bandwith}</td>
-                                    <td className='border border-gray-300'>{item.MaxUsers}</td>
-                                    <td className='border border-gray-300'>{item.ConcurrentUsers}</td>
-                                    <td className='border border-gray-300'>{item.ConcurrentSessions}</td>
-                                    <td className='border border-gray-300'>{item.Sprice}</td>
-                                    <td className='border border-gray-300'>{item.year1CMR}</td>
-                                    <td className='border border-gray-300'>{item.year2CMR}</td>
-                                    <td className='border border-gray-300'>{item.year3CMR}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.Bandwith}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.MaxUsers}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.ConcurrentUsers}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.ConcurrentSessions}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.Sprice}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.year1CMR}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.year2CMR}</td>
+                                    <td className='border border-gray-300 text-white p-1'>{item.year3CMR}</td>
                                 </tr>
                             ))}
                         </tbody>

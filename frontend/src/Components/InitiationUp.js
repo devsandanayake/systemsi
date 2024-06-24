@@ -139,20 +139,13 @@ export default function InitiationUp() {
 
             <div className='w-full'>
                 <div className='text-center text-white text-4xl'>
-                    Initiation Charge
+                    Direct Fiber Based Initiation Charge
                 </div>
             </div>
 
-            <div className='flex justify-end'>
-                <div className='mr-5'>
-                    <button className='bg-blue-500 text-white p-2 rounded'>
-                        <a href='/initiationgpon' className='text-white'>GPON based Business</a>
-                    </button>
-                </div>
-            </div>
+            
 
-            <Tabs defaultActiveKey="1" onChange={handleTabChange} className="custom-tabs" style={{ marginLeft: "10px" }}>
-                    <TabPane tab="Direct Fiber Based" key="1">
+       
 
                     <div className='flex justify-center items-center mt-5'>
                 <form onSubmit={handleSubmit}>
@@ -160,11 +153,11 @@ export default function InitiationUp() {
                         <thead>
                             <tr className='border-b border-gray-300'>
                                 <th className='border border-gray-300'>Fiber Availability</th>
-                                <th className='border border-gray-300'>Distance</th>
-                                <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                <th className='border border-gray-300'>1 Year Commitment Rs.</th>
-                                <th className='border border-gray-300'>2 Year Commitment Rs.</th>
-                                <th className='border border-gray-300'>3 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 w-64'>Distance</th>
+                                <th className='border border-gray-300 w-48'>Standard Price - Rs.</th>
+                                <th className='border border-gray-300 w-96'>1 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 w-96'>2 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 w-96'>3 Year Commitment Rs.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -208,7 +201,7 @@ export default function InitiationUp() {
                                 <td className='border border-gray-300 w-44 text-gray-300' rowSpan='2'>
                                 </td>
                                 <td className='border border-gray-300 text-gray-300'>
-                                    500m - 1km
+                                Above 500m distance for each 250m segment - 500m-750m segment & 750m-1,000m segment
                                 </td>
                                 <td className='border border-gray-300'>
                                     <input type='text' name='Fi500Sprice' value={formData.Fi500Sprice} onChange={handleChange} className='p-1 rounded w-full h-16 bg-gray-300' />
@@ -225,7 +218,7 @@ export default function InitiationUp() {
                             </tr>
                             <tr className='border-b border-gray-300'>
                                 <td className='border border-gray-300 text-gray-300'>
-                                    1km - 3km
+                                    Above 1,000m distance - For each 500m segment
                                 </td>
                                 <td className='border border-gray-300'>
                                     <input type='text' name='Fi1000Sprice' value={formData.Fi1000Sprice} onChange={handleChange} className='p-1 rounded w-full h-16 bg-gray-300' />
@@ -248,42 +241,7 @@ export default function InitiationUp() {
                 </form>
             </div>
                         
-                    </TabPane>
-                    <TabPane tab="GPON Based" key="2">
-
-                    <table className='mt-4 bg-white text-black border border-gray-300 text-md w-11/12'>
-                                <thead>
-                                    <tr className='border-b border-gray-300'>
-                                        <th className='border border-gray-300'>Standard Price</th>
-                                        <th className='border border-gray-300'>With 1 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 2 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 3 Year Commitment</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {GponDetails.map((gponDetail, index) => (
-                                        <tr key={index} className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>
-                                                {gponDetail.Sprice}
-                                            </td>
-                                            <td className='border border-gray-300'>
-                                                {gponDetail.year1Commitment}
-                                            </td>
-                                            <td className='border border-gray-300'>
-                                                {gponDetail.year2Commitment}
-                                            </td>
-                                            <td className='border border-gray-300'>
-                                                {gponDetail.year3Commitment}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-
-
-                        </TabPane>
-                </Tabs>
+                    
 
             
         </div>

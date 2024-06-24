@@ -99,78 +99,77 @@ export default function AINetGuardInit() {
 
                 <div className='w-full mt-3'>
                     <div className="flex justify-center">
-                        <div className="bg-white bg-opacity-50 p-6 rounded-md shadow-md w-full">
-                            <form className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50" onSubmit={handleSubmit}>
-                                <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
-                                    <thead>
-                                        <tr className='border-b border-gray-300'>
-                                            <th className='border border-gray-300'>Bandwidth</th>
-                                            <th className='border border-gray-300'>Standard (Rs.)</th>
-                                            <th className='border border-gray-300'>Commitment (Upto 3Years) (Rs.)</th>
+                            <form className="mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300" onSubmit={handleSubmit}>
+                                <table className='min-w-full table-fixed border-collapse border border-gray-900'>
+                                <thead className="bg-gray-500 text-white">
+                                <tr>
+                                            <th className='border border-gray-900 p-2'>Bandwidth</th>
+                                            <th className='border border-gray-900 p-2 w-72'>Standard (Rs.)</th>
+                                            <th className='border border-gray-900 p-2 w-72'>Commitment (Upto 3Years) (Rs.)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 15 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 15 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a1s" value={ainetdata.a1s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a1Sc" value={ainetdata.a1Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 175 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 175 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a2s" value={ainetdata.a2s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a2Sc" value={ainetdata.a2Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 450 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 450 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a3s" value={ainetdata.a3s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a3Sc" value={ainetdata.a3Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 900 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 900 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a4s" value={ainetdata.a4s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a4Sc" value={ainetdata.a4Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 1900 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 1900 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a5s" value={ainetdata.a5s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a5Sc" value={ainetdata.a5Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
-                                        <tr className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>upto 4000 Mbps</td>
-                                            <td className='border border-gray-300'>
+                                        <tr>
+                                            <td className='border border-gray-900 p-2 text-gray-300'>upto 4000 Mbps</td>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a6s" value={ainetdata.a6s} onChange={handleInputChange} className="w-full"/>
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-900 p-2'>
                                                 <input type="text" name="a6Sc" value={ainetdata.a6Sc} onChange={handleInputChange} className="w-full"/>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className='flex justify-center'>
+                                <div className='flex justify-center mt-4'>
                                     <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">Update</button>
                                 </div>
                             </form>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -16,6 +16,9 @@ import AINetGuardAll from './Components/AINetGuard/AINetGuardAll';
 import AINetGuardInit from './Components/AINetGuard/AINetGuardInit';
 import AISecureNetAll from './Components/AISecureNet/AISecureNetAll';
 import AISecureNetInit from './Components/AISecureNet/AISecureNetInit';
+import BilMain from './Components/BilMain';
+import BILInitiationMain from './Components/BILInitiationMain';
+import GPONinit from './Components/GPONinit';
 import {NavBar } from './Components/NavBar/NavBar';
  
 const App = () => {
@@ -51,6 +54,9 @@ const App = () => {
             <Route path="/ainetguardinit" element={<AINetGuardInit />} />
             <Route path="/aisecurenetall" element={<AISecureNetAll />} />
             <Route path="/aisecurenetinit" element={<AISecureNetInit />} />
+            <Route path="/bilmain" element={<BilMain />} />
+            <Route path="/bilinitiationmain" element={<BILInitiationMain />} />
+            <Route path="/gponinit" element={<GPONinit />} />
             <Route path="*" element={<Navigate to="/" />} />
 
           </>

@@ -42,45 +42,49 @@ export default function AINetGuardAll() {
 
         <div className='w-full'>
             <div className='flex justify-end'>
+
+            <a href='/AINetGuard'>
+            <button className='insertbtn mr-2'>
+                                <span class="inbutton_top"> Insert
+                                </span>
+                        </button>
+              </a>
+
+
             <a href='/AINetGuardInit'>  
-            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2'> Initiation </button>
-                </a>
+            <button className='nbtn mr-2'>
+                                <span class="nbutton_top"> Initiation
+                                </span>
+                        </button>                </a>
                 
-                <a href='/AINetGuard'>
-            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 mb-2'> Insert </button>
-                </a>
-
-                
-
-
         </div>
         </div>
 
                 <div>
-                <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300 mt-4'>
                               <thead>
                                   <tr className='border-b border-gray-300'>
-                                      <th className='border border-gray-300'>Bandwidth</th>
-                                      <th className='border border-gray-300'>Max Users</th>
-                                      <th className='border border-gray-300'>Concurrent Users</th>
-                                      <th className='border border-gray-300'>Concurrent Sessions</th>
-                                      <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                      <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                                      <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                                      <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>Bandwidth</th>
+                                      <th className='border border-gray-300 text-gray-300'>Max Users</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>Concurrent Users</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>Concurrent Sessions</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>Standard Price LKR</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>1 Year Commitment Monthly Rental LKR</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>2 Year Commitment Monthly Rental LKR</th>
+                                      <th className='border border-gray-300 text-gray-300 p-1'>3 Year Commitment Monthly Rental LKR</th>
                                   </tr>
                               </thead>
                                 <tbody>
                                     {ainetdata.map((data) => (
                                         <tr key={data._id} className='border-b border-gray-300 h-16'>
-                                            <td className='border border-gray-300'>{data.Bandwith}</td>
-                                            <td className='border border-gray-300'>{data.MaxUsers}</td>
-                                            <td className='border border-gray-300'>{data.ConcurrentUsers}</td>
-                                            <td className='border border-gray-300'>{data.ConcurrentSessions}</td>
-                                            <td className='border border-gray-300'>{data.Sprice}</td>
-                                            <td className='border border-gray-300'>{data.year1CMR}</td>
-                                            <td className='border border-gray-300'>{data.year2CMR}</td>
-                                            <td className='border border-gray-300'>{data.year3CMR}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.Bandwith}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.MaxUsers}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.ConcurrentUsers}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.ConcurrentSessions}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.Sprice}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.year1CMR}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.year2CMR}</td>
+                                            <td className='border border-gray-300 text-white text-center'>{data.year3CMR}</td>
                                         </tr>
                                     ))}
                                 </tbody>
