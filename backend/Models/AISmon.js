@@ -18,19 +18,19 @@ const AISmonSchema = new mongoose.Schema({
         required: true
     },
     Sprice: {
-        type: Number,
+        type: String,
         required: true
     },
     year1CMR: {
-        type: Number,
+        type: String,
         required: true
     },
     year2CMR: {
-        type: Number,
+        type: String,
         required: true
     },
     year3CMR: {
-        type: Number,
+        type: String,
         required: true
     }
 

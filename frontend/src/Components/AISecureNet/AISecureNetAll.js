@@ -9,19 +9,24 @@ export default function AISecureNetAll() {
 
     useEffect(() => {
         axiosInstance.get('/aisecurenet/get/month')
-            .then((res) => {
-                const dataArray = res.data.AISecurenetMonth; // Access the array from the response
-                if (Array.isArray(dataArray)) {
-                    setData(dataArray);
-                } else {
-                    console.error('Response data is not an array:', res.data);
-                    toast.error('Unexpected response format');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                toast.error('Failed to fetch data');
+    .then((res) => {
+        let dataArray = res.data.AISecurenetMonth; // Access the array from the response
+        if (Array.isArray(dataArray)) {
+            // Sort dataArray in ascending order based on Bandwith
+            dataArray = dataArray.sort((a, b) => {
+                // Assuming Bandwith is a number. If it's a string, you might need to parse it
+                return a.Bandwith - b.Bandwith;
             });
+            setData(dataArray);
+        } else {
+            console.error('Response data is not an array:', res.data);
+            toast.error('Unexpected response format');
+        }
+    })
+    .catch((error) => {
+        console.error(error);
+        toast.error('Failed to fetch data');
+    });
     }, []);
 
     return (
