@@ -65,7 +65,9 @@ export default function Home() {
   useEffect(() => {
     axiosInstance.get('/AINetG/AINetGMon')
       .then((res) => {
-        setNetguardmbps(res.data);
+        // Assuming res.data is an array that needs to be sorted
+        const sortedData = res.data.sort((a, b) => parseFloat(a.Bandwith) - parseFloat(b.Bandwith));
+        setNetguardmbps(sortedData);
       })
       .catch((err) => {
         console.log('Error fetching data:', err.message);
@@ -75,7 +77,9 @@ export default function Home() {
   useEffect(() => {
     axiosInstance.get('/TrAINetG/TrAINetGMon')
       .then((res) => {
-        setAINetgmbps(res.data);
+        // Assuming res.data is an array that needs to be sorted
+        const sortedData = res.data.sort((a, b) => parseFloat(a.Bandwith) - parseFloat(b.Bandwith));
+        setAINetgmbps(sortedData);
       })
       .catch((err) => {
         console.log('Error fetching data:', err.message);
@@ -85,9 +89,14 @@ export default function Home() {
   useEffect(() => {
     axiosInstance.get('/aisecurenet/get/month')
         .then((res) => {
-            const dataArray = res.data.AISecurenetMonth; // Access the array from the response
+            let dataArray = res.data.AISecurenetMonth; // Access the array from the response
             if (Array.isArray(dataArray)) {
-              setAISecureNetMbps(dataArray);
+                // Sort dataArray in ascending order based on Bandwith
+                dataArray.sort((a, b) => {
+                    // Assuming Bandwith is a number. If it's a string, you might need to parse it
+                    return parseFloat(a.Bandwith) - parseFloat(b.Bandwith);
+                });
+                setAISecureNetMbps(dataArray);
             } else {
                 console.error('Response data is not an array:', res.data);
             }
@@ -99,30 +108,41 @@ export default function Home() {
 
 useEffect(() => {
   axiosInstance.get('/route/all')
-      .then((response) => {
-          // Correctly access the data from axios response
-          const data = response.data;
-          // Filter and map the routes as intended
-          setBILFiberMbps(data.routes.filter(route => route.origin?.directFiber?.primary).map(route => route.origin.directFiber.primary));
-          // Use the state variable correctly (case-sensitive)
-          console.log('wrgwrg', BILFiberMbps);
-      })
-      .catch((error) => {
-          console.error('Error fetching data:', error);
-      });
+    .then((response) => {
+        // Correctly access the data from axios response
+        const data = response.data;
+        // Filter, map, and sort the routes as intended
+        const sortedBILFiberMbps = data.routes
+          .filter(route => route.origin?.directFiber?.primary)
+          .map(route => route.origin.directFiber.primary)
+          .sort((a, b) => parseFloat(a.Bandwidth) - parseFloat(b.Bandwidth)); // Assuming Bandwidth is a numeric value
+        setBILFiberMbps(sortedBILFiberMbps);
+    })
+    .catch((error) => {
+        console.error('Error fetching data:', error);
+    });
 }, []);
 
-  useEffect(() => {
-      axiosInstance.get('/route/all')
-        .then((response) => {
-            const data = response.data;
-            const filteredGponRoutes = data.routes.filter(route => route.origin?.GPONbase?.primary).map(route => route.origin.GPONbase.primary);
-            setBILGPONMbps(filteredGponRoutes);
-            console.log(filteredGponRoutes);
-        })
-        .catch((error) => {
-            console.error('Error fetching data:', error);
-        });
+// Use another useEffect to log the BILFiberMbps state variable after it has been updated
+useEffect(() => {
+  console.log('BILFiberMbps', BILFiberMbps);
+}, [BILFiberMbps]);
+
+useEffect(() => {
+  axiosInstance.get('/route/all')
+    .then((response) => {
+        const data = response.data;
+        // Filter and map the GPON routes
+        const filteredGponRoutes = data.routes
+          .filter(route => route.origin?.GPONbase?.primary)
+          .map(route => route.origin.GPONbase.primary);
+        // Sort the GPON routes by Bandwidth in ascending order
+        const sortedGponRoutes = filteredGponRoutes.sort((a, b) => parseFloat(a.Bandwidth) - parseFloat(b.Bandwidth));
+        setBILGPONMbps(sortedGponRoutes);
+    })
+    .catch((error) => {
+        console.error('Error fetching data:', error);
+    });
 }, []);
 
 const formatNumber = (value) => {
