@@ -61,6 +61,61 @@ export default function Home() {
   const [data20, setData20] = useState([]);
   const [showData20, setShowData20] = useState(false);
 
+  const resetAllStates = () => {
+    setChargeType('');
+    setAccessMedium('');
+    setFiberAvailable('');
+    setCommitmentPeriod('');
+    setDistance('');
+    setBandwidth('');
+    setBandwidthRange('');
+    setService('');
+
+    data1.length = 0;
+    data2.length = 0;
+    data3.length = 0;
+    data4.length = 0;
+    data5.length = 0;
+    data6.length = 0;
+    data7.length = 0;
+    data8.length = 0;
+    data9.length = 0;
+    data10.length = 0;
+    data11.length = 0;
+    data12.length = 0;
+    data13.length = 0;
+    data14.length = 0;
+    data15.length = 0;
+    data16.length = 0;
+    data17.length = 0;
+    data18.length = 0;
+    data19.length = 0;
+    data20.length = 0;
+    
+
+    // Resetting the show data states
+    setShowData1(false);
+    setShowData2(false);
+    setShowData3(false);
+    setShowData4(false);
+    setShowData5(false);
+    setShowData6(false);
+    setShowData7(false);
+    setShowData8(false);
+    setShowData9(false);
+    setShowData10(false);
+    setShowData11(false);
+    setShowData12(false);
+    setShowData13(false);
+    setShowData14(false);
+    setShowData15(false);
+    setShowData16(false);
+    setShowData17(false);
+    setShowData18(false);
+    setShowData19(false);
+    setShowData20(false);
+  };
+
 
   useEffect(() => {
     axiosInstance.get('/AINetG/AINetGMon')
@@ -669,7 +724,11 @@ const formatNumber = (value) => {
                 <select
                   className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                   value={packageType}
-                  onChange={(e) => setPackageType(e.target.value)}
+                  onChange={(e) => {
+                     resetAllStates();
+                    setPackageType(e.target.value);
+                    // Call the reset function when package type changes
+                  }}
                 >
                   <option value="">Select...</option>
                   <option value="AISecureNet">AISecureNet</option>
