@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../axiosConfig'; // Make sure this is properly set up
+import axiosInstance from '../../axiosConfig'; 
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import background from '../../Images/bg1.jpg';
@@ -21,6 +22,7 @@ export default function AISecureNetInit() {
     });
 
     const [documentId, setDocumentId] = useState(''); // Define documentId state
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance.get('/aisecurenet/get/init')
@@ -63,6 +65,11 @@ export default function AISecureNetInit() {
         });
 };
 
+    const handleBack = () => {
+        navigate(-1);
+    }
+    
+
     return (
         <>
             <ToastContainer />
@@ -84,6 +91,16 @@ export default function AISecureNetInit() {
                         AISecureNet Initiation Charges
                     </div>
                 </div>
+
+                <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
 
                 <div className='w-full'>
                     <form onSubmit={handleSubmit} className='mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>

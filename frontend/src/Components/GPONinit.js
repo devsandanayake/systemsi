@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import background from '../Images/bg1.jpg';
 import axiosInstance from '../axiosConfig';
 
@@ -20,6 +21,12 @@ export default function GPONinit() {
             });
     }, []);
 
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
+    }
+
   return (
     <>
     <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
@@ -36,19 +43,26 @@ export default function GPONinit() {
             }}></div>
 
 <div className='w-full'>
-                    <div className='text-center text-white text-4xl'>
+                    <div className='text-center text-white text-4xl mb-6'>
                         GPON Initiation Charge
                     </div>
                 </div>
 
     <div className='flex justify-end'>
                 <div className='mr-5'>
+
                     <a href='/initiationgpon'>
                     <button className='insertbtn mr-2'>
                                 <span class="inbutton_top"> Insert
                                 </span>
                         </button>
                     </a>
+
+                    <button className='bcbtn mr-2'
+                    onClick={handleBack}>
+                                <span class="bcbutton_top"> Back
+                                </span>
+                            </button>
                 </div>
             </div>
 

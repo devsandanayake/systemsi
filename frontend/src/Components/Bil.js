@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import { Tabs } from 'antd';
 import background from '../Images/bg1.jpg';
@@ -45,6 +46,13 @@ export default function Bil() {
   }, []);
 
 
+  const navigate = useNavigate();
+
+    const handleBack = () => {  
+        navigate(-1);
+    };
+
+
     return (
         <>
             <div className='justify-center items-center h-screen' style={{
@@ -62,7 +70,7 @@ export default function Bil() {
                     backgroundPosition: 'center',
                 }}></div>
 
-                <div className='w-full'>
+                <div className='w-full mb-6'>
                     <div className='text-center text-white text-4xl'>
                         BIL Monthly Rental
                     </div>
@@ -75,6 +83,12 @@ export default function Bil() {
                                 </span>
                         </button>
                     </a>
+
+                    <button className='bcbtn mr-2'
+                        onClick={handleBack}>
+                                <span class="bcbutton_top"> Back
+                                </span>
+                        </button>
                 </div>
 
                 <Tabs defaultActiveKey="1" onChange={handleTabChange} className="custom-tabs" style={{ marginLeft: "10px" }}>

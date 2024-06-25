@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -51,6 +52,13 @@ const AINetGuard = () => {
     }
 };
 
+const navigate = useNavigate();
+
+const handleBack = () => {
+    navigate(-1);
+};
+
+
   return (
     <>
       <ToastContainer />
@@ -69,7 +77,18 @@ const AINetGuard = () => {
       <div>
               <h1 className="text-4xl font-bold text-gray-300 mt-2 text-center mb-6">Insert AINetGuard Monthly Rental</h1>
           </div>
+
           <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
+
+          <div className='w-full mt-3'>
               <div className="flex justify-center">
               <form onSubmit={handleSubmit} className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50">
                 <table className="min-w-full divide-y divide-gray-200">

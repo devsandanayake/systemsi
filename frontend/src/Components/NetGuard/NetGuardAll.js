@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import background from '../../Images/bg1.jpg';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +9,8 @@ export default function NetGuardAll() {
     const [netdata, setNetData] = useState([]);
     const [netIndata, setNetInData] = useState('');
     const [netInId, setNetInId] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance.get('/AINetG/AINetGMon')
@@ -53,6 +56,10 @@ export default function NetGuardAll() {
             });
     };
 
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <>
             <ToastContainer />
@@ -68,9 +75,19 @@ export default function NetGuardAll() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}></div>
-                <div>
-                    <h1 className="text-4xl font-bold text-white text-center mb-6">NetGuard</h1>
-                </div>
+               <div class="flex justify-between items-center w-full">
+    <div class="text-center flex-1">
+        <h1 class="text-4xl font-bold text-white mb-6 ml-32">NetGuard</h1>
+    </div>
+    <div>
+                    <button className='bcbtn mr-2'
+                    onClick={handleBack}>
+                                <span class="bcbutton_top"> Back
+                                </span>
+                            </button>
+    </div>
+</div>
+
                 <div className='w-full text-3xl text-gray-300'>
                     Initiation Charge
                 </div>
@@ -87,15 +104,12 @@ export default function NetGuardAll() {
         />
       </div>
     </div>
-    <div className='justify-end flex-end mr-2'>
-      <button  className =  'updatebtn'
-      onClick={handleUpdate}
-      >
-      <span class="button_top"> Update
-      </span>
-      </button>
-    </div>
-  </div>
+   </div>
+   <div className="w-full flex justify-center mt-3">
+   <button className="updatebtn" onClick={handleUpdate}>
+      <span className="button_top">Update</span>
+   </button>
+</div>
 </div>
                 <div className='w-full mt-3 mb-2'>
                     <hr className='border border-gray-400' />

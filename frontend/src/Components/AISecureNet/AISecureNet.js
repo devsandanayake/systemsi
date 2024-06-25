@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import background from '../../Images/bg1.jpg';
@@ -63,6 +64,12 @@ const handleSubmit = async (event) => {
   setFormData(resetData);
 };
 
+const navigate = useNavigate();
+
+const handleBack = () => {
+  navigate(-1);
+}
+
   return (
     <>
     <ToastContainer />
@@ -81,10 +88,20 @@ const handleSubmit = async (event) => {
       <div><h1 className="text-4xl font-bold text-gray-300 mt-2 text-center mb-6">Insert AISecureNet</h1></div>
 
       <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
+
+
+
+      <div className='w-full mt-3'>
         <div className="flex justify-center">
             
-
-              
               <form onSubmit={handleSubmit} className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">

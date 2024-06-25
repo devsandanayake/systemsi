@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -79,6 +80,13 @@ export default function AINetGuardInit() {
             });
     };
 
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
+    }
+
+
     return (
         <>
             <ToastContainer />
@@ -95,7 +103,17 @@ export default function AINetGuardInit() {
                     backgroundPosition: 'center',
                 }}></div>
 
-                <div className='text-white text-center text-3xl'>AINetGuard Initiation Charges</div>
+                <div className='text-white text-center mb-6 text-3xl'>AINetGuard Initiation Charges</div>
+
+                <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
 
                 <div className='w-full mt-5'>
                 <form onSubmit={handleSubmit} className='mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>

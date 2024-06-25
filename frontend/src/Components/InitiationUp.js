@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import background from '../Images/bg1.jpg';
 import { Tabs } from 'antd';
@@ -33,6 +34,12 @@ export default function InitiationUp() {
     const [ItemId, setItemId] = useState(); // Store the ID of the route
 
     const [GponDetails, setGponDetails] = useState([]);
+
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     useEffect(() => {
         // Fetch all routes and set formData and itemId for the first route as an example
@@ -142,6 +149,16 @@ export default function InitiationUp() {
                     Direct Fiber Based Initiation Charge
                 </div>
             </div>
+
+            <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
 
             
                     <div className='flex justify-center items-center mt-5'>

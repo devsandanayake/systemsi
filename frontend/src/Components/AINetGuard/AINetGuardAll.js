@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import background from '../../Images/bg1.jpg';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function AINetGuardAll() {
     const [ainetdata, setAINetData] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance.get('/TrAINetG/TrAINetGMon')
@@ -18,6 +21,10 @@ export default function AINetGuardAll() {
             });
     }
     , []);
+
+    const handleBack = () => {
+        navigate(-1);
+    }
 
 
   return (
@@ -55,7 +62,14 @@ export default function AINetGuardAll() {
             <button className='nbtn mr-2'>
                                 <span class="nbutton_top"> Initiation
                                 </span>
-                        </button>                </a>
+                        </button>
+            </a>
+
+            <button className='bcbtn mr-2'
+                        onClick={handleBack}>
+                                <span class="bcbutton_top"> Back
+                                </span>
+                        </button>
                 
         </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import background from '../Images/bg1.jpg';
 import axios from 'axios';
 import axiosInstance from '../axiosConfig';
@@ -64,6 +65,12 @@ const handleSubmit = async (e) => {
     }
 };
 
+const navigate = useNavigate();
+
+const handleBack = () => {
+    navigate(-1);
+}
+
     return (
         <>
             <ToastContainer />
@@ -81,10 +88,20 @@ const handleSubmit = async (e) => {
                 }}></div>
 
                 <div className='w-full'>
-                    <div className='text-center text-white text-4xl'>
+                    <div className='text-center text-white text-4xl mb-6'>
                         Insert Monthly Rentals
                     </div>
                 </div>
+
+                <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
 
                 <div className='flex justify-center items-center mt-5'>
                     <div className="bg-white p-2 rounded-lg shadow-md min-w-96 max-w-7xl h-auto backdrop-blur-md backdrop-filter bg-opacity-20 justify-center" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)' }}>

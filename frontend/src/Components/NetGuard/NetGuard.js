@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +13,8 @@ const InsertNetGuard = () => {
     Commitment2Year: '',
     Commitment3Year: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -42,6 +45,11 @@ const InsertNetGuard = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  }
+
+
   return (
     <>
       <ToastContainer />
@@ -59,7 +67,18 @@ const InsertNetGuard = () => {
                 }}></div>
 
         <div><h1 className="text-4xl font-bold text-gray-300 text-center mb-6">Insert NetGuard</h1></div>
-        <div className='w-full flex justify-center items-center'>
+
+        <div className='w-full'>
+        <div className="flex justify-end">
+        <button className='bcbtn mr-2'
+            onClick={handleBack}>
+                <span class="bcbutton_top"> Back
+                </span>
+            </button>
+        </div>
+      </div>
+
+        <div className='w-full flex justify-center items-center mt-5'>
           <form className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50 items-center justify-center" onSubmit={handleSubmit}>
             <div>
               <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>

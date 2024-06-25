@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import axiosInstance from '../../axiosConfig'; // Make sure this is properly set up
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,6 +7,7 @@ import background from '../../Images/bg1.jpg';
 
 export default function AISecureNetAll() {
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axiosInstance.get('/aisecurenet/get/month')
@@ -28,6 +30,10 @@ export default function AISecureNetAll() {
         toast.error('Failed to fetch data');
     });
     }, []);
+
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     return (
         <>
@@ -52,6 +58,8 @@ export default function AISecureNetAll() {
                 </div>
 
                 <div className='w-full mt-3 flex justify-end'>
+
+
                     <a href='/aisecurenet'>
                         <button className='insertbtn mr-2'>
                                 <span class="inbutton_top"> Insert
@@ -65,6 +73,13 @@ export default function AISecureNetAll() {
                                 </span>
                         </button>
                     </a>
+
+                    <button className='bcbtn mr-2'
+                        onClick={handleBack}>
+                                <span class="bcbutton_top"> Back
+                                </span>
+                        </button>
+                        
                 </div>
 
                 <div className='w-full mt-4'>
