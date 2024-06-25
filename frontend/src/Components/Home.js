@@ -979,8 +979,8 @@ const formatNumber = (value) => {
 
 
               
-              <div className='text-lg mt-2 w-full flex justify-center items-center'>
-  <button type="submit" className='font-semibold bg-blue-500 w-32 text-white p-2 rounded-md'>Submit</button>
+              <div className='mt-3 w-full flex justify-center'>
+  <button type="submit" className="beautiful-button"> Submit </button>
 </div>
             </form>
 
