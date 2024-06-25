@@ -52,35 +52,37 @@ export default function GPONinit() {
                 </div>
             </div>
 
-    <table className='mt-4 bg-white text-black border border-gray-300 text-md w-11/12'>
+            <div className='w-full mt-4'>
+                    <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20  border border-gray-300'>
                                 <thead>
                                     <tr className='border-b border-gray-300'>
-                                        <th className='border border-gray-300'>Standard Price</th>
-                                        <th className='border border-gray-300'>With 1 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 2 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 3 Year Commitment</th>
+                                        <th className='border border-gray-300 text-gray-300'>Standard Price</th>
+                                        <th className='border border-gray-300 text-gray-300'>With 1 Year Commitment</th>
+                                        <th className='border border-gray-300 text-gray-300'>With 2 Year Commitment</th>
+                                        <th className='border border-gray-300 text-gray-300'>With 3 Year Commitment</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {GponDetails.map((gponDetail, index) => (
                                         <tr key={index} className='border-b border-gray-300'>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-300 text-white p-1'>
                                                 {gponDetail.Sprice}
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-300 text-white p-1'>
                                                 {gponDetail.year1Commitment}
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-300 text-white p-1'>
                                                 {gponDetail.year2Commitment}
                                             </td>
-                                            <td className='border border-gray-300'>
+                                            <td className='border border-gray-300 text-white p-1'>
                                                 {gponDetail.year3Commitment}
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
+                            </div>
     </div>
     </>
   )

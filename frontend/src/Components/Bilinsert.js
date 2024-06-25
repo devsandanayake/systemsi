@@ -23,7 +23,7 @@ export default function Bilinsert() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         const response = await axiosInstance.post('/route/add', {
@@ -45,9 +45,9 @@ export default function Bilinsert() {
             initiation: {}, // Add any initiation data here if necessary
         });
         console.log(response.data);
-        // Reset form data to initial state after successful submission
-        setFormData({
-            type: '',
+        // Reset form data to initial state after successful submission except for the 'type'
+        setFormData(prevFormData => ({
+            ...prevFormData, // Retain the 'type'
             bandwidth: '',
             sprice: '',
             year1CMR: '',
@@ -55,7 +55,7 @@ export default function Bilinsert() {
             year3CMR: '',
             backupSprice: '',
             backupYear1CMR: '',
-        });
+        }));
         toast.success('Form submitted successfully!');
         
     } catch (error) {
@@ -128,9 +128,11 @@ export default function Bilinsert() {
                                 </tbody>
                             </table>
                         
-                            <div className="flex justify-center mt-4">
-                                <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">Submit</button>
-                            </div>
+                            <div className='w-full flex justify-center mt-2'>
+                                <button type="submit" className="beautiful-button">
+                                Submit
+                                </button>
+                                </div>
                         </form>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../../axiosConfig';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import background from '../../Images/bg1.jpg';
 
 
 const AINetGuard = () => {
@@ -53,62 +54,68 @@ const AINetGuard = () => {
   return (
     <>
       <ToastContainer />
-      <div className="min-h-screen items-center justify-center bg-cover bg-center"
-          style={{
-              backgroundImage: 'url(https://media.istockphoto.com/id/1501103626/photo/defocused-background-image-of-a-spacious-hallway-in-a-modern-office.jpg?b=1&s=612x612&w=0&k=20&c=aB8ktdkwuAhIXrPeZoNFh8KlLOor5GNImsP9qMqA0cU=)',
-              backgroundColor: 'rgba(255, 255, 255, 0.5)',
-          }}>
-          <div>
-              <h1 className="text-4xl font-bold text-gray-800 text-center mb-6">Insert AINetGuard Monthly Rental</h1>
+      <div className='justify-center items-center h-screen' style={{ position: 'relative' }}>
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: -1,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url(${background})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}></div>
+      <div>
+              <h1 className="text-4xl font-bold text-gray-300 mt-2 text-center mb-6">Insert AINetGuard Monthly Rental</h1>
           </div>
           <div className='w-full'>
               <div className="flex justify-center">
-                  <div className="bg-white bg-opacity-50 p-6 rounded-md shadow-md w-full">
-                      <form className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50" onSubmit={handleSubmit}>
-                          <table className='mx-auto bg-white p-2 rounded-lg shadow-md w-11/12 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
-                              <thead>
-                                  <tr className='border-b border-gray-300'>
-                                      <th className='border border-gray-300'>Bandwidth</th>
-                                      <th className='border border-gray-300'>Max Users</th>
-                                      <th className='border border-gray-300'>Concurrent Users</th>
-                                      <th className='border border-gray-300'>Concurrent Sessions</th>
-                                      <th className='border border-gray-300'>Standard Price - Rs.</th>
-                                      <th className='border border-gray-300'>1 Year Commitment Monthly Rental Rs.</th>
-                                      <th className='border border-gray-300'>2 Year Commitment Monthly Rental Rs.</th>
-                                      <th className='border border-gray-300'>3 Year Commitment Monthly Rental Rs.</th>
-                                  </tr>
+              <form onSubmit={handleSubmit} className="space-y-4 border border-gray-300 p-4 rounded-md bg-white bg-opacity-50">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Bandwidth (Mbps)</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Max Users</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Concurrent Users</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Concurrent Sessions</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">Standard Price LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">1 Year Commitment Monthly Rental LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">2 Year Commitment Monthly Rental LKR</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-700">3 Year Commitment Monthly Rental LKR</th>
+                    </tr>
                               </thead>
-                              <tbody>
-                                  <tr className='border-b border-gray-300 h-16'>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="Bandwith" value={formData.Bandwith} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                              <tbody className="bg-white divide-y divide-gray-200">
+                              <tr className='border border-gray-700'>
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="Bandwith" value={formData.Bandwith} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="MaxUsers" value={formData.MaxUsers} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="MaxUsers" value={formData.MaxUsers} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="ConcurrentUsers" value={formData.ConcurrentUsers} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="ConcurrentUsers" value={formData.ConcurrentUsers} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="ConcurrentSessions" value={formData.ConcurrentSessions} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="ConcurrentSessions" value={formData.ConcurrentSessions} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="Sprice" value={formData.Sprice} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="Sprice" value={formData.Sprice} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="year1CMR" value={formData.year1CMR} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="year1CMR" value={formData.year1CMR} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="year2CMR" value={formData.year2CMR} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="year2CMR" value={formData.year2CMR} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
-                                      <td className='border border-gray-300'>
-                                          <input type="text" name="year3CMR" value={formData.year3CMR} onChange={handleChange} className="p-1 rounded w-full h-16 bg-gray-300" />
+                                      <td className='p-2 whitespace-nowrap border border-gray-700'>
+                                          <input type="text" name="year3CMR" value={formData.year3CMR} onChange={handleChange} className="block w-full p-1 h-14 rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-gray-300 bg-opacity-50" />
                                       </td>
                                   </tr>
                               </tbody>
                           </table>
-                          <div className="flex justify-center">
-                              <button type="submit" className="mt-4 w-48 bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                          <div className=" w-full flex justify-center">
+                              <button type="submit" className="beautiful-button">
                                   Submit
                               </button>
                           </div>
@@ -116,7 +123,7 @@ const AINetGuard = () => {
                   </div>
               </div>
           </div>
-      </div>
+      
       </>
   );
 };

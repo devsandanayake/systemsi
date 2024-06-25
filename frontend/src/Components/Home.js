@@ -71,26 +71,28 @@ export default function Home() {
     setBandwidthRange('');
     setService('');
 
-    data1.length = 0;
-    data2.length = 0;
-    data3.length = 0;
-    data4.length = 0;
-    data5.length = 0;
-    data6.length = 0;
-    data7.length = 0;
-    data8.length = 0;
-    data9.length = 0;
-    data10.length = 0;
-    data11.length = 0;
-    data12.length = 0;
-    data13.length = 0;
-    data14.length = 0;
-    data15.length = 0;
-    data16.length = 0;
-    data17.length = 0;
-    data18.length = 0;
-    data19.length = 0;
-    data20.length = 0;
+    //set data states to empty arrays
+    setData1([]);
+    setData2([]);
+    setData3([]);
+    setData4([]);
+    setData5([]);
+    setData6([]);
+    setData7([]);
+    setData8([]);
+    setData9([]);
+    setData10([]);
+    setData11([]);
+    setData12([]);
+    setData13([]);
+    setData14([]);
+    setData15([]);
+    setData16([]);
+    setData17([]);
+    setData18([]);
+    setData19([]);
+    setData20([]);
+    
     
 
     // Resetting the show data states

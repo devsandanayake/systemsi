@@ -95,28 +95,23 @@ export default function AINetGuardInit() {
                     backgroundPosition: 'center',
                 }}></div>
 
-                <div className='text-white text-center text-3xl'>AINetGuard Initiation</div>
+                <div className='text-white text-center text-3xl'>AINetGuard Initiation Charges</div>
 
-                <div className='w-full mt-3'>
-                    <div className="flex justify-center">
-                            <form className="mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300" onSubmit={handleSubmit}>
-                                <table className='min-w-full table-fixed border-collapse border border-gray-900'>
-                                <thead className="bg-gray-500 text-white">
+                <div className='w-full mt-5'>
+                <form onSubmit={handleSubmit} className='mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                        <table className="min-w-full table-fixed border-collapse border border-gray-900">
+                            <thead className="bg-gray-500 text-white">
                                 <tr>
-                                            <th className='border border-gray-900 p-2'>Bandwidth</th>
-                                            <th className='border border-gray-900 p-2 w-72'>Standard (Rs.)</th>
-                                            <th className='border border-gray-900 p-2 w-72'>Commitment (Upto 3Years) (Rs.)</th>
-                                        </tr>
-                                    </thead>
+                                    <th className="border border-gray-900 p-2">Bandwidth</th>
+                                    <th className="border border-gray-900 p-2 w-72">Standard (LKR)</th>
+                                    <th className="border border-gray-900 p-2 w-72">Commitment (Upto 3Years) (LKR)</th>
+                                </tr>
+                            </thead>
                                     <tbody>
                                         <tr>
                                             <td className='border border-gray-900 p-2 text-gray-300'>upto 15 Mbps</td>
-                                            <td className='border border-gray-900 p-2'>
-                                                <input type="text" name="a1s" value={ainetdata.a1s} onChange={handleInputChange} className="w-full"/>
-                                            </td>
-                                            <td className='border border-gray-900 p-2'>
-                                                <input type="text" name="a1Sc" value={ainetdata.a1Sc} onChange={handleInputChange} className="w-full"/>
-                                            </td>
+                                            <td className='border border-gray-900 p-2'><input type="text" name="a1s" value={ainetdata.a1s} onChange={handleInputChange} className="w-full"/></td>
+                                            <td className='border border-gray-900 p-2'><input type="text" name="a1Sc" value={ainetdata.a1Sc} onChange={handleInputChange} className="w-full"/></td>
                                         </tr>
                                         <tr>
                                             <td className='border border-gray-900 p-2 text-gray-300'>upto 175 Mbps</td>
@@ -165,14 +160,14 @@ export default function AINetGuardInit() {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div className='flex justify-center mt-4'>
-                                    <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">Update</button>
-                                </div>
+                                <div className='flex justify-center'>
+                            <button type="submit" className="beautiful-button mt-2">Update</button>
+                        </div>
                             </form>
                         
                     </div>
                 </div>
-            </div>
+            
         </>
     );
 }

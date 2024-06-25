@@ -68,30 +68,29 @@ export default function InitiationGPON() {
                     </div>
                 </div>
 
-                <div className='flex justify-center items-center mt-5'>
-                    <div className="bg-white p-2 rounded-lg shadow-md min-w-96 max-w-7xl h-auto backdrop-blur-md backdrop-filter bg-opacity-20 justify-center" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)' }}>
-                        <form onSubmit={handleSubmit}>
-                            <table className='mt-4 bg-white text-black border border-gray-300 text-md w-11/12'>
-                                <thead>
-                                    <tr className='border-b border-gray-300'>
-                                        <th className='border border-gray-300'>Standard Price</th>
-                                        <th className='border border-gray-300'>With 1 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 2 Year Commitment</th>
-                                        <th className='border border-gray-300'>With 3 Year Commitment</th>
+                <div className='w-full mt-5'>
+                        <form onSubmit={handleSubmit} className='mx-auto bg-white p-2 rounded-lg shadow-md w-fit backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                        <table className="min-w-full table-fixed border-collapse border border-gray-900">
+                        <thead className="bg-gray-500 text-white">
+                                    <tr>
+                                        <th className='border border-gray-900 p-2'>Standard Price</th>
+                                        <th className='border border-gray-900 p-2'>With 1 Year Commitment</th>
+                                        <th className='border border-gray-900 p-2'>With 2 Year Commitment</th>
+                                        <th className='border border-gray-900 p-2'>With 3 Year Commitment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className='border-b border-gray-300'>
-                                        <td className='border border-gray-300'>
+                                    <tr>
+                                        <td className='border border-gray-900'>
                                             <input type='text' name='Sprice' value={formData.Sprice} onChange={handleChange} className='w-full p-2' />
                                         </td>
-                                        <td className='border border-gray-300'>
+                                        <td className='border border-gray-900 p-2'>
                                             <input type='text' name='year1Commitment' value={formData.year1Commitment} onChange={handleChange} className='w-full p-2' />
                                         </td>
-                                        <td className='border border-gray-300'>
+                                        <td className='border border-gray-900 p-2'>
                                             <input type='text' name='year2Commitment' value={formData.year2Commitment} onChange={handleChange} className='w-full p-2' />
                                         </td>
-                                        <td className='border border-gray-300'>
+                                        <td className='border border-gray-900 p-2'>
                                             <input type='text' name='year3Commitment' value={formData.year3Commitment} onChange={handleChange} className='w-full p-2' />
                                         </td>
                                     </tr>
@@ -99,12 +98,12 @@ export default function InitiationGPON() {
                             </table>
 
                             <div className="flex justify-center mt-4">
-                                <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">Submit</button>
+                                <button type="submit" className="beautiful-button">Submit</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
+            
         </>
     );
 }

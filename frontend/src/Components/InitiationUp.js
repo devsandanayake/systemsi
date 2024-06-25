@@ -144,20 +144,17 @@ export default function InitiationUp() {
             </div>
 
             
-
-       
-
                     <div className='flex justify-center items-center mt-5'>
                 <form onSubmit={handleSubmit}>
-                    <table className=' bg-white p-2 rounded-lg shadow-md w-11/12 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
+                    <table className=' bg-white p-2 rounded-lg shadow-md ml-2 mr-2 h-96 backdrop-blur-md backdrop-filter bg-opacity-20 text-black border border-gray-300'>
                         <thead>
                             <tr className='border-b border-gray-300'>
-                                <th className='border border-gray-300'>Fiber Availability</th>
-                                <th className='border border-gray-300 w-64'>Distance</th>
-                                <th className='border border-gray-300 w-48'>Standard Price - Rs.</th>
-                                <th className='border border-gray-300 w-96'>1 Year Commitment Rs.</th>
-                                <th className='border border-gray-300 w-96'>2 Year Commitment Rs.</th>
-                                <th className='border border-gray-300 w-96'>3 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 text-gray-300 '>Fiber Availability</th>
+                                <th className='border border-gray-300 text-gray-300 w-64'>Distance</th>
+                                <th className='border border-gray-300 text-gray-300 w-48'>Standard Price - Rs.</th>
+                                <th className='border border-gray-300 text-gray-300 w-96'>1 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 text-gray-300 w-96'>2 Year Commitment Rs.</th>
+                                <th className='border border-gray-300 text-gray-300 w-96'>3 Year Commitment Rs.</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -236,7 +233,7 @@ export default function InitiationUp() {
                         </tbody>
                     </table>
                     <div className='flex justify-center mt-4'>
-                        <button type='submit' className='bg-blue-500 text-white p-2 rounded'>Submit</button>
+                        <button type='submit' className="beautiful-button">Submit</button>
                     </div>
                 </form>
             </div>

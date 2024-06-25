@@ -81,7 +81,7 @@ export default function AISecureNetInit() {
 
                 <div className='w-full'>
                     <div className='text-center text-white text-4xl mb-4'>
-                        AISecureNet Initiation Details
+                        AISecureNet Initiation Charges
                     </div>
                 </div>
 
