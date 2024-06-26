@@ -721,8 +721,8 @@ const formatNumber = (value) => {
         <div className='flex justify-center items-center mt-5'>
           <div className="bg-white p-2 rounded-lg shadow-md h-fit backdrop-blur-md backdrop-filter bg-opacity-20 justify-center" style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.8)' }}>
             <form onSubmit={handleSubmit}>
-              <div className='grid grid-cols-2 gap-4 text-lg'>
-                <label className='font-semibold'>Select Package : </label>
+              <div className='grid grid-cols-2 gap-4 text-lg items-center '>
+                <label className='font-semibold text-gray-300'>Select Package : </label>
                 <select
                   className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                   value={packageType}
@@ -743,8 +743,8 @@ const formatNumber = (value) => {
               {packageType === 'BIL' && (
                 <>
               
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Access Medium : </label>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Access Medium : </label>
                   <select 
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={accessMedium}
@@ -757,8 +757,8 @@ const formatNumber = (value) => {
                 </div>
 
 
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Commitment period : </label>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Commitment period : </label>
                   <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                    value={commitmentPeriod}
                    onChange={(e) => setCommitmentPeriod(e.target.value)}
@@ -771,8 +771,8 @@ const formatNumber = (value) => {
                 </div>
 
                 {accessMedium === 'FIBER' && (
-                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                   <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                   <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                   <label className='font-semibold text-gray-300'>Bandwidth (Mbps) :</label>
                    <select
                      className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                      value={bandwidth}
@@ -787,8 +787,8 @@ const formatNumber = (value) => {
                 )}
 
                 {accessMedium === 'GPON' && (
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidth}
@@ -802,8 +802,8 @@ const formatNumber = (value) => {
                 </div>
                 )}
 
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Primary / Backup : </label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                    <label className='font-semibold text-gray-300'>Primary / Backup : </label>
                     <select
                       className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                       value={service}
@@ -815,8 +815,8 @@ const formatNumber = (value) => {
                     </select>
                   </div>
 
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                    <label className='font-semibold'>Fiber Available / Not : </label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                    <label className='font-semibold text-gray-300'>Fiber Available / Not : </label>
                     <select
                       className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                       value={fiberAvailable}
@@ -829,8 +829,8 @@ const formatNumber = (value) => {
                   </div>
 
                   {fiberAvailable === 'No' && (
-                    <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                      <label className='font-semibold'>Distance : </label>
+                    <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                      <label className='font-semibold text-gray-300'>Distance : </label>
                       <select 
                       className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                       value={distance}
@@ -849,8 +849,8 @@ const formatNumber = (value) => {
 
               {packageType === 'AISecureNet' && (
                 <>
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidth}
@@ -864,8 +864,8 @@ const formatNumber = (value) => {
                 </div>
                           
                
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Commitment period : </label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Commitment period : </label>
                   <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={commitmentPeriod}
                     onChange={(e) => setCommitmentPeriod(e.target.value)}
@@ -877,8 +877,8 @@ const formatNumber = (value) => {
                   </select>
                 </div>
 
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth Range for Initiation Charge (Mbps) :</label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth Range for Initiation Charge (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidthRange}
@@ -900,8 +900,8 @@ const formatNumber = (value) => {
 
                 {packageType === 'NetGuard' && (
                   <>
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidth}
@@ -914,8 +914,8 @@ const formatNumber = (value) => {
                   </select>
                 </div>
 
-                  <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Commitment period : </label>
+                  <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Commitment period : </label>
                   <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={commitmentPeriod}
                     onChange={(e) => setCommitmentPeriod(e.target.value)}
@@ -931,8 +931,8 @@ const formatNumber = (value) => {
 
                 {packageType === 'AINetGuard' && (
                   <>
-                   <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth (Mbps) :</label>
+                   <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidth}
@@ -945,8 +945,8 @@ const formatNumber = (value) => {
                   </select>
                 </div>
 
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Commitment period : </label>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Commitment period : </label>
                   <select className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={commitmentPeriod}
                     onChange={(e) => setCommitmentPeriod(e.target.value)}
@@ -958,8 +958,8 @@ const formatNumber = (value) => {
                   </select>
                 </div>
 
-                <div className='grid grid-cols-2 gap-4 text-lg mt-2'>
-                  <label className='font-semibold'>Bandwidth Range for Initiation Charge (Mbps) :</label>
+                <div className='grid grid-cols-2 gap-4 text-lg mt-2 items-center'>
+                  <label className='font-semibold text-gray-300'>Bandwidth Range for Initiation Charge (Mbps) :</label>
                   <select
                     className='bg-gray-200 p-1 rounded-md w-44 h-10 ml-2'
                     value={bandwidthRange}
