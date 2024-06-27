@@ -33,7 +33,7 @@ app.use('/TrAINetG', TrAINetGMonRoutes);
  
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://dev:dev1234@mernapp.zwstxds.mongodb.net/systemsi')
+mongoose.connect('mongodb://enterpriseUser:enterpriseUser%40SLT24@124.43.179.18:27017/enterpriseDB')
 .then(() => {
     console.log('Connected to the database!');
 })
