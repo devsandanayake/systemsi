@@ -98,7 +98,6 @@ export default function Bil() {
                                 <tr>
                                     <th colSpan="5" className="px-6 py-3 text-xs font-medium text-gray-300 uppercase tracking-wider text-center border border-gray-300">Primary</th>
                                     <th colSpan="2" className="px-6 py-3 text-center text-xs font-medium text-gray-300 uppercase tracking-wider border border-gray-300">Backup</th>
-                                    <th rowSpan = "2" className="px-6 py-3 text-left text-sm font-medium text-gray-300  tracking-wider border border-gray-300">Action</th>
                                 </tr>
                                 <tr>
                                     <th rowSpan="2" className="px-6 py-3 text-left text-sm font-medium text-gray-300  tracking-wider border border-gray-300">Bandwidth (Mbps)</th>
@@ -133,9 +132,6 @@ export default function Bil() {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-white border border-gray-300">
                                             {route.backup?.year1CMR || 'N/A'}
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white border border-gray-300">
-                                            <a href={`/route/update/${route._id}`}>Update</a>
                                         </td>
                                     </tr>
                                 ))}
